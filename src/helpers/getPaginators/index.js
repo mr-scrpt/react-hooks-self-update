@@ -1,0 +1,1 @@
+export { getPaginators } from './getPaginators'

@@ -1,0 +1,2 @@
+export { SelfFeed } from "./selfFeed";
+
