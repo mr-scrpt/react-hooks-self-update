@@ -1,0 +1,1 @@
+export { localStorageUse } from './localStorageUse'

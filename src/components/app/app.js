@@ -1,13 +1,17 @@
 import React from "react";
+import { Provider as ReduxProvider } from 'react-redux';
+
 import Routes from "routes/index.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import { TopBar } from "components/topBar";
 import { CurrentUserProvider } from 'contexts';
 import { CurrentUserChecker } from 'components/currentUserChecker';
+import { createAppStore } from 'reduxStore';
 
-function App() {
+const store = createAppStore();
+export const App = () => {
   return (
-    <div>
+    <ReduxProvider store={store}>
       <CurrentUserProvider>
         <CurrentUserChecker>
           <Router>
@@ -16,8 +20,6 @@ function App() {
           </Router>
         </CurrentUserChecker>
       </CurrentUserProvider>
-    </div>
+    </ReduxProvider>
   );
 }
-
-export default App;
