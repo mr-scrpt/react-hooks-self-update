@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux'
+import { fetchFeedsSelfRequest } from 'modules/feedsSelf';
+
 import { Feeds } from 'components/feeds';
 import { useFetch } from 'hooks/useFetch';
 import { Pagination } from 'components/pagination';
@@ -10,27 +14,19 @@ import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
 import { FeedToggler } from 'components/feedToggler';
 
-export const SelfFeed = ({ location: { search }, match: { url, params: { tagName } } }) => {
+
+const Component = ({ feedsList, loading, error, fetchFeedsSelfRequest, location: { search }, match: { url, params: { tagName } } }) => {
+
+  useEffect(() => {
+    if (!fetchFeedsSelfRequest) return;
+    fetchFeedsSelfRequest({ limit: 10, offset })
+  }, [fetchFeedsSelfRequest]);
+
   const { currentPage, offset } = getPaginators(search);
-  const [articlesList, setArticlesList] = useState([]);
+
   const stingifyParams = stringify({
     limit, offset, tag: tagName
   })
-
-
-  const apiUrl = `articles/feed?${stingifyParams}`;
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
-
-
-  useEffect(() => {
-    doFetch();
-  }, [doFetch, currentPage, tagName])
-
-
-  useEffect(() => {
-    if (!response) return;
-    setArticlesList(response.articles);
-  }, [response])
 
   return (
     <div className="home-page">
@@ -44,13 +40,13 @@ export const SelfFeed = ({ location: { search }, match: { url, params: { tagName
         <div className="row">
           <div className="col-md-9">
             <FeedToggler tagName={tagName} />
-            <ShowLoading loading={isLoading} />
+            <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 
-            {!isLoading && articlesList && response && (
+            {feedsList && feedsList.data && !loading && (
               <>
-                <Feeds articles={articlesList} />
-                <Pagination total={response.articlesCount} limit={limit} url={url} currentPage={currentPage} />
+                <Feeds articles={feedsList.data.articles} />
+                <Pagination total={feedsList.data.articlesCount} limit={limit} url={url} currentPage={currentPage} />
               </>
             )}
           </div>
@@ -63,3 +59,11 @@ export const SelfFeed = ({ location: { search }, match: { url, params: { tagName
   )
 
 }
+const mapStateToProps = ({ feedsSelfStore }) => feedsSelfStore;
+const mapDispatchToProps = {
+  fetchFeedsSelfRequest
+}
+
+export const SelfFeed = compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Component)

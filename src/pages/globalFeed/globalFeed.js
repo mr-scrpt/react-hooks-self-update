@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Feeds } from 'components/feeds';
-import { useFetch } from 'hooks/useFetch';
-import { Pagination } from 'components/pagination';
-import { getPaginators } from 'helpers/getPaginators';
-import { limit } from 'constant';
-import { stringify } from 'query-string';
-import { PopularTags } from 'components/popularTags';
+import { compose } from 'redux'
+import { connect } from 'react-redux';
+
+import { fetchFeedsGlobalRequest } from 'modules/feedsGlobal';
+import { FeedToggler } from 'components/feedToggler';
 import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
-import { FeedToggler } from 'components/feedToggler';
+import { Feeds } from 'components/feeds';
+import { Pagination } from 'components/pagination';
+import { PopularTags } from 'components/popularTags';
+import { getPaginators } from 'helpers/getPaginators';
+import { limit } from 'constant';
+const Page = ({ feedsList, loading, error, fetchFeedsGlobalRequest, match: { url }, location: { search } }) => {
 
-export const GlobalFeed = ({ location: { search }, match: { url } }) => {
   const { currentPage, offset } = getPaginators(search);
-  const [articlesList, setArticlesList] = useState([]);
-  const stingifyParams = stringify({
-    limit, offset
-  })
-  const apiUrl = `articles?${stingifyParams}`;
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
-
+  //const [feedsListState, setFeedsListState] = useState(null);
 
   useEffect(() => {
-    doFetch();
-  }, [doFetch, currentPage])
+    if (!fetchFeedsGlobalRequest) return;
+    fetchFeedsGlobalRequest({ limit, offset })
 
+  }, [fetchFeedsGlobalRequest, currentPage]);
 
-  useEffect(() => {
-    if (!response) return;
-    setArticlesList(response.articles);
-  }, [response])
+  /*  useEffect(() => {
+     if (!feedsList) return;
+     setFeedsListState(feedsList.data)
+   }, [feedsList]); */
+
 
   return (
     <div className="home-page">
@@ -42,16 +40,17 @@ export const GlobalFeed = ({ location: { search }, match: { url } }) => {
         <div className="row">
           <div className="col-md-9">
             <FeedToggler />
-            {/* {isLoading && <div>Идет загрузка статей...</div>} */}
-            <ShowLoading loading={isLoading} />
+
+            <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 
-            {!isLoading && articlesList && response && (
+            {feedsList && feedsList.data && !loading && (
               <>
-                <Feeds articles={articlesList} />
-                <Pagination total={response.articlesCount} limit={limit} url={url} currentPage={currentPage} />
+                <Feeds articles={feedsList.data.articles} />
+                <Pagination total={feedsList.data.articlesCount} limit={limit} url={url} currentPage={currentPage} />
               </>
-            )}
+            )
+            }
           </div>
           <div className="col-md-3">
             <PopularTags search={search} />
@@ -60,5 +59,14 @@ export const GlobalFeed = ({ location: { search }, match: { url } }) => {
       </div>
     </div>
   )
-
 }
+
+const mapStateToProps = ({ feedsGlobalStore }) => feedsGlobalStore;
+const mapDispatchToProps = {
+  fetchFeedsGlobalRequest
+};
+
+
+export const GlobalFeed = compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Page);

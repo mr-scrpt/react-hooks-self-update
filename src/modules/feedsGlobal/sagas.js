@@ -1,19 +1,19 @@
 import { takeLatest, select, fork, takeEvery, call, put } from 'redux-saga/effects';
-import { fetchFeedsRequest, fetchFeedsSuccess, fetchFeedsError } from './actions';
+import { fetchFeedsGlobalRequest, fetchFeedsGlobalSuccess, fetchFeedsGlobalError } from './actions';
 import { getFeeds } from './api';
 
 function* fetchWatcher() {
-  yield takeEvery(fetchFeedsRequest, getFeedsDB);
+  yield takeEvery(fetchFeedsGlobalRequest, getFeedsDB);
 }
 
 export function* getFeedsDB({ payload }) {
 
-
   try {
     const feedsResponse = yield call(getFeeds, payload); //  limit = 10, offset = 0
-    yield put(fetchFeedsSuccess(feedsResponse))
+    console.log('global', feedsResponse);
+    yield put(fetchFeedsGlobalSuccess(feedsResponse))
   } catch (error) {
-    yield put(fetchFeedsError(error))
+    yield put(fetchFeedsGlobalError(error))
   }
 }
 

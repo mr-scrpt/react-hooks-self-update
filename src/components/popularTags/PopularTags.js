@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useFetch } from 'hooks/useFetch';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { fetchTagsPopularRequest } from 'modules/tagsPopular';
 import { PopularTagsLayout } from './PopularTagsLayout';
 
-export const PopularTags = () => {
-
-  const [tags, setTags] = useState([]);
-  const [{ response, isLoading, error }, doFetch] = useFetch('tags');
+const Copmponent = ({ tagsList, loading, error, fetchTagsPopularRequest }) => {
 
   useEffect(() => {
-    doFetch();
-  }, [doFetch])
-
-  useEffect(() => {
-    if (!response || !response.tags) return
-    setTags(response.tags)
-  }, [response])
+    fetchTagsPopularRequest();
+  }, [fetchTagsPopularRequest]);
 
 
-
-
-  return <PopularTagsLayout tags={tags} isLoading={isLoading} error={error} />
+  return <PopularTagsLayout tags={tagsList} isLoading={loading} error={error} />
 }
+
+const mapStateToProps = ({ tagsPopularStore }) => tagsPopularStore;
+const mapDispatchToProps = {
+  fetchTagsPopularRequest
+}
+
+export const PopularTags = compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Copmponent);

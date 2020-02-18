@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { compose } from 'redux'
+import { connect } from 'react-redux';
+import { fetchFeedsTagsRequest } from 'modules/feedsTags';
 import { Feeds } from 'components/feeds';
 import { useFetch } from 'hooks/useFetch';
 import { Pagination } from 'components/pagination';
@@ -10,27 +13,15 @@ import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
 import { FeedToggler } from 'components/feedToggler';
 
-export const TagFeed = ({ location: { search }, match: { url, params: { tagName } } }) => {
+export const Component = ({ feedsList, loading, error, fetchFeedsTagsRequest, location: { search }, match: { url, params: { tagName } } }) => {
+
   const { currentPage, offset } = getPaginators(search);
-  const [articlesList, setArticlesList] = useState([]);
-  const stingifyParams = stringify({
-    limit, offset, tag: tagName
-  })
-
-
-  const apiUrl = `articles?${stingifyParams}`;
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
-
 
   useEffect(() => {
-    doFetch();
-  }, [doFetch, currentPage, tagName])
+    fetchFeedsTagsRequest({ limit, offset, tagName })
+  }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
 
-  useEffect(() => {
-    if (!response) return;
-    setArticlesList(response.articles);
-  }, [response])
 
   return (
     <div className="home-page">
@@ -44,13 +35,13 @@ export const TagFeed = ({ location: { search }, match: { url, params: { tagName 
         <div className="row">
           <div className="col-md-9">
             <FeedToggler tagName={tagName} />
-            <ShowLoading loading={isLoading} />
+            <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 
-            {!isLoading && articlesList && response && (
+            {feedsList && feedsList.data && !loading && (
               <>
-                <Feeds articles={articlesList} />
-                <Pagination total={response.articlesCount} limit={limit} url={url} currentPage={currentPage} />
+                <Feeds articles={feedsList.data.articles} />
+                <Pagination total={feedsList.data.articlesCount} limit={limit} url={url} currentPage={currentPage} />
               </>
             )}
           </div>
@@ -63,3 +54,12 @@ export const TagFeed = ({ location: { search }, match: { url, params: { tagName 
   )
 
 }
+const mapStateToProps = ({ feedsTagsStore }) => feedsTagsStore;
+
+const mapDispatchToProps = {
+  fetchFeedsTagsRequest
+}
+
+export const TagFeed = compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Component)

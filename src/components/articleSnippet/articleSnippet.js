@@ -45,7 +45,7 @@ export const ArticleSnippet = ({ item }) => {
         <h1 className="">{title}</h1>
       </Link>
       <p>{description}</p>
-      <Link className="preview-link" to={`articles/${slug}`}>
+      <Link className="preview-link" to={`/articles/${slug}`}>
         Читать далее...
       </Link>
       <ul className='tag-list'>
