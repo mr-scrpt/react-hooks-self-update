@@ -1,2 +1,0 @@
-export { SelfFeed } from "./selfFeed";
-

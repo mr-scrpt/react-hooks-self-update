@@ -1,49 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import { useFetch } from 'hooks/useFetch';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { isEmptyObject } from 'helpers/isEmptyObject';
+import { fetchFeedCurrentRequest, deleteFeedCurrentRequest, getCurretnFeed, getFeedLoading, getFeedError } from 'modules/feedCurrent';
+
 import { ArticleInfo } from 'components/articleInfo';
 import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
 import { Redirect } from 'react-router-dom';
-export const Article = ({ match }) => {
+
+const Component = ({ feedCurrent, loading, loadedIs, error, fetchFeedCurrentRequest, deleteFeedCurrentRequest, match }) => {
+
   const slug = match.params.slug;
-  const apiURL = `articles/${slug}`;
-  const [{
-    response: fetchArticleResponse,
-    isLoading: fetchArticleIsLoading,
-    error: fetchArticleError
-  },
-    doFetch] = useFetch(apiURL);
-  const [{ response: deleteArticleResponse }, doDeleteArticle] = useFetch(apiURL);
-  const [isSuccessefulDelete, setIsSuccessefulSubmit] = useState(false);
-  const articleDelete = () => {
-    doDeleteArticle({
-      method: 'DELETE'
-    })
+  /* console.log('error on component', feedCurrent);
+  console.log();
+ */
+  isEmptyObject(error)
+  useEffect(() => {
+    if (!fetchFeedCurrentRequest) return;
+    fetchFeedCurrentRequest(slug)
+  }, [fetchFeedCurrentRequest]);
+
+  const deleteFeedCurrent = () => {
+    deleteFeedCurrentRequest(slug);
   }
 
-  useEffect(() => {
-    doFetch();
-  }, [doFetch])
-
-
-  useEffect(() => {
-    if (!deleteArticleResponse) return;
-    setIsSuccessefulSubmit(true)
-  }, [deleteArticleResponse]);
-  if (deleteArticleResponse) {
+  if (loadedIs === false) {
     return <Redirect to={'/'} />
   }
 
 
   return (
     <>
-      <ShowLoading loading={fetchArticleIsLoading} />
-      <ShowErrors errors={fetchArticleError} />
-      {!fetchArticleIsLoading && fetchArticleResponse && fetchArticleResponse.article && (
-        <ArticleInfo article={fetchArticleResponse.article} slug={slug} articleDelete={articleDelete} />
+      <ShowLoading loading={loading} />
+      <ShowErrors errors={error} />
+
+      {!loading && !isEmptyObject(feedCurrent) && (
+        <ArticleInfo article={feedCurrent} slug={slug} articleDelete={deleteFeedCurrent} />
+
       )}
     </>
 
   )
 }
 
+const mapStateToProps = state => ({
+  feedCurrent: getCurretnFeed(state),
+  loading: getFeedLoading(state),
+  error: getFeedError(state)
+});
+const mapDispatchToProps = {
+  fetchFeedCurrentRequest,
+  deleteFeedCurrentRequest
+}
+export const Article = connect(mapStateToProps, mapDispatchToProps)(Component)

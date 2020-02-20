@@ -63,11 +63,11 @@ export const EditArticle = ({ match }) => {
   }
 
   return (
-    <><ArticleForm
+    <ArticleForm
       onSubmit={handleSubmit}
       errors={(updateArticleError && updateArticleError.errors) || {}}
       initialValues={initialValues}
     />
-    </>
+
   )
 }

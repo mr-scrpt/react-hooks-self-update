@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { compose } from 'redux'
+
 import { connect } from 'react-redux';
 import { fetchFeedsTagsRequest } from 'modules/feedsTags';
 import { Feeds } from 'components/feeds';
-import { useFetch } from 'hooks/useFetch';
+
 import { Pagination } from 'components/pagination';
 import { getPaginators } from 'helpers/getPaginators';
 import { limit } from 'constant';
-import { stringify } from 'query-string';
+
 import { PopularTags } from 'components/popularTags';
 import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
@@ -60,6 +60,7 @@ const mapDispatchToProps = {
   fetchFeedsTagsRequest
 }
 
-export const TagFeed = compose(
+/* export const TagFeed = compose(
   connect(mapStateToProps, mapDispatchToProps)
-)(Component)
+)(Component) */
+export const TagFeed = connect(mapStateToProps, mapDispatchToProps)(Component)

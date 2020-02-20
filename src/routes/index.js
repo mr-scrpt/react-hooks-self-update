@@ -3,13 +3,13 @@ import { Switch, Route } from "react-router-dom";
 import { Article } from "pages/article";
 import { GlobalFeed } from "pages/globalFeed";
 import { Autentifications } from "pages/autentifications";
-import { TagFeed } from 'pages/tagFeed';
-import { SelfFeed } from "pages/selfFeed";
-import { CreateArticle } from 'pages/createArticle';
-import { EditArticle } from 'pages/editArticle';
-import { Settings } from 'pages/settings';
-import { UserProfile } from 'components/userProfile';
-import { TestPage } from 'pages/testPage';
+import { TagFeed } from "pages/tagFeed";
+import { FeedsFollow } from "pages/feedsFollow";
+import { CreateArticle } from "pages/createArticle";
+import { EditArticle } from "pages/editArticle";
+import { Settings } from "pages/settings";
+import { UserProfile } from "components/userProfile";
+import { TestPage } from "pages/testPage";
 export default () => {
   return (
     <div>
@@ -21,7 +21,7 @@ export default () => {
         <Route path="/articles/new" component={CreateArticle} />
         <Route path="/articles/:slug/edit" component={EditArticle} />
         <Route path="/tags/:tagName" component={TagFeed} />
-        <Route path="/feed" component={SelfFeed} />
+        <Route path="/feed" component={FeedsFollow} />
         <Route path="/registration" component={Autentifications} />
         <Route path="/settings" component={Settings} />
         <Route path="/login" component={Autentifications} />

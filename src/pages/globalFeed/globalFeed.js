@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { compose } from 'redux'
+import React, { useEffect } from 'react';
+
 import { connect } from 'react-redux';
 
-import { fetchFeedsGlobalRequest } from 'modules/feedsGlobal';
+import { fetchFeedsGlobalRequest, getFeedsList, getFeedsCount, getFeedsLoading, getFeedsError } from 'modules/feedsGlobal';
 import { FeedToggler } from 'components/feedToggler';
 import { ShowLoading } from 'components/showLoading';
 import { ShowErrors } from 'components/showErrors';
@@ -11,21 +11,15 @@ import { Pagination } from 'components/pagination';
 import { PopularTags } from 'components/popularTags';
 import { getPaginators } from 'helpers/getPaginators';
 import { limit } from 'constant';
-const Page = ({ feedsList, loading, error, fetchFeedsGlobalRequest, match: { url }, location: { search } }) => {
+const Page = ({ feedsList, loading, error, feedsCount, fetchFeedsGlobalRequest, match: { url }, location: { search } }) => {
 
   const { currentPage, offset } = getPaginators(search);
-  //const [feedsListState, setFeedsListState] = useState(null);
+
 
   useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
     fetchFeedsGlobalRequest({ limit, offset })
-
   }, [fetchFeedsGlobalRequest, currentPage]);
-
-  /*  useEffect(() => {
-     if (!feedsList) return;
-     setFeedsListState(feedsList.data)
-   }, [feedsList]); */
 
 
   return (
@@ -44,10 +38,10 @@ const Page = ({ feedsList, loading, error, fetchFeedsGlobalRequest, match: { url
             <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 
-            {feedsList && feedsList.data && !loading && (
+            {!loading && feedsList.length && (
               <>
-                <Feeds articles={feedsList.data.articles} />
-                <Pagination total={feedsList.data.articlesCount} limit={limit} url={url} currentPage={currentPage} />
+                <Feeds articles={feedsList} />
+                <Pagination total={feedsCount} limit={limit} url={url} currentPage={currentPage} />
               </>
             )
             }
@@ -61,12 +55,14 @@ const Page = ({ feedsList, loading, error, fetchFeedsGlobalRequest, match: { url
   )
 }
 
-const mapStateToProps = ({ feedsGlobalStore }) => feedsGlobalStore;
+const mapStateToProps = state => ({
+  feedsList: getFeedsList(state),
+  feedsCount: getFeedsCount(state),
+  loading: getFeedsLoading(state),
+  error: getFeedsError(state)
+});
 const mapDispatchToProps = {
   fetchFeedsGlobalRequest
 };
 
-
-export const GlobalFeed = compose(
-  connect(mapStateToProps, mapDispatchToProps)
-)(Page);
+export const GlobalFeed = connect(mapStateToProps, mapDispatchToProps)(Page);

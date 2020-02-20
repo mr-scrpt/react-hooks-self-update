@@ -1,14 +1,41 @@
 import { handleActions } from "redux-actions";
-import { createSelector } from 'reselect';
 import { combineReducers } from 'redux';
 
 import { fetchFeedsGlobalRequest, fetchFeedsGlobalSuccess, fetchFeedsGlobalError } from './actions';
 
 const feedsList = handleActions({
   [fetchFeedsGlobalRequest]: () => [],
-  [fetchFeedsGlobalSuccess]: (_state, action) => action.payload,
+  [fetchFeedsGlobalSuccess]: (_state, { payload }) => payload.data.articles.map(({
+    title,
+    slug,
+    createdAt,
+    tagList,
+    description,
+    favorited,
+    favoritesCount,
+    author: {
+      username, image
+    }
+  }) => ({
+    title,
+    slug,
+    createdAt,
+    tagList,
+    description,
+    favorited,
+    favoritesCount,
+    author: {
+      username, image
+    }
+  })),
   [fetchFeedsGlobalError]: () => []
 }, [])
+
+const feedsCount = handleActions({
+  [fetchFeedsGlobalRequest]: () => 0,
+  [fetchFeedsGlobalSuccess]: (_state, { payload }) => payload.data.articlesCount,
+  [fetchFeedsGlobalError]: () => 0
+}, 0)
 
 const loading = handleActions({
   [fetchFeedsGlobalRequest]: () => true,
@@ -17,17 +44,14 @@ const loading = handleActions({
 }, false)
 
 const error = handleActions({
-  [fetchFeedsGlobalRequest]: () => null,
-  [fetchFeedsGlobalSuccess]: () => null,
+  [fetchFeedsGlobalRequest]: () => { },
+  [fetchFeedsGlobalSuccess]: () => { },
   [fetchFeedsGlobalError]: (_state, action) => action.payload
-}, null)
+}, {})
 
 export default combineReducers({
   feedsList,
+  feedsCount,
   loading,
   error
 })
-
-/* export const getFeeds = createSelector(
-  state => state.feeds.data
-)  */
