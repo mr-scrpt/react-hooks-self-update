@@ -1,26 +1,20 @@
-import axios from 'axios';
-import { stringify } from 'query-string';
-
-import { baseURL } from 'constant';
-import { localStorageUse } from 'helpers/localStorageUse';
+import { request } from "helpers/request";
+import { stringify } from "query-string";
 
 export const getFeeds = async ({ limit, offset }) => {
-
-
-  const [token] = localStorageUse('token');
   const stingifyParams = stringify({
-    limit, offset
-  })
-  const options = {
-    headers: {
-      authorization: token ? `Token ${token}` : ''
-    }
-  }
-
+    limit,
+    offset
+  });
   try {
-    return await axios(`${baseURL}articles/feed?${stingifyParams}`, options);
-  } catch (error) {
+    return await request(
+      {
+        url: `/articles/feed?${stingifyParams}`,
+        method: "GET"
+      },
+      true
+    );
+  } catch (e) {
     throw { status: 400, message: "Ошибка получения данных" };
   }
-
-}
+};

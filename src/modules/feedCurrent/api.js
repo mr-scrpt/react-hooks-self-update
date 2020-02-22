@@ -1,32 +1,17 @@
-import axios from 'axios';
+import { request } from "helpers/request";
 
-import { baseURL } from 'constant';
-import { localStorageUse } from 'helpers/localStorageUse';
-
-
-const [token] = localStorageUse('token');
-
-const options = {
-  headers: {
-    authorization: token ? `Token ${token}` : ''
-  }
-}
-
-export const getFeedCurrent = async (slug) => {
-
+export const getFeedCurrent = async slug => {
   try {
-    return await axios(`${baseURL}articles/${slug}`, options);
-  } catch (error) {
+    return await request({ url: `/articles/${slug}`, method: "GET" });
+  } catch (e) {
     throw { status: 400, message: "Ошибка получения данных" };
   }
+};
 
-}
-
-export const deleteFeedCurrent = async (slug) => {
-  options.method = "DELETE";
+export const deleteFeedCurrent = async slug => {
   try {
-    return await axios(`${baseURL}articles/${slug}`, options);
-  } catch (error) {
+    return await request({ url: `/articles/${slug}`, method: "DELETE" }, true);
+  } catch (e) {
     throw { status: 400, message: "Ошибка получения данных" };
   }
-}
+};
