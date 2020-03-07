@@ -1,9 +1,13 @@
-import { takeEvery, fork, call, put } from 'redux-saga/effects';
-import { fetchTagsPopularRequest, fetchTagsPopularSuccess, fetchTagsPopularError } from './actions';
-import { getTagsPopular } from './api';
+import { takeLatest, fork, call, put } from "redux-saga/effects";
+import {
+  fetchTagsPopularRequest,
+  fetchTagsPopularSuccess,
+  fetchTagsPopularError
+} from "./actions";
+import { getTagsPopular } from "./api";
 
 function* fetchWatcher() {
-  yield takeEvery(fetchTagsPopularRequest, getTagsPopularDB);
+  yield takeLatest(fetchTagsPopularRequest, getTagsPopularDB);
 }
 
 export function* getTagsPopularDB() {
@@ -15,6 +19,6 @@ export function* getTagsPopularDB() {
   }
 }
 
-export default function* () {
+export default function*() {
   yield fork(fetchWatcher);
 }

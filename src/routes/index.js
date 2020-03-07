@@ -9,16 +9,18 @@ import { CreateArticle } from "pages/createArticle";
 import { EditArticle } from "pages/editArticle";
 import { Settings } from "pages/settings";
 import { UserProfile } from "components/userProfile";
-import { TestPage } from "pages/testPage";
+import { PrivatRoute } from "routes/privatRoute";
+
 export default () => {
   return (
     <div>
       <Switch>
         <Route path="/" component={GlobalFeed} exact />
-        <Route path="/testpage" component={TestPage} exact />
+
         <Route path="/profiles/:slug" component={UserProfile} exact />
         <Route path="/profiles/:slug/favorited" component={UserProfile} />
-        <Route path="/articles/new" component={CreateArticle} />
+        {/* <Route path="/articles/new" component={CreateArticle} /> */}
+        <PrivatRoute path="/articles/new" component={CreateArticle} />
         <Route path="/articles/:slug/edit" component={EditArticle} />
         <Route path="/tags/:tagName" component={TagFeed} />
         <Route path="/feed" component={FeedsFollow} />

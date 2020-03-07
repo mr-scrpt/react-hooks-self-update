@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { errorsList } from "helpers/errorsList";
 import { useForm } from "react-hook-form";
 import { fieldText, fieldShort } from "validators";
+import { errorsList } from "helpers/errorsList";
 export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   /* const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState("");
@@ -35,13 +35,13 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-10 offset-md-1 col-xs-12">
-            {/* {errors && (
+            {error && (
               <ul className="error-messages">
-                {errors.map(item => (
+                {errorsList(error).map(item => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            )} */}
+            )}
             <form onSubmit={handleSubmit(onSubmit)}>
               <fieldset>
                 <fieldset className="form-group">
@@ -51,7 +51,8 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
                     className="form-control form-control-lg"
                     placeholder="Заголовок заметки"
                     defaultValue={initialValues.title}
-                    ref={fieldShort(register)}
+                    //ref={fieldShort(register)}
+                    ref={register}
                   />
                   {errors.title && (
                     <p>Заголовок должно быть не короче 4 символов</p>
@@ -64,7 +65,8 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
                     className="form-control form-control-lg"
                     placeholder="Описание заметки"
                     defaultValue={initialValues.description}
-                    ref={fieldShort(register)}
+                    //ref={fieldShort(register)}
+                    ref={register}
                   />
                   {errors.description && (
                     <p>Краткое описание должно быть не короче 4 символов</p>
@@ -77,7 +79,8 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
                     rows="8"
                     placeholder="Текст вашей заметки"
                     defaultValue={initialValues.body}
-                    ref={fieldText(register)}
+                    //ref={fieldText(register)}
+                    ref={register}
                   ></textarea>
                   {errors.body && (
                     <p>
@@ -93,7 +96,8 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
                     className="form-control form-control-lg"
                     placeholder="Теги"
                     defaultValue={initialValues.tagList}
-                    ref={fieldShort(register)}
+                    //ref={fieldShort(register)}
+                    ref={register}
                   />
                 </fieldset>
                 <fieldset>

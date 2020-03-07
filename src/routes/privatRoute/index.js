@@ -1,0 +1,1 @@
+export { PrivatRoute } from "./privatRoute";

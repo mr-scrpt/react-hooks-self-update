@@ -1,55 +1,60 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { ArticleForm } from 'components/articleForm';
-import { useFetch } from 'hooks/useFetch';
-import { Redirect } from 'react-router-dom';
-import { CurrentUserContext } from 'contexts/currentUserContext';
+import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-export const CreateArticle = () => {
-  const [currentUserState] = useContext(CurrentUserContext);
+import { ArticleForm } from "components/articleForm";
 
+import {
+  createFeedEditorRequest,
+  resetBeCreated,
+  getFeed,
+  getFeedError,
+  getBeCreated
+} from "modules/feedEditor";
 
+const Component = ({
+  createFeedEditorRequest,
+  resetBeCreated,
+  feed,
+  error,
+  beCreated
+}) => {
+  const [redirectTo, setRedirectTo] = useState("");
+  const [submited, setSubmited] = useState(false);
 
-  const apiURL = 'articles';
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiURL);
-  const [isSuccessSubmit, setSuccessSubmit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const initialValues = {
-    title: '',
-    description: '',
-    body: '',
-    tagList: []
+  const onSubmit = async feed => {
+    createFeedEditorRequest(feed);
+    setSubmited(true);
   };
-  const handleSubmit = article => {
-    console.log('handle submit', article);
-    doFetch({
-      method: "POST", data: {
-        article
-      }
-    })
-  }
-
   useEffect(() => {
-    if (!response) return;
-    setSuccessSubmit(true)
-  }, [response])
-
+    return () => resetBeCreated();
+  }, [resetBeCreated]);
   useEffect(() => {
-    if (currentUserState && currentUserState.isLoggedIn === false) {
-      setIsLoggedIn(false)
-    }
-  }, [currentUserState]);
+    if (!beCreated && !submited) return;
+    setRedirectTo(feed.slug);
+  }, [feed, beCreated]);
 
-  if (isLoggedIn === false) {
-    return <Redirect to={`/`} />
-  }
-
-  if (isSuccessSubmit) {
-    return <Redirect to={`/articles/${response.article.slug}`} />
+  if (redirectTo !== "") {
+    return <Redirect to={`/articles/${redirectTo}`} />;
   }
 
   return (
     <>
-      <ArticleForm onSubmit={handleSubmit} error={(error && error.errors) || {}} initialValues={initialValues} />
+      <ArticleForm onSubmit={onSubmit} error={error} initialValues={{}} />
     </>
-  )
-}
+  );
+};
+
+const mapStateToProps = state => ({
+  feed: getFeed(state),
+  error: getFeedError(state),
+  beCreated: getBeCreated(state)
+});
+const mapDispatchToProps = {
+  createFeedEditorRequest,
+  resetBeCreated
+};
+export const CreateArticle = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);

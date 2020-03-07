@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { isEmptyObject } from "helpers/isEmptyObject";
+
 import {
-  fetchFeedCurrentRequest,
-  deleteFeedCurrentRequest,
-  getCurretnFeed,
+  fetchFeedEditorRequest,
+  getFeed,
+  getFeedError,
   getFeedLoading,
-  getFeedError
-} from "modules/feedCurrent";
+  getBeDeleted,
+  deleteFeedEditorRequest,
+  clearFeed,
+  resetBeDeleted
+} from "modules/feedEditor";
 
 import { ArticleInfo } from "components/articleInfo";
 import { ShowLoading } from "components/showLoading";
@@ -15,31 +19,32 @@ import { ShowErrors } from "components/showErrors";
 import { Redirect } from "react-router-dom";
 
 const Component = ({
-  feedCurrent,
+  feed,
   loading,
-  loadedIs,
   error,
-  fetchFeedCurrentRequest,
-  deleteFeedCurrentRequest,
+  beDeleted,
+  fetchFeedEditorRequest,
+  deleteFeedEditorRequest,
+  clearFeed,
+  resetBeDeleted,
   match
 }) => {
   const slug = match.params.slug;
-  const [deleted, setDeleted] = useState(false);
-  isEmptyObject(error);
-  useEffect(() => {
-    if (!fetchFeedCurrentRequest) return;
-    fetchFeedCurrentRequest(slug);
-  }, [fetchFeedCurrentRequest]);
 
-  const deleteFeedCurrent = () => {
-    deleteFeedCurrentRequest(slug);
-    setDeleted(true);
+  useEffect(() => {
+    if (!fetchFeedEditorRequest) return;
+    fetchFeedEditorRequest(slug);
+    return () => {
+      clearFeed();
+      resetBeDeleted();
+    };
+  }, [fetchFeedEditorRequest]);
+
+  const deleteFeed = () => {
+    deleteFeedEditorRequest(slug);
   };
 
-  /* if (loadedIs === false) {
-    return <Redirect to={"/"} />;
-  } */
-  if (deleted) {
+  if (beDeleted && isEmptyObject(feed)) {
     return <Redirect to={"/"} />;
   }
 
@@ -48,24 +53,23 @@ const Component = ({
       <ShowLoading loading={loading} />
       <ShowErrors errors={error} />
 
-      {!loading && !isEmptyObject(feedCurrent) && (
-        <ArticleInfo
-          article={feedCurrent}
-          slug={slug}
-          articleDelete={deleteFeedCurrent}
-        />
+      {!loading && !isEmptyObject(feed) && (
+        <ArticleInfo article={feed} slug={slug} articleDelete={deleteFeed} />
       )}
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  feedCurrent: getCurretnFeed(state),
+  feed: getFeed(state),
   loading: getFeedLoading(state),
-  error: getFeedError(state)
+  error: getFeedError(state),
+  beDeleted: getBeDeleted(state)
 });
 const mapDispatchToProps = {
-  fetchFeedCurrentRequest,
-  deleteFeedCurrentRequest
+  fetchFeedEditorRequest,
+  deleteFeedEditorRequest,
+  clearFeed,
+  resetBeDeleted
 };
 export const Article = connect(mapStateToProps, mapDispatchToProps)(Component);

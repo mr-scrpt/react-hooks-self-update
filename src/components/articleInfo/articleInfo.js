@@ -34,7 +34,9 @@ export const ArticleInfo = ({ article, slug, articleDelete }) => {
             <div className="info">
               <Link to={`/profile/${author.username}`}>{author.username}</Link>
               <span className="date">{createdAt}</span>
-              <Link to={`/articles/${slug}/edit`}>Редактовровать</Link>
+              {isAuthor() && (
+                <Link to={`/articles/${slug}/edit`}>Редактовровать</Link>
+              )}
             </div>
             {isAuthor() && (
               <span>

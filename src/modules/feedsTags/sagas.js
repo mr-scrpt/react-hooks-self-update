@@ -1,9 +1,13 @@
-import { fork, takeEvery, call, put } from 'redux-saga/effects';
-import { fetchFeedsTagsRequest, fetchFeedsTagsSuccess, fetchFeedsTagsError } from './actions';
-import { getFeeds } from './api';
+import { fork, takeLatest, call, put } from "redux-saga/effects";
+import {
+  fetchFeedsTagsRequest,
+  fetchFeedsTagsSuccess,
+  fetchFeedsTagsError
+} from "./actions";
+import { getFeeds } from "./api";
 
 function* fetchWatcher() {
-  yield takeEvery(fetchFeedsTagsRequest, getFeedsDB);
+  yield takeLatest(fetchFeedsTagsRequest, getFeedsDB);
 }
 
 export function* getFeedsDB({ payload }) {
@@ -11,12 +15,12 @@ export function* getFeedsDB({ payload }) {
 
   try {
     const feedsResponseSelf = yield call(getFeeds, payload);
-    yield put(fetchFeedsTagsSuccess(feedsResponseSelf))
+    yield put(fetchFeedsTagsSuccess(feedsResponseSelf));
   } catch (error) {
-    yield put(fetchFeedsTagsError(error))
+    yield put(fetchFeedsTagsError(error));
   }
 }
 
-export default function* () {
-  yield fork(fetchWatcher)
+export default function*() {
+  yield fork(fetchWatcher);
 }

@@ -30,10 +30,10 @@ export const request = ({ url, method, data }, autorized) =>
 
         console.group(`Error from: ${url}`);
         console.info(`Status: ${eStatus}`);
-        console.dir(eResponse);
+        //console.dir(eResponse);
         console.groupEnd();
 
-        /* switch (eStatus) {
+        switch (eStatus) {
           case 401:
           case 403:
           case 404:
@@ -44,7 +44,7 @@ export const request = ({ url, method, data }, autorized) =>
             return reject({ details: "Ошибка сервера" });
           default:
             return reject(eResponse);
-        } */
+        }
       } else {
         return reject(e.message);
       }

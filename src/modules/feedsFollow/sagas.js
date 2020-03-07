@@ -1,4 +1,4 @@
-import { fork, takeEvery, call, put } from "redux-saga/effects";
+import { fork, takeLatest, call, put } from "redux-saga/effects";
 import {
   fetchFeedsFollowRequest,
   fetchFeedsFollowSuccess,
@@ -7,7 +7,7 @@ import {
 import { getFeeds } from "./api";
 
 function* fetchWatcher() {
-  yield takeEvery(fetchFeedsFollowRequest, getFeedsDB);
+  yield takeLatest(fetchFeedsFollowRequest, getFeedsDB);
 }
 
 export function* getFeedsDB({ payload }) {
