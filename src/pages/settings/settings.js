@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { putProfileRequest } from "modules/userProfile";
 
-import { CurrentUserContext } from "contexts/currentUserContext";
+/* import { CurrentUserContext } from "contexts/currentUserContext"; */
 import { SettingsForm } from "components/settingsForm";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { logout } from "helpers/logout/logout";
 const Page = ({ putProfileRequest }) => {
-  const { user, dispatchLoguot } = useContext(CurrentUserContext);
+  /* const { user, dispatchLoguot, dispatchLogin } = useContext(
+    CurrentUserContext
+  ); */
 
   const onSubmite = putUser => {
     console.log(putUser);

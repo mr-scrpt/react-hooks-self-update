@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from "contexts/currentUserContext";
 
-export const TopBar = () => {
-  const { user, isLoggedIn } = useContext(CurrentUserContext);
-  console.log(user, isLoggedIn);
+import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
+
+export const Component = ({ user, isLoggedIn }) => {
+  console.log("user", user);
+  console.log("isLoggedIn", isLoggedIn);
 
   return (
     <nav className="navbar navbar-light">
@@ -18,7 +20,7 @@ export const TopBar = () => {
               Домой
             </NavLink>
           </li>
-          {isLoggedIn === false && (
+          {!isLoggedIn && (
             <>
               <li className="nav-item">
                 <NavLink to="/login" className="nav-link">
@@ -69,3 +71,12 @@ export const TopBar = () => {
     </nav>
   );
 };
+
+const mapStateToProps = state => ({
+  user: getUserAuth(state),
+  isLoggedIn: getIsLoggedIn(state)
+});
+
+const mapDispatchToProps = {};
+
+export const TopBar = connect(mapStateToProps, mapDispatchToProps)(Component);

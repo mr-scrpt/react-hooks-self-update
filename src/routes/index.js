@@ -1,7 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Article } from "pages/article";
+
 import { GlobalFeed } from "pages/globalFeed";
+/* import { Article } from "pages/article";
 import { Autentifications } from "pages/autentifications";
 import { TagFeed } from "pages/tagFeed";
 import { FeedsFollow } from "pages/feedsFollow";
@@ -9,7 +10,7 @@ import { CreateArticle } from "pages/createArticle";
 import { EditArticle } from "pages/editArticle";
 import { Settings } from "pages/settings";
 import { UserProfile } from "pages/userProfile";
-import { PrivatRoute } from "routes/privatRoute";
+import { PrivatRoute } from "routes/privatRoute"; */
 
 export default () => {
   return (
@@ -17,11 +18,7 @@ export default () => {
       <Switch>
         <Route path="/" component={GlobalFeed} exact />
 
-        {/* <Route path="/profiles/:slug" component={UserProfile} exact />
-        <Route path="/profiles/:slug/favorited" component={UserProfile} /> */}
-        {/* <Route path="/articles/new" component={CreateArticle} /> */}
-        <Route path="/profiles/:slug" component={UserProfile} />
-        {/* <Route path="/profiles/:slug/favorited" component={UserProfile} exact /> */}
+        {/* <Route path="/profiles/:slug" component={UserProfile} />        
         <PrivatRoute path="/articles/new" component={CreateArticle} />
         <Route path="/articles/:slug/edit" component={EditArticle} />
         <Route path="/tags/:tagName" component={TagFeed} />
@@ -30,7 +27,7 @@ export default () => {
         <Route path="/settings" component={Settings} />
         <Route path="/login" component={Autentifications} />
         <Route path="/articles/:slug" component={Article} />
-        <Route render={() => <div>404</div>} />
+        <Route render={() => <div>404</div>} /> */}
       </Switch>
     </div>
   );

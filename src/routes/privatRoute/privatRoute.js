@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { CurrentUserContext } from "contexts/currentUserContext";
+/* import { CurrentUserContext } from "contexts/currentUserContext"; */
 
 export const PrivatRoute = ({ component, ...rest }) => {
-  const [currentUserState] = useContext(CurrentUserContext);
+  /* const [currentUserState] = useContext(CurrentUserContext); */
   //const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   console.log("currentUserState", currentUserState);

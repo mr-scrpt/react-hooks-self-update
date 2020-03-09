@@ -12,7 +12,7 @@ import {
 import { ArticleForm } from "components/articleForm";
 import { useFetch } from "hooks/useFetch";
 import { Redirect } from "react-router-dom";
-import { CurrentUserContext } from "contexts/currentUserContext";
+/* import { CurrentUserContext } from "contexts/currentUserContext"; */
 
 const Component = ({
   match,

@@ -1,47 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import { useFetch } from 'hooks/useFetch';
-import classNames from 'classnames';
-export const AddToFavorite = ({ isFavorited, favoritesCount, articleSlug, currentUser }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const apiURL = `/articles/${articleSlug}/favorite`;
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiURL);
-  const favoritesWithResponse = response
-    ? response.article.favoritesCount
-    : favoritesCount;
-  const isFavoritedWithResponse = response
-    ? response.article.favorited
-    : isFavorited
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import classNames from "classnames";
+
+import { setFeedIsFavirited, removeFeedIsFavirited } from "modules/feedEditor";
+import { getIsLoggedIn } from "modules/userAuth";
+
+const Component = ({
+  isFavorited,
+  favoritesCount,
+  articleSlug,
+  isLoggedIn
+}) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (response) {
-      console.log(response);
-    }
+    if (!favoritesCount) return;
+    setCount(favoritesCount);
+  }, [favoritesCount]);
 
-
-  }, [response]);
-
+  const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
-    if (currentUser && currentUser.isLoading) {
-      setIsLoggedIn(true)
-    }
-  }, [currentUser]);
+    if (!isFavorited) return;
+    setFavorited(isFavorited);
+  }, [isFavorited]);
 
-  const handleLike = e => {
-    e.preventDefault();
-    isFavoritedWithResponse ? doFetch({ method: "DELETE" }) : doFetch({ method: "POST" })
-  }
+  const [request, setRequest] = useState({});
+
+  const handleLike = async () => {
+    if (favorited) {
+      setRequest(await removeFeedIsFavirited(articleSlug));
+    } else {
+      setRequest(await setFeedIsFavirited(articleSlug));
+    }
+  };
+  useEffect(() => {
+    if (request.data) {
+      setCount(request.data.article.favoritesCount);
+      setFavorited(request.data.article.favorited);
+    }
+  }, [request]);
 
   const buttonClasses = classNames({
     btn: true,
-    'btn-sm': true,
-    'btn-primary': isFavoritedWithResponse,
-    'btn-outline-primary': !isFavoritedWithResponse
-  })
+    "btn-sm": true,
+    "btn-primary": favorited,
+    "btn-outline-primary": !favorited
+  });
+
   return (
-    <button className={buttonClasses} onClick={handleLike} disabled={isLoggedIn}>
+    <button
+      className={buttonClasses}
+      onClick={handleLike}
+      disabled={!isLoggedIn}
+    >
       <i className="ion-heart"></i>
-      <span>&nbsp; {favoritesWithResponse}</span>
+      <span>&nbsp; {count}</span>
     </button>
-  )
-}
+  );
+};
+const mapStateToProps = state => ({
+  isLoggedIn: getIsLoggedIn(state)
+});
+const mapDispatchToProps = {};
+export const AddToFavorite = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);

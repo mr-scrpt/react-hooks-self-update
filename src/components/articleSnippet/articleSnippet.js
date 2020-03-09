@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TagList } from "components/tagList";
 import { AddToFavorite } from "components/addToFavorite";
-import { CurrentUserContext } from "contexts/currentUserContext";
+/* import { CurrentUserContext } from "contexts/currentUserContext"; */
 
 export const ArticleSnippet = ({ item }) => {
   const {
@@ -15,7 +15,7 @@ export const ArticleSnippet = ({ item }) => {
     favoritesCount,
     author: { username, image }
   } = item;
-  const user = useContext(CurrentUserContext);
+  /* const user = useContext(CurrentUserContext); */
 
   return (
     <div className="article-preview">
@@ -37,7 +37,6 @@ export const ArticleSnippet = ({ item }) => {
             isFavorited={favorited}
             favoritesCount={favoritesCount}
             articleSlug={slug}
-            currentUser={user}
           />
         </div>
       </div>

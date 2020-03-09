@@ -7,10 +7,13 @@ export const getFeeds = async ({ limit, offset }) => {
     offset
   });
   try {
-    return await request({
-      url: `/articles?${stingifyParams}`,
-      method: "GET"
-    });
+    return await request(
+      {
+        url: `/articles?${stingifyParams}`,
+        method: "GET"
+      },
+      true
+    );
   } catch (e) {
     throw {
       status: 400,

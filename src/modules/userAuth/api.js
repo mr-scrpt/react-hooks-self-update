@@ -1,6 +1,6 @@
 import { request } from "helpers/request";
 
-export const getUserCurrent = async () => {
+export const getUserAuth = async () => {
   try {
     return await request({ url: `/user`, method: "GET" }, true);
   } catch (error) {

@@ -34,3 +34,25 @@ export const putFeed = async feed => {
     throw { status: 400, message: "Ошибка обновления данных" };
   }
 };
+
+export const setFeedIsFavirited = async slug => {
+  try {
+    return await request(
+      { url: `/articles/${slug}/favorite`, method: "POST" },
+      true
+    );
+  } catch (e) {
+    throw { status: 400, message: "Ошибка добавление в избранное" };
+  }
+};
+
+export const removeFeedIsFavirited = async slug => {
+  try {
+    return await request(
+      { url: `/articles/${slug}/favorite`, method: "DELETE" },
+      true
+    );
+  } catch (e) {
+    throw { status: 400, message: "Ошибка удаления из избранного" };
+  }
+};

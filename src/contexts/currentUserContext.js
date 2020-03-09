@@ -8,10 +8,10 @@ import {
   getUserCurrentIsLoggedIn,
   getUserCurrentIsLoading,
   getUserCurrentIsError */
-} from "modules/userCurrent";
+} from "modules/userAuth";
 import { isEmptyObject } from "helpers/isEmptyObject";
 
-export const CurrentUserContext = createContext();
+/* export const CurrentUserContext = createContext(); */
 
 const Provider = ({
   children,
@@ -36,7 +36,11 @@ const Provider = ({
 
   return (
     <CurrentUserContext.Provider
-      value={{ ...userCurrentState, dispatchLoguot: resetCurrentUser }}
+      value={{
+        ...userCurrentState,
+        dispatchLoguot: resetCurrentUser,
+        dispatchLogin: fetchCurrentUserRequest
+      }}
     >
       {children}
     </CurrentUserContext.Provider>

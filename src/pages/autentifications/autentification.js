@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useFetch, useLocalStorage } from "hooks";
-import { CurrentUserContext } from "contexts";
+/* import { CurrentUserContext } from "contexts"; */
 import { errorsList } from "helpers/errorsList";
 
 export const Autentifications = ({ match: { path } }) => {

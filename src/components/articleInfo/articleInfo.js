@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TagList } from "components/tagList";
-import { CurrentUserContext } from "contexts";
+/* import { CurrentUserContext } from "contexts"; */
 
 export const ArticleInfo = ({ article, slug, articleDelete }) => {
   const {
@@ -15,7 +15,7 @@ export const ArticleInfo = ({ article, slug, articleDelete }) => {
     createdAt
   } = article;
 
-  const [currentUserState] = useContext(CurrentUserContext);
+  /*  const [currentUserState] = useContext(CurrentUserContext); */
 
   const isAuthor = () => {
     if (!article || !currentUserState.isLoggedIn) return false;

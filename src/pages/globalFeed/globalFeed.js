@@ -9,6 +9,7 @@ import {
   getFeedsLoading,
   getFeedsError
 } from "modules/feedsGlobal";
+import { getIsLoggedIn } from "modules/userAuth";
 import { FeedToggler } from "components/feedToggler";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
@@ -22,6 +23,7 @@ const Page = ({
   feedsList,
   loading,
   error,
+  isLoggedIn,
   feedsCount,
   fetchFeedsGlobalRequest,
   match: { url },
@@ -45,7 +47,7 @@ const Page = ({
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            <FeedToggler />
+            <FeedToggler isLoggedIn={isLoggedIn} />
 
             <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
@@ -75,7 +77,8 @@ const mapStateToProps = state => ({
   feedsList: getFeedsList(state),
   feedsCount: getFeedsCount(state),
   loading: getFeedsLoading(state),
-  error: getFeedsError(state)
+  error: getFeedsError(state),
+  isLoggedIn: getIsLoggedIn(state)
 });
 const mapDispatchToProps = {
   fetchFeedsGlobalRequest
