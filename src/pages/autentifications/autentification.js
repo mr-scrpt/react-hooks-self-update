@@ -1,53 +1,53 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, Redirect } from "react-router-dom";
-import { useFetch, useLocalStorage } from 'hooks';
+import { useFetch, useLocalStorage } from "hooks";
 import { CurrentUserContext } from "contexts";
-import { errorsList } from 'helpers/errorsList';
+import { errorsList } from "helpers/errorsList";
 
 export const Autentifications = ({ match: { path } }) => {
-
-  const isLoginPage = path === '/login'
-  const pageTitle = isLoginPage ? 'Вход в аккаунт' : 'Регистрация аккаунта';
-  const pageLink = isLoginPage ? '/registration' : '/login';
-  const descriptionLink = isLoginPage ? 'Нет аккаунта?' : 'Уже есть аккаунт?'
-  const [isSuccessefullSabmit, setIsSuccessefullSabmit] = useState(false)
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([])
-  const apiURL = isLoginPage ? 'users/login' : 'users'
+  const isLoginPage = path === "/login";
+  const pageTitle = isLoginPage ? "Вход в аккаунт" : "Регистрация аккаунта";
+  const pageLink = isLoginPage ? "/registration" : "/login";
+  const descriptionLink = isLoginPage ? "Нет аккаунта?" : "Уже есть аккаунт?";
+  const [isSuccessefullSabmit, setIsSuccessefullSabmit] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const apiURL = isLoginPage ? "users/login" : "users";
   const [{ response, isLoading, error }, doFetch] = useFetch(apiURL);
-  const [, setToken] = useLocalStorage('token');
-  const [, dispatch] = useContext(CurrentUserContext);
+  const [, setToken] = useLocalStorage("token");
+  //const [, dispatch] = useContext(CurrentUserContext);
 
   useEffect(() => {
-    if (!response) return
-    setToken(response.user.token)
+    if (!response) return;
+    setToken(response.user.token);
     setIsSuccessefullSabmit(true);
-    dispatch({ type: 'SET_AUTHORIZED', payload: response.user })
-
-  }, [response, setToken, dispatch])
+    //dispatch({ type: 'SET_AUTHORIZED', payload: response.user })
+  }, [response, setToken]);
 
   useEffect(() => {
     if (error && error.errors) {
-      const errors = errorsList(error.errors)
-      setErrors(errors)
+      const errors = errorsList(error.errors);
+      setErrors(errors);
     }
-  }, [error])
+  }, [error]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const user = isLoginPage ? { email, password } : { email, password, username }
+    const user = isLoginPage
+      ? { email, password }
+      : { email, password, username };
 
     doFetch({
-      method: 'POST',
+      method: "POST",
       data: {
         user
       }
     });
-  }
+  };
   if (isSuccessefullSabmit) {
-    return <Redirect to='/' />
+    return <Redirect to="/" />;
   }
 
   return (
@@ -57,14 +57,14 @@ export const Autentifications = ({ match: { path } }) => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">{pageTitle}</h1>
             <p className="text-xs-center">
-              <NavLink to={pageLink}>
-                {descriptionLink}
-              </NavLink>
+              <NavLink to={pageLink}>{descriptionLink}</NavLink>
             </p>
             <form onSubmit={handleSubmit}>
               {errors && (
                 <ul className="error-messages">
-                  {errors.map(item => <li key={item}>{item}</li>)}
+                  {errors.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               )}
               <fieldset>
@@ -99,7 +99,7 @@ export const Autentifications = ({ match: { path } }) => {
 
                 <button
                   className="btn btn-lg btn-primary pull-xs-right"
-                  type='submit'
+                  type="submit"
                   disabled={isLoading}
                 >
                   {pageTitle}

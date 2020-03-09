@@ -1,0 +1,1 @@
+export { UserFeeds } from "./userFeeds";

@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 export const getFeed = createSelector(
   state => state.feedEditorStore.feed,
-  feedCurrent => feedCurrent
+  feed => feed
 );
 export const getFeedLoading = createSelector(
   state => state.feedEditorStore.loading,
@@ -15,15 +15,15 @@ export const getFeedError = createSelector(
 
 export const getBeDeleted = createSelector(
   state => state.feedEditorStore.beDeleted,
-  error => error
+  beDeleted => beDeleted
 );
 
 export const getBeCreated = createSelector(
   state => state.feedEditorStore.beCreated,
-  error => error
+  beCreated => beCreated
 );
 
 export const getBeEdited = createSelector(
   state => state.feedEditorStore.beEdited,
-  error => error
+  beEdited => beEdited
 );

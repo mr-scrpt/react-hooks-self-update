@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { useFetch } from 'hooks/useFetch';
-import { NavLink } from 'react-router-dom';
-import { UserArticle } from 'components/userArticle';
-
+import { useFetch } from "hooks/useFetch";
+import { NavLink } from "react-router-dom";
+import { UserArticle } from "components/userArticle";
 
 export const UserProfile = ({ match, location }) => {
-
   const { slug } = match.params;
-  const apiInfoURL = `profiles/${slug}`
-  const [{ response }, doFetch] = useFetch(apiInfoURL)
-  const isFavorited = location.pathname.includes('favorited');
+  const apiInfoURL = `profiles/${slug}`;
+  const [{ response }, doFetch] = useFetch(apiInfoURL);
+  const isFavorited = location.pathname.includes("favorited");
 
   // Инициализация
   useEffect(() => {
-    doFetch()
+    doFetch();
   }, [doFetch, match]);
-
-
 
   if (!response) {
     return null;
@@ -44,27 +40,32 @@ export const UserProfile = ({ match, location }) => {
                 <li className="nav-item">
                   <NavLink
                     to={`/profiles/${response.profile.username}`}
-                    className='nav-link'
-                    exact>
+                    className="nav-link"
+                    exact
+                  >
                     Мои посты
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink
                     to={`/profiles/${response.profile.username}/favorited`}
-                    className='nav-link'
-
+                    className="nav-link"
                   >
                     Избранное
                   </NavLink>
                 </li>
               </ul>
             </div>
-            <UserArticle username={response.profile.username} location={location} isFavorited={isFavorited} url={match.url} />
+            <UserArticle
+              username={response.profile.username}
+              location={location}
+              isFavorited={isFavorited}
+              url={match.url}
+            />
             {/* isFavoreted={isFavoreted} */}
           </div>
         </div>
-      </div >
-    </div >
-  )
-}
+      </div>
+    </div>
+  );
+};

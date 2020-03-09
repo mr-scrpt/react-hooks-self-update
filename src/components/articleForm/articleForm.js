@@ -1,35 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { fieldText, fieldShort } from "validators";
 import { errorsList } from "helpers/errorsList";
 export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
   const { register, handleSubmit, errors } = useForm();
 
-  /* const [errors, setErrors] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [body, setBody] = useState("");
-  const [tagList, setTagList] = useState("");
-  const handleSubmit = e => {
-    e.preventDefault();
-    onSubmit({ title, description, body, tagList });
-  };
-
-  useEffect(() => {
-    if (error) {
-      const errors = errorsList(error);
-      setErrors(errors);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    if (!initialValues) return;
-    setTitle(initialValues.title);
-    setDescription(initialValues.description);
-    setBody(initialValues.body);
-    setTagList(initialValues.tagList.join(" "));
-  }, [initialValues]);
- */
   return (
     <div className="editor-page">
       <div className="container page">
@@ -46,59 +21,47 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
               <fieldset>
                 <fieldset className="form-group">
                   <input
-                    name="title"
                     type="text"
-                    className="form-control form-control-lg"
+                    name="title"
                     placeholder="Заголовок заметки"
+                    className="form-control form-control-lg"
                     defaultValue={initialValues.title}
-                    //ref={fieldShort(register)}
-                    ref={register}
+                    ref={fieldShort(register)}
                   />
-                  {errors.title && (
-                    <p>Заголовок должно быть не короче 4 символов</p>
-                  )}
+                  {errors.title && <p>{errors.title.message}</p>}
                 </fieldset>
                 <fieldset className="form-group">
                   <input
-                    name="description"
                     type="text"
-                    className="form-control form-control-lg"
+                    name="description"
                     placeholder="Описание заметки"
+                    className="form-control form-control-lg"
                     defaultValue={initialValues.description}
-                    //ref={fieldShort(register)}
-                    ref={register}
+                    ref={fieldShort(register)}
                   />
-                  {errors.description && (
-                    <p>Краткое описание должно быть не короче 4 символов</p>
-                  )}
+                  {errors.description && <p>{errors.description.message}</p>}
                 </fieldset>
                 <fieldset>
                   <textarea
                     name="body"
+                    placeholder="Текст вашей заметки"
                     className="form-control"
                     rows="8"
-                    placeholder="Текст вашей заметки"
                     defaultValue={initialValues.body}
-                    //ref={fieldText(register)}
-                    ref={register}
+                    ref={fieldText(register)}
                   ></textarea>
-                  {errors.body && (
-                    <p>
-                      Краткое описание должно быть не короче 4 символов и не
-                      длинее 1200
-                    </p>
-                  )}
+                  {errors.body && <p>{errors.title.body}</p>}
                 </fieldset>
                 <fieldset className="form-group">
                   <input
-                    name="tagList"
                     type="text"
-                    className="form-control form-control-lg"
+                    name="tagList"
                     placeholder="Теги"
+                    className="form-control form-control-lg"
                     defaultValue={initialValues.tagList}
-                    //ref={fieldShort(register)}
-                    ref={register}
+                    ref={fieldShort(register)}
                   />
+                  {errors.tagList && <p>{errors.title.tagList}</p>}
                 </fieldset>
                 <fieldset>
                   <button

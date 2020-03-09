@@ -1,0 +1,1 @@
+export { UserFeedsFavorited } from "./userFeedsFavorited";

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from 'contexts/currentUserContext';
+import { CurrentUserContext } from "contexts/currentUserContext";
 
 export const TopBar = () => {
-  const [{ isLoggedIn, currentUser }] = useContext(CurrentUserContext);
+  const { user, isLoggedIn } = useContext(CurrentUserContext);
+  console.log(user, isLoggedIn);
 
   return (
     <nav className="navbar navbar-light">
@@ -33,31 +34,38 @@ export const TopBar = () => {
           )}
           {isLoggedIn && (
             <>
-              <li className='nav-item'>
-                <NavLink to='/articles/new' className='nav-link'>
-                  <i className='ion-compose'></i>
+              <li className="nav-item">
+                <NavLink to="/articles/new" className="nav-link">
+                  <i className="ion-compose"></i>
                   &nbsp; Создать замтеку
-                  </NavLink>
+                </NavLink>
               </li>
 
-              <li className='nav-item'>
-                <NavLink to='/settings' className='nav-link'>
-                  <i className='ion-gear-a'></i>
+              <li className="nav-item">
+                <NavLink to="/settings" className="nav-link">
+                  <i className="ion-gear-a"></i>
                   &nbsp; Настройки
-                  </NavLink>
+                </NavLink>
               </li>
 
-              <li className='nav-item'>
-                <NavLink to={`/profiles/${currentUser.username}`} className='nav-link'>
-                  <img className="user-pic" src={currentUser.image ? currentUser.image : 'https://dummyimage.com/100x100/abq/fre'} alt={`Аватарка ${currentUser.username}`} />
-                  &nbsp;  {currentUser.username}
+              <li className="nav-item">
+                <NavLink to={`/profiles/${user.username}`} className="nav-link">
+                  <img
+                    className="user-pic"
+                    src={
+                      user.image
+                        ? user.image
+                        : "https://dummyimage.com/100x100/abq/fre"
+                    }
+                    alt={`Аватарка ${user.username}`}
+                  />
+                  &nbsp; {user.username}
                 </NavLink>
               </li>
             </>
           )}
-
         </ul>
       </div>
-    </nav >
+    </nav>
   );
 };

@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { fetchFeedsGlobalRequest, getFeedsList, getFeedsCount, getFeedsLoading, getFeedsError } from 'modules/feedsGlobal';
-import { FeedToggler } from 'components/feedToggler';
-import { ShowLoading } from 'components/showLoading';
-import { ShowErrors } from 'components/showErrors';
-import { Feeds } from 'components/feeds';
-import { Pagination } from 'components/pagination';
-import { PopularTags } from 'components/popularTags';
-import { getPaginators } from 'helpers/getPaginators';
-import { limit } from 'constant';
-const Page = ({ feedsList, loading, error, feedsCount, fetchFeedsGlobalRequest, match: { url }, location: { search } }) => {
-
+import {
+  fetchFeedsGlobalRequest,
+  getFeedsList,
+  getFeedsCount,
+  getFeedsLoading,
+  getFeedsError
+} from "modules/feedsGlobal";
+import { FeedToggler } from "components/feedToggler";
+import { ShowLoading } from "components/showLoading";
+import { ShowErrors } from "components/showErrors";
+import { Feeds } from "components/feeds";
+import { Pagination } from "components/pagination";
+import { PopularTags } from "components/popularTags";
+import { getPaginators } from "helpers/getPaginators";
+import { limit } from "constant";
+import { isEmptyObject } from "helpers/isEmptyObject";
+const Page = ({
+  feedsList,
+  loading,
+  error,
+  feedsCount,
+  fetchFeedsGlobalRequest,
+  match: { url },
+  location: { search }
+}) => {
   const { currentPage, offset } = getPaginators(search);
-
 
   useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
-    fetchFeedsGlobalRequest({ limit, offset })
+    fetchFeedsGlobalRequest({ limit, offset });
   }, [fetchFeedsGlobalRequest, currentPage]);
-
 
   return (
     <div className="home-page">
@@ -38,13 +50,17 @@ const Page = ({ feedsList, loading, error, feedsCount, fetchFeedsGlobalRequest, 
             <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 
-            {!loading && feedsList.length && (
+            {!loading && isEmptyObject(error) && feedsList.length && (
               <>
                 <Feeds articles={feedsList} />
-                <Pagination total={feedsCount} limit={limit} url={url} currentPage={currentPage} />
+                <Pagination
+                  total={feedsCount}
+                  limit={limit}
+                  url={url}
+                  currentPage={currentPage}
+                />
               </>
-            )
-            }
+            )}
           </div>
           <div className="col-md-3">
             <PopularTags search={search} />
@@ -52,8 +68,8 @@ const Page = ({ feedsList, loading, error, feedsCount, fetchFeedsGlobalRequest, 
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   feedsList: getFeedsList(state),
