@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 
@@ -9,8 +9,10 @@ import {
   getFeedsLoading,
   getFeedsError
 } from "modules/feedsGlobal";
+
 import { getIsLoggedIn } from "modules/userAuth";
 import { FeedToggler } from "components/feedToggler";
+import { Tabs } from "components/tabs";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
 import { Feeds } from "components/feeds";
@@ -35,6 +37,28 @@ const Page = ({
     if (!fetchFeedsGlobalRequest) return;
     fetchFeedsGlobalRequest({ limit, offset });
   }, [fetchFeedsGlobalRequest, currentPage]);
+  const [tabs, setTabs] = useState([]);
+  useEffect(() => {
+    //if (isEmptyObject(user)) return;
+    const genTabs = [
+      {
+        url: `/feed`,
+        name: `Ваши фиды`,
+        tags: false
+      },
+      {
+        url: `/`,
+        name: `Все фиды`,
+        tags: false
+      }
+      /* {
+        url: `${url}/favorited`,
+        name: `Избранные посты`,
+        tags: false
+      } */
+    ];
+    setTabs(genTabs);
+  }, []);
 
   return (
     <div className="home-page">
@@ -47,8 +71,8 @@ const Page = ({
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            <FeedToggler isLoggedIn={isLoggedIn} />
-
+            {/*  <FeedToggler isLoggedIn={isLoggedIn} /> */}
+            <Tabs tabs={tabs} />
             <ShowLoading loading={loading} />
             <ShowErrors errors={error} />
 

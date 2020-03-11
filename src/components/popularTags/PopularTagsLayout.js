@@ -1,9 +1,15 @@
-import React from 'react';
-import { Tag } from 'components/tag';
-import { ShowLoading } from 'components/showLoading';
-import { ShowErrors } from 'components/showErrors';
-export const PopularTagsLayout = ({ tags, isLoading, error }) => {
-  const prefix = 'tags/';
+import React from "react";
+import { Tag } from "components/tag";
+import { ShowLoading } from "components/showLoading";
+import { ShowErrors } from "components/showErrors";
+export const PopularTagsLayout = ({
+  tags,
+  isLoading,
+  error,
+  setActiveTag,
+  resetActiveTag
+}) => {
+  const prefix = "tags/";
   const classes = `tag-default tag-pill`;
 
   return (
@@ -12,14 +18,19 @@ export const PopularTagsLayout = ({ tags, isLoading, error }) => {
       <ShowLoading loading={isLoading} />
       <ShowErrors errors={error} />
       <div className="tag-list">
-        {tags && tags.data && tags.data.tags && (
+        {tags &&
+          tags.data &&
+          tags.data.tags &&
           tags.data.tags.map(tag => (
-            <Tag item={tag} key={tag} urlPrefix={prefix} classes={classes} />
-          ))
-        )
-        }
+            <Tag
+              item={tag}
+              key={tag}
+              urlPrefix={prefix}
+              classes={classes}
+              setActiveTag={setActiveTag}
+            />
+          ))}
       </div>
     </div>
-  )
-}
-
+  );
+};

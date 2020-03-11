@@ -1,13 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
 
-export const Component = ({ user, isLoggedIn }) => {
-  console.log("user", user);
-  console.log("isLoggedIn", isLoggedIn);
+import { NavLink } from "react-router-dom";
 
+export const Component = ({ user, isLoggedIn }) => {
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -77,6 +75,4 @@ const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state)
 });
 
-const mapDispatchToProps = {};
-
-export const TopBar = connect(mapStateToProps, mapDispatchToProps)(Component);
+export const TopBar = connect(mapStateToProps)(Component);

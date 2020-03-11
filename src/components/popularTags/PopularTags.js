@@ -1,24 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-import { fetchTagsPopularRequest } from 'modules/tagsPopular';
-import { PopularTagsLayout } from './PopularTagsLayout';
+import {
+  fetchTagsPopularRequest,
+  setFeedsTagsActive
+} from "modules/tagsPopular";
+import { PopularTagsLayout } from "./PopularTagsLayout";
 
-const Copmponent = ({ tagsList, loading, error, fetchTagsPopularRequest }) => {
-
+const Copmponent = ({
+  tagsList,
+  loading,
+  error,
+  fetchTagsPopularRequest,
+  setFeedsTagsActive
+}) => {
   useEffect(() => {
     fetchTagsPopularRequest();
   }, [fetchTagsPopularRequest]);
 
+  const setActiveTag = tagName => {
+    setFeedsTagsActive(tagName);
+  };
 
-  return <PopularTagsLayout tags={tagsList} isLoading={loading} error={error} />
-}
+  return (
+    <PopularTagsLayout
+      tags={tagsList}
+      isLoading={loading}
+      error={error}
+      setActiveTag={setActiveTag}
+    />
+  );
+};
 
 const mapStateToProps = ({ tagsPopularStore }) => tagsPopularStore;
 const mapDispatchToProps = {
-  fetchTagsPopularRequest
-}
+  fetchTagsPopularRequest,
+  setFeedsTagsActive
+};
 
 export const PopularTags = compose(
   connect(mapStateToProps, mapDispatchToProps)

@@ -28,9 +28,10 @@ const Component = ({
   const [request, setRequest] = useState({});
 
   const handleLike = async () => {
-    if (favorited) {
+    if (favorited && isLoggedIn) {
       setRequest(await removeFeedIsFavirited(articleSlug));
-    } else {
+    }
+    if (!favorited && isLoggedIn) {
       setRequest(await setFeedIsFavirited(articleSlug));
     }
   };

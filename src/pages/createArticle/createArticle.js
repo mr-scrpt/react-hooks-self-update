@@ -40,7 +40,7 @@ const Component = ({
 
   return (
     <>
-      <ArticleForm onSubmit={onSubmit} error={error} initialValues={{}} />
+      <ArticleForm onSubmit={onSubmit} error={error} />
     </>
   );
 };

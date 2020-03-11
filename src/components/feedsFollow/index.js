@@ -1,0 +1,1 @@
+export { FeedsFollow } from "./feedsFollow";

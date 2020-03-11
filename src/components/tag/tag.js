@@ -1,9 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export const Tag = ({ item, classes, urlPrefix = '' }) => {
-
+export const Tag = ({ item, classes, setActiveTag, urlPrefix = "" }) => {
   return (
-    <Link to={`/${urlPrefix}${item}`} className={classes}>{item}</Link>
-  )
-}
+    <Link
+      to={`/feedTags/${item}`}
+      className={classes}
+      onClick={() => setActiveTag(item)}
+    >
+      {item}
+    </Link>
+  );
+};

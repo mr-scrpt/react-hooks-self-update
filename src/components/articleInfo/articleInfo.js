@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
+import { connect } from "react-redux";
+
+import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
+
 import { Link } from "react-router-dom";
 import { TagList } from "components/tagList";
-/* import { CurrentUserContext } from "contexts"; */
 
-export const ArticleInfo = ({ article, slug, articleDelete }) => {
+const Component = ({ article, articleDelete, user, isLoggedIn }) => {
   const {
     title,
+    slug,
     body,
     tagList,
     description,
@@ -15,11 +19,9 @@ export const ArticleInfo = ({ article, slug, articleDelete }) => {
     createdAt
   } = article;
 
-  /*  const [currentUserState] = useContext(CurrentUserContext); */
-
   const isAuthor = () => {
-    if (!article || !currentUserState.isLoggedIn) return false;
-    return author.username === currentUserState.currentUser.username;
+    if (!article || !isLoggedIn) return false;
+    return author.username === user.username;
   };
 
   return (
@@ -74,3 +76,9 @@ export const ArticleInfo = ({ article, slug, articleDelete }) => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  user: getUserAuth(state),
+  isLoggedIn: getIsLoggedIn(state)
+});
+export const ArticleInfo = connect(mapStateToProps)(Component);

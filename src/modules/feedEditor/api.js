@@ -8,7 +8,7 @@ export const createFeed = async data => {
   }
 };
 
-export const getFeed = async slug => {
+export const fetchFeed = async slug => {
   try {
     return await request({ url: `/articles/${slug}`, method: "GET" });
   } catch (e) {

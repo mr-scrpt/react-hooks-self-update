@@ -15,11 +15,11 @@ import {
   putFeedEditorError
 } from "./actions";
 
-import { createFeed, getFeed, deleteFeed, putFeed } from "./api";
+import { createFeed, fetchFeed, deleteFeed, putFeed } from "./api";
 
 function* fetchWatcher() {
   yield takeLatest(createFeedEditorRequest, createFeedAPI);
-  yield takeLatest(fetchFeedEditorRequest, getFeedAPI);
+  yield takeLatest(fetchFeedEditorRequest, fetchFeedAPI);
   yield takeLatest(deleteFeedEditorRequest, deleteFeedAPI);
   yield takeLatest(putFeedEditorRequest, putFeedAPI);
 }
@@ -33,9 +33,9 @@ export function* createFeedAPI({ payload }) {
   }
 }
 
-export function* getFeedAPI({ payload }) {
+export function* fetchFeedAPI({ payload }) {
   try {
-    const feedGetResponse = yield call(getFeed, payload);
+    const feedGetResponse = yield call(fetchFeed, payload);
     yield put(fetchFeedEditorSuccess(feedGetResponse));
   } catch (error) {
     yield put(fetchFeedEditorError(error));

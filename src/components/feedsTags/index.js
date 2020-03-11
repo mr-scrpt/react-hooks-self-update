@@ -1,0 +1,1 @@
+export { FeedsTags } from "./feedsTags";

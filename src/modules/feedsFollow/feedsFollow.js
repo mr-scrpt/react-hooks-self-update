@@ -61,11 +61,11 @@ const loading = handleActions(
 
 const error = handleActions(
   {
-    [fetchFeedsFollowRequest]: () => null,
-    [fetchFeedsFollowSuccess]: () => null,
+    [fetchFeedsFollowRequest]: () => ({}),
+    [fetchFeedsFollowSuccess]: () => ({}),
     [fetchFeedsFollowError]: (_state, action) => action.payload
   },
-  null
+  {}
 );
 
 export default combineReducers({

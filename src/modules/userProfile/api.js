@@ -17,7 +17,10 @@ export const getUserFeeds = async ({ limit, offset, author }) => {
   });
 
   try {
-    return await request({ url: `articles?${stingifyParams}`, method: "GET" });
+    return await request(
+      { url: `articles?${stingifyParams}`, method: "GET" },
+      true
+    );
   } catch (e) {
     throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
   }
@@ -31,7 +34,10 @@ export const getUserFeedsFavorited = async ({ limit, offset, author }) => {
   });
   /* articles?favorited=Dolce&limit=10&offset=0 */
   try {
-    return await request({ url: `articles?${stingifyParams}`, method: "GET" });
+    return await request(
+      { url: `articles?${stingifyParams}`, method: "GET" },
+      true
+    );
   } catch (e) {
     throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
   }

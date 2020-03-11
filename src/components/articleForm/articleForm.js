@@ -50,7 +50,7 @@ export const ArticleForm = ({ onSubmit, error, initialValues = {} }) => {
                     defaultValue={initialValues.body}
                     ref={fieldText(register)}
                   ></textarea>
-                  {errors.body && <p>{errors.title.body}</p>}
+                  {errors.body && <p>{errors.body.message}</p>}
                 </fieldset>
                 <fieldset className="form-group">
                   <input
