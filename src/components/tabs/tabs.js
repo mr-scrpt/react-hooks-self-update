@@ -13,7 +13,7 @@ export const Tabs = ({ tabs, resetActiveTag }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    resetActiveTag(tab.name);
+                    resetActiveTag();
                   }}
                   className="btn btn-sm ion-close btn-outline-warning"
                 ></button>

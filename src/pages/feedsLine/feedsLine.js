@@ -45,15 +45,19 @@ const Component = ({
     }
 
     setTabs(genTabs);
+
     return () => {
-      setRedirect(false);
+      if (activeTag !== "") {
+        setRedirect(false);
+      }
     };
   }, [activeTag, isLoggedIn]);
 
-  const resetActiveTag = tagName => {
-    resetFeedsTagsActive(tagName);
+  const resetActiveTag = () => {
+    resetFeedsTagsActive();
     setRedirect(true);
   };
+
   if (redirect) {
     return <Redirect to="/" />;
   }
@@ -77,7 +81,7 @@ const Component = ({
             </Switch>
           </div>
           <div className="col-md-3">
-            <PopularTags search={{}} />
+            <PopularTags />
           </div>
         </div>
       </div>
