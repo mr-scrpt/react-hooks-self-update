@@ -7,7 +7,7 @@ a) Компонент userProfile переделать в страницу page
 - (https://medium.com/trabe/implementing-private-routes-with-react-router-and-hooks-ed38d0cf93d5)
   приватные роуты и контекст
 - сделать альтернативный способ проверки приватных роутов через стейт, а не контекст
-
+- CreateArticle loading 
 - переименовать все компоненты и страницы, например -  globalFeeds в feedsGlobal
 - посмотреть на компонент userProfile и userArticle
 - переписать форму на хукформ

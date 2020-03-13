@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { ArticleForm } from "components/articleForm";
+import { FormArticle } from "components/formArticle";
 
 import {
   createFeedEditorRequest,
@@ -40,7 +40,7 @@ const Component = ({
 
   return (
     <>
-      <ArticleForm onSubmit={onSubmit} error={error} />
+      <FormArticle onSubmit={onSubmit} error={error} />
     </>
   );
 };

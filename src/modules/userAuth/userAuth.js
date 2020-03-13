@@ -5,6 +5,7 @@ import {
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
   fetchAuthUserError,
+  setAuthUserRequest,
   resetAuthUser
 } from "./actions";
 
@@ -29,6 +30,7 @@ const isLoggedIn = handleActions(
 const loading = handleActions(
   {
     [fetchAuthUserRequest]: () => true,
+    [setAuthUserRequest]: () => true,
     [fetchAuthUserSuccess]: () => false,
     [fetchAuthUserError]: () => false,
     [resetAuthUser]: () => false

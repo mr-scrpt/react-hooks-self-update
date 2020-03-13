@@ -9,7 +9,7 @@ import {
   getFeedError,
   getBeEdited
 } from "modules/feedEditor";
-import { ArticleForm } from "components/articleForm";
+import { ArticleForm } from "components/formArticle";
 import { useFetch } from "hooks/useFetch";
 import { Redirect } from "react-router-dom";
 /* import { CurrentUserContext } from "contexts/currentUserContext"; */
