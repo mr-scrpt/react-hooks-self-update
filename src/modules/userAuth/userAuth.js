@@ -7,7 +7,8 @@ import {
   fetchAuthUserError,
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
-  resetUserAuthUser
+  resetUserAuthUser,
+  resetError
 } from "./actions";
 
 const user = handleActions(
@@ -44,7 +45,8 @@ const error = handleActions(
     [fetchAuthUserRequest]: () => ({}),
     [fetchAuthUserSuccess]: () => ({}),
     [fetchAuthUserError]: (_, { payload }) => payload,
-    [resetUserAuthUser]: () => ({})
+    [resetUserAuthUser]: () => ({}),
+    [resetError]: () => ({})
   },
   {}
 );

@@ -15,6 +15,7 @@ import {
   getUserAuth
 } from "./api";
 
+import { serializedUser } from "helpers/serializedUser";
 import { localStorageUse } from "helpers/localStorageUse";
 const [, setToken] = localStorageUse("token");
 function* fetchWatcher() {
@@ -26,10 +27,8 @@ function* fetchWatcher() {
 export function* setUserRegistrationAPI({ payload }) {
   try {
     const userResponse = yield call(sendUserToRegistration, payload);
-    console.log(userResponse);
-
-    //setToken(userResponse.data.user.token);
-    //yield put(fetchAuthUserSuccess(userResponse));
+    setToken(userResponse.data.user.token);
+    yield put(fetchAuthUserSuccess(serializedUser(userResponse)));
   } catch (error) {
     yield put(fetchAuthUserError(error));
   }
@@ -39,7 +38,7 @@ export function* setUserAuthAPI({ payload }) {
   try {
     const userResponse = yield call(sendUserToAuthorization, payload);
     setToken(userResponse.data.user.token);
-    yield put(fetchAuthUserSuccess(userResponse));
+    yield put(fetchAuthUserSuccess(serializedUser(userResponse)));
   } catch (error) {
     yield put(fetchAuthUserError(error));
   }

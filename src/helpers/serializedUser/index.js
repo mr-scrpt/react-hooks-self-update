@@ -1,0 +1,1 @@
+export { serializedUser } from "./serializedUser";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -7,7 +7,8 @@ import {
   sendUserToRegistrationRequest,
   getIsLoggedIn,
   getIsLoading,
-  getIsError
+  getIsError,
+  resetError
 } from "modules/userAuth";
 
 import { FormLogin } from "components/formLogin";
@@ -17,11 +18,18 @@ import { ShowLoading } from "components/showLoading";
 const Component = ({
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
+  resetError,
   isLoggedIn,
   loading,
   errorsServer,
   match: { path }
 }) => {
+  useEffect(() => {
+    return () => {
+      resetError();
+    };
+  }, [resetError]);
+
   const submitLogin = user => {
     sendUserToAuthRequest(user);
   };
@@ -32,8 +40,6 @@ const Component = ({
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
-
-  console.log(errorsServer);
 
   return (
     <>
@@ -57,7 +63,8 @@ const Component = ({
 };
 const mapDispatchToProps = {
   sendUserToAuthRequest,
-  sendUserToRegistrationRequest
+  sendUserToRegistrationRequest,
+  resetError
 };
 const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state),

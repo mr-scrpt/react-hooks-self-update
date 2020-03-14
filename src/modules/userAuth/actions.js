@@ -16,3 +16,5 @@ export const fetchAuthUserSuccess = createAction(
   "AUTH_USER/FETCH_USER_SUCCESS"
 );
 export const fetchAuthUserError = createAction("AUTH_USER/FETCH_USER_ERROR");
+
+export const resetError = createAction("AUTH_USER/RESET_ERROR");
