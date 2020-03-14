@@ -5,8 +5,9 @@ import {
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
   fetchAuthUserError,
-  setAuthUserRequest,
-  resetAuthUser
+  sendUserToAuthRequest,
+  sendUserToRegistrationRequest,
+  resetUserAuthUser
 } from "./actions";
 
 const user = handleActions(
@@ -14,7 +15,7 @@ const user = handleActions(
     [fetchAuthUserRequest]: () => ({}),
     [fetchAuthUserSuccess]: (_, { payload }) => payload.data.user,
     [fetchAuthUserError]: () => ({}),
-    [resetAuthUser]: () => ({})
+    [resetUserAuthUser]: () => ({})
   },
   {}
 );
@@ -23,17 +24,18 @@ const isLoggedIn = handleActions(
     [fetchAuthUserRequest]: () => false,
     [fetchAuthUserSuccess]: () => true,
     [fetchAuthUserError]: () => false,
-    [resetAuthUser]: () => false
+    [resetUserAuthUser]: () => false
   },
   false
 );
 const loading = handleActions(
   {
     [fetchAuthUserRequest]: () => true,
-    [setAuthUserRequest]: () => true,
+    [sendUserToAuthRequest]: () => true,
+    [sendUserToRegistrationRequest]: () => true,
     [fetchAuthUserSuccess]: () => false,
     [fetchAuthUserError]: () => false,
-    [resetAuthUser]: () => false
+    [resetUserAuthUser]: () => false
   },
   false
 );
@@ -42,7 +44,7 @@ const error = handleActions(
     [fetchAuthUserRequest]: () => ({}),
     [fetchAuthUserSuccess]: () => ({}),
     [fetchAuthUserError]: (_, { payload }) => payload,
-    [resetAuthUser]: () => ({})
+    [resetUserAuthUser]: () => ({})
   },
   {}
 );

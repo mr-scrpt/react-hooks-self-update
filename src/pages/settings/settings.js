@@ -1,29 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { putProfileRequest } from "modules/userProfile";
-
+import {
+  getUserAuth,
+  getIsLoading,
+  getIsError,
+  resetUserAuthUser
+} from "modules/userAuth";
 /* import { CurrentUserContext } from "contexts/currentUserContext"; */
 import { SettingsForm } from "components/settingsForm";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { logout } from "helpers/logout/logout";
-const Page = ({ putProfileRequest }) => {
-  /* const { user, dispatchLoguot, dispatchLogin } = useContext(
-    CurrentUserContext
-  ); */
-
+const Page = ({ putProfileRequest, resetUserAuthUser, user }) => {
   const onSubmite = putUser => {
     console.log(putUser);
   };
 
   const logoutUser = () => {
-    logout(dispatchLoguot);
+    logout(resetUserAuthUser);
   };
   return (
     <div className="settings-page">
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
-            {/* Нет проверки на загрузку и вывода спиннера, потому что данные берутся из контекста а не по сети */}
+            {/* !!!Нет проверки на загрузку и вывода спиннера, потому что данные берутся из контекста а не по сети */}
             {!isEmptyObject(user) && (
               <SettingsForm
                 user={user}
@@ -38,10 +39,15 @@ const Page = ({ putProfileRequest }) => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  user: getUserAuth(state),
+  loading: getIsLoading(state),
+  error: getIsError(state)
+});
 
 const mapDispatchToProps = {
-  putProfileRequest
+  putProfileRequest,
+  resetUserAuthUser
 };
 
 export const Settings = connect(mapStateToProps, mapDispatchToProps)(Page);

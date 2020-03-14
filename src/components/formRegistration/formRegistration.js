@@ -13,7 +13,7 @@ export const FormRegistration = ({ submitForm, loading, errorsServer }) => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Регистрация</h1>
             <p className="text-xs-center">
-              <NavLink to="/дщпшт">Уже есть аккаунта?</NavLink>
+              <NavLink to="/login">Уже есть аккаунта?</NavLink>
             </p>
             <form onSubmit={handleSubmit(submitForm)}>
               {errorsServer && (
@@ -26,8 +26,8 @@ export const FormRegistration = ({ submitForm, loading, errorsServer }) => {
               <fieldset>
                 <fieldset className="form-group">
                   <input
-                    type="username"
-                    name="text"
+                    type="text"
+                    name="username"
                     className="form-control form-control-lg"
                     placeholder="Username"
                     ref={fieldShort(register)}

@@ -1,10 +1,13 @@
 import { createAction } from "redux-actions";
 
-export const setAuthUserRequest = createAction("AUTH_USER/SET_USER_REQUEST");
-export const setAuthUserSuccess = createAction("AUTH_USER/SET_USER_SUCCESS");
-export const setAuthUserError = createAction("AUTH_USER/SET_USER_ERROR");
+export const sendUserToAuthRequest = createAction(
+  "AUTH_USER/SEND_USER_TO_AUTH_REQUEST"
+);
 
-export const resetAuthUser = createAction("AUTH_USER/RESET");
+export const sendUserToRegistrationRequest = createAction(
+  "AUTH_USER/SEND_USER_TO_REGISTRATION_REQUEST"
+);
+export const resetUserAuthUser = createAction("AUTH_USER/RESET_USER_AUTH");
 
 export const fetchAuthUserRequest = createAction(
   "AUTH_USER/FETCH_USER_REQUEST"

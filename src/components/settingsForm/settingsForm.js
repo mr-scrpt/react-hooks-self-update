@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { fieldText, fieldShort } from "validators";
 import { errorsList } from "helpers/errorsList";
@@ -24,7 +24,7 @@ export const SettingsForm = ({ user, onSubmit, logout, error }) => {
               placeholder="URL Фото"
               defaultValue={user.image}
               className="form-control form-control-lg"
-              //ref={fieldShort(register)}
+              ref={register}
             />
           </fieldset>
 

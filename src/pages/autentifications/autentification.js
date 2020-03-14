@@ -3,43 +3,61 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
-  setAuthUserRequest,
+  sendUserToAuthRequest,
+  sendUserToRegistrationRequest,
   getIsLoggedIn,
   getIsLoading,
   getIsError
 } from "modules/userAuth";
 
 import { FormLogin } from "components/formLogin";
+import { FormRegistration } from "components/formRegistration";
 import { ShowLoading } from "components/showLoading";
-import type_here from "components/formRegistration";
 
 const Component = ({
-  setAuthUserRequest,
+  sendUserToAuthRequest,
+  sendUserToRegistrationRequest,
   isLoggedIn,
   loading,
-  errorsServer
+  errorsServer,
+  match: { path }
 }) => {
-  const submitForm = user => {
-    setAuthUserRequest(user);
+  const submitLogin = user => {
+    sendUserToAuthRequest(user);
+  };
+  const submitRegistration = user => {
+    sendUserToRegistrationRequest(user);
   };
 
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
 
+  console.log(errorsServer);
+
   return (
     <>
       <ShowLoading loading={loading} />
-      <FormLogin
-        submitForm={submitForm}
-        loading={loading}
-        errorsServer={errorsServer}
-      />
+      {path === "/login" && (
+        <FormLogin
+          submitForm={submitLogin}
+          loading={loading}
+          errorsServer={errorsServer}
+        />
+      )}
+      {path === "/registration" && (
+        <FormRegistration
+          submitForm={submitRegistration}
+          loading={loading}
+          errorsServer={errorsServer}
+        />
+      )}
     </>
   );
 };
 const mapDispatchToProps = {
-  setAuthUserRequest
+  sendUserToAuthRequest,
+  sendUserToRegistrationRequest
 };
 const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state),

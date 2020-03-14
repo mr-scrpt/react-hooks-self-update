@@ -1,18 +1,5 @@
 import { createAction } from "redux-actions";
 
-// CREATE PROFILE
-export const createProfileRequest = createAction(
-  "USER_PROFILE/CREATE_PROFILE_REQUEST"
-);
-
-export const createProfileSuccess = createAction(
-  "USER_PROFILE/CREATE_PROFILE_SUCCESS"
-);
-
-export const createProfileError = createAction(
-  "USER_PROFILE/CREATE_PROFILE_ERROR"
-);
-
 // PUT PROFILE
 export const putProfileRequest = createAction(
   "USER_PROFILE/PUT_PROFILE_REQUEST"

@@ -1,6 +1,23 @@
 import { request } from "helpers/request";
 
-export const setUserAuth = async user => {
+export const sendUserToRegistration = async user => {
+  try {
+    return await request({
+      url: `users`,
+      method: "POST",
+      data: {
+        user
+      }
+    });
+  } catch (error) {
+    throw {
+      status: 400,
+      message: error.errors //получаем ошибки валидации от сервера
+    };
+  }
+};
+
+export const sendUserToAuthorization = async user => {
   try {
     return await request({
       url: `users/login`,
@@ -12,7 +29,7 @@ export const setUserAuth = async user => {
   } catch (error) {
     throw {
       status: 400,
-      message: "Ошибка. Не правильный логин или пароль"
+      message: error.errors //получаем ошибки валидации от сервера
     };
   }
 };

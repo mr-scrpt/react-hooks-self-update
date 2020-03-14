@@ -1,6 +1,7 @@
 import { takeLatest, fork, call, put } from "redux-saga/effects";
 import {
-  setAuthUserRequest,
+  sendUserToAuthRequest,
+  sendUserToRegistrationRequest,
   //setAuthUserSuccess,
   //setAuthUserError,
   fetchAuthUserRequest,
@@ -8,18 +9,35 @@ import {
   fetchAuthUserError
 } from "./actions";
 
-import { setUserAuth, getUserAuth } from "./api";
+import {
+  sendUserToAuthorization,
+  sendUserToRegistration,
+  getUserAuth
+} from "./api";
 
 import { localStorageUse } from "helpers/localStorageUse";
 const [, setToken] = localStorageUse("token");
 function* fetchWatcher() {
-  yield takeLatest(fetchAuthUserRequest, getUserAuthAPI);
-  yield takeLatest(setAuthUserRequest, setUserAuthAPI);
+  yield takeLatest(sendUserToRegistrationRequest, setUserRegistrationAPI);
+  yield takeLatest(sendUserToAuthRequest, setUserAuthAPI);
+  yield takeLatest(fetchAuthUserRequest, fetchUserAuthAPI);
+}
+
+export function* setUserRegistrationAPI({ payload }) {
+  try {
+    const userResponse = yield call(sendUserToRegistration, payload);
+    console.log(userResponse);
+
+    //setToken(userResponse.data.user.token);
+    //yield put(fetchAuthUserSuccess(userResponse));
+  } catch (error) {
+    yield put(fetchAuthUserError(error));
+  }
 }
 
 export function* setUserAuthAPI({ payload }) {
   try {
-    const userResponse = yield call(setUserAuth, payload);
+    const userResponse = yield call(sendUserToAuthorization, payload);
     setToken(userResponse.data.user.token);
     yield put(fetchAuthUserSuccess(userResponse));
   } catch (error) {
@@ -27,7 +45,7 @@ export function* setUserAuthAPI({ payload }) {
   }
 }
 
-export function* getUserAuthAPI() {
+export function* fetchUserAuthAPI() {
   try {
     const userResponse = yield call(getUserAuth);
 

@@ -16,7 +16,7 @@ const Component = ({
   createFeedEditorRequest,
   resetBeCreated,
   feed,
-  error,
+  errorsServer,
   beCreated
 }) => {
   const [redirectTo, setRedirectTo] = useState("");
@@ -26,12 +26,17 @@ const Component = ({
     createFeedEditorRequest(feed);
     setSubmited(true);
   };
+
   useEffect(() => {
+    console.log("reset created");
+
     return () => resetBeCreated();
   }, [resetBeCreated]);
+
   useEffect(() => {
-    if (!beCreated && !submited) return;
-    setRedirectTo(feed.slug);
+    if (beCreated && submited) {
+      setRedirectTo(feed.slug);
+    }
   }, [feed, beCreated]);
 
   if (redirectTo !== "") {
@@ -40,14 +45,14 @@ const Component = ({
 
   return (
     <>
-      <FormArticle onSubmit={onSubmit} error={error} />
+      <FormArticle onSubmit={onSubmit} errorsServer={errorsServer} />
     </>
   );
 };
 
 const mapStateToProps = state => ({
   feed: getFeed(state),
-  error: getFeedError(state),
+  errorsServer: getFeedError(state),
   beCreated: getBeCreated(state)
 });
 const mapDispatchToProps = {

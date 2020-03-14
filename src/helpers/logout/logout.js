@@ -1,7 +1,7 @@
 import { localStorageUse } from "helpers/localStorageUse";
 
-export const logout = dispatchLoguot => {
+export const logout = dispatchLogout => {
   const [, setValue] = localStorageUse("token");
   setValue("");
-  dispatchLoguot();
+  dispatchLogout();
 };
