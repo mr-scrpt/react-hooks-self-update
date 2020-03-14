@@ -7,6 +7,7 @@ import { FormArticle } from "components/formArticle";
 import {
   createFeedEditorRequest,
   resetBeCreated,
+  resetError,
   getFeed,
   getFeedError,
   getBeCreated
@@ -15,6 +16,7 @@ import {
 const Component = ({
   createFeedEditorRequest,
   resetBeCreated,
+  resetError,
   feed,
   errorsServer,
   beCreated
@@ -28,10 +30,11 @@ const Component = ({
   };
 
   useEffect(() => {
-    console.log("reset created");
-
-    return () => resetBeCreated();
-  }, [resetBeCreated]);
+    return () => {
+      resetBeCreated();
+      resetError();
+    };
+  }, [resetBeCreated, resetError]);
 
   useEffect(() => {
     if (beCreated && submited) {
@@ -42,7 +45,7 @@ const Component = ({
   if (redirectTo !== "") {
     return <Redirect to={`/articles/${redirectTo}`} />;
   }
-
+  console.log("error server article", errorsServer);
   return (
     <>
       <FormArticle onSubmit={onSubmit} errorsServer={errorsServer} />
@@ -57,7 +60,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {
   createFeedEditorRequest,
-  resetBeCreated
+  resetBeCreated,
+  resetError
 };
 export const CreateArticle = connect(
   mapStateToProps,

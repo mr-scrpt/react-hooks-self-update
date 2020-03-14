@@ -16,6 +16,6 @@ export const getIsLoading = createSelector(
 );
 
 export const getIsError = createSelector(
-  state => state.userAuthStore.error,
+  state => state.userAuthStore.error.message,
   error => error
 );

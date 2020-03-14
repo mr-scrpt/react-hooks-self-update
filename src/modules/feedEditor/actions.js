@@ -56,3 +56,4 @@ export const clearFeed = createAction("FEED_EDITOR/CLEAR_FEED");
 export const resetBeCreated = createAction("FEED_EDITOR/RESET_FEED_BE_CEATED");
 export const resetBeEdited = createAction("FEED_EDITOR/RESET_FEED_BE_EDITED");
 export const resetBeDeleted = createAction("FEED_EDITOR/RESET_FEED_BE_DELETED");
+export const resetError = createAction("FEED_EDITOR/RESET_ERROR");

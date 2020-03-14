@@ -17,7 +17,8 @@ import {
   clearFeed,
   resetBeCreated,
   resetBeEdited,
-  resetBeDeleted
+  resetBeDeleted,
+  resetError
 } from "./actions";
 
 const feed = handleActions(
@@ -68,7 +69,8 @@ const error = handleActions(
     [fetchFeedEditorError]: (_, { payload }) => payload,
     [deleteFeedEditorRequest]: () => ({}),
     [deleteFeedEditorSuccess]: () => ({}),
-    [deleteFeedEditorError]: (_, { payload }) => payload
+    [deleteFeedEditorError]: (_, { payload }) => payload,
+    [resetError]: () => ({})
   },
   {}
 );
