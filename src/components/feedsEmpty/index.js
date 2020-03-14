@@ -1,0 +1,1 @@
+export { FeedsEmpty } from "./feedsEmpty";
