@@ -49,7 +49,7 @@ export const Component = ({ user, isLoggedIn }) => {
               </li>
 
               <li className="nav-item">
-                <NavLink to={`/profiles/${user.username}`} className="nav-link">
+                <NavLink to={`/profile/${user.username}`} className="nav-link">
                   <img
                     className="user-pic"
                     src={

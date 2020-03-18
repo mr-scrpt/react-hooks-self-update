@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { TopBar } from "components/topBar";
 import { UserAuthChecker } from "components/userAuthChecker";
 import { createAppStore } from "reduxStore";
+console.log("in app");
 
 const store = createAppStore();
 export const App = () => {

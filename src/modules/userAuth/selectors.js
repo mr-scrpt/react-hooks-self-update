@@ -19,3 +19,7 @@ export const getIsError = createSelector(
   state => state.userAuthStore.error.message,
   error => error
 );
+export const getIsInitial = createSelector(
+  state => state.userAuthStore.initial,
+  initial => initial
+);

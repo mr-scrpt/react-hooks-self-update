@@ -5,6 +5,7 @@ import {
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
   fetchAuthUserError,
+  setAuthUserInitial,
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
   resetUserAuthUser,
@@ -50,10 +51,16 @@ const error = handleActions(
   },
   {}
 );
-
+const initial = handleActions(
+  {
+    [setAuthUserInitial]: () => true
+  },
+  false
+);
 export default combineReducers({
   user,
   isLoggedIn,
   loading,
-  error
+  error,
+  initial
 });

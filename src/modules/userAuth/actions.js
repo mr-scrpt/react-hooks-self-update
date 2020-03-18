@@ -7,6 +7,9 @@ export const sendUserToAuthRequest = createAction(
 export const sendUserToRegistrationRequest = createAction(
   "AUTH_USER/SEND_USER_TO_REGISTRATION_REQUEST"
 );
+export const setAuthUserInitial = createAction(
+  "AUTH_USER/SET_USER_AUTH_INITIAL"
+);
 export const resetUserAuthUser = createAction("AUTH_USER/RESET_USER_AUTH");
 
 export const fetchAuthUserRequest = createAction(

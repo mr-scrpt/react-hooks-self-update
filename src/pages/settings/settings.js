@@ -24,6 +24,7 @@ const Page = ({ putProfileRequest, resetUserAuthUser, user }) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
+            НАСТРОЙКИ
             {/* !!!Нет проверки на загрузку и вывода спиннера, потому что данные берутся из контекста а не по сети */}
             {!isEmptyObject(user) && (
               <SettingsForm

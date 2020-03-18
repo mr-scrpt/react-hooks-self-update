@@ -8,7 +8,7 @@ a) Компонент userProfile переделать в страницу page
 Сделать в userAuth все, что касается юзера. Отделить userFavoritd в отдельный стейт?
 Или убрать user поле с authUser
 
-страница settings  - редирект при логауте и путюзер
+страница settings  - редирект при логауте 
 
 
 - (https://medium.com/trabe/implementing-private-routes-with-react-router-and-hooks-ed38d0cf93d5)
