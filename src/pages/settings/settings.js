@@ -1,19 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { putProfileRequest } from "modules/userProfile";
+
 import {
   getUserAuth,
   getIsLoading,
   getIsError,
-  resetUserAuthUser
+  resetUserAuthUser,
+  putUserAuthRequest
 } from "modules/userAuth";
-/* import { CurrentUserContext } from "contexts/currentUserContext"; */
+import { ShowLoading } from "components/showLoading";
+import { ShowErrors } from "components/showErrors";
 import { SettingsForm } from "components/settingsForm";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { logout } from "helpers/logout/logout";
-const Page = ({ putProfileRequest, resetUserAuthUser, user }) => {
+const Page = ({
+  resetUserAuthUser,
+  putUserAuthRequest,
+  user,
+  isLoading,
+  isError
+}) => {
   const onSubmite = putUser => {
     console.log(putUser);
+    putUserAuthRequest(putUser);
   };
 
   const logoutUser = () => {
@@ -24,9 +33,9 @@ const Page = ({ putProfileRequest, resetUserAuthUser, user }) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
-            НАСТРОЙКИ
-            {/* !!!Нет проверки на загрузку и вывода спиннера, потому что данные берутся из контекста а не по сети */}
-            {!isEmptyObject(user) && (
+            <ShowLoading loading={isLoading} />
+            <ShowErrors errors={isError} />
+            {!isLoading && !isEmptyObject(user) && (
               <SettingsForm
                 user={user}
                 onSubmit={onSubmite}
@@ -42,42 +51,13 @@ const Page = ({ putProfileRequest, resetUserAuthUser, user }) => {
 
 const mapStateToProps = state => ({
   user: getUserAuth(state),
-  loading: getIsLoading(state),
-  error: getIsError(state)
+  isLoading: getIsLoading(state),
+  isError: getIsError(state)
 });
 
 const mapDispatchToProps = {
-  putProfileRequest,
+  putUserAuthRequest,
   resetUserAuthUser
 };
 
 export const Settings = connect(mapStateToProps, mapDispatchToProps)(Page);
-
-/*  const apiURL = `user`;
-  const [{ response, isLoading, error }, doFetch] = useFetch(apiURL);
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
-
-  const [isLogout, setIsLogout] = useState(false);
-  useEffect(() => {
-    if (!isSubmit) return;
-    doFetch({
-      method: "PUT",
-      data: {
-        user: currentUserState.currentUser
-      }
-    });
-  }, [currentUserState.currentUser, doFetch]);
-
-  useEffect(() => {
-    if (!response) return;
-    setIsSuccessfulSubmit(true);
-  }, [response]);
-
-  if (isSuccessfulSubmit) {
-    return <Redirect to={"/"} />;
-  }
-
-  if (isLogout) {
-    return <Redirect to={`/`} />;
-  } */

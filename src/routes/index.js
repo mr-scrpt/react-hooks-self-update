@@ -26,10 +26,10 @@ export default () => {
     <div>
       <Switch>
         <Route path="/" component={FeedsLine} exact />
-        <Route path="/feedFollow" component={FeedsLine} />
+        <PrivatRoute path="/feedFollow" component={FeedsLine} />
         <Route path="/feedTags/:tagName" component={FeedsLine} />
 
-        <Route path="/articles/new" component={CreateArticle} />
+        <PrivatRoute path="/articles/new" component={CreateArticle} />
         <Route path="/articles/:slug" component={Article} />
 
         <Route path="/login" component={Autentifications} />

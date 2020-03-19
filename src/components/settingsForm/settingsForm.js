@@ -20,7 +20,7 @@ export const SettingsForm = ({ user, onSubmit, logout, error }) => {
           <fieldset className="form-group">
             <input
               type="text"
-              name="photoURL"
+              name="image"
               placeholder="URL Фото"
               defaultValue={user.image}
               className="form-control form-control-lg"

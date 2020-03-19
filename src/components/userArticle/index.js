@@ -1,1 +1,0 @@
-export { UserArticle } from './userArticle'

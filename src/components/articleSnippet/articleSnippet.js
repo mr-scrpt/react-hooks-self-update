@@ -20,7 +20,7 @@ export const ArticleSnippet = ({ item }) => {
   return (
     <div className="article-preview">
       <div className="article-meta">
-        <Link to={`/profiles/${username}`}>
+        <Link to={`/profile/${username}`}>
           <img
             src={`${image ? image : "https://dummyimage.com/100x100/abq/fre"}`}
             alt=""

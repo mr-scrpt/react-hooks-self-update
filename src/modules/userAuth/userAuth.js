@@ -5,7 +5,9 @@ import {
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
   fetchAuthUserError,
-  setAuthUserInitial,
+  putUserAuthRequest,
+  putUserAuthSuccess,
+  putUserAuthError,
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
   resetUserAuthUser,
@@ -17,7 +19,10 @@ const user = handleActions(
     [fetchAuthUserRequest]: () => ({}),
     [fetchAuthUserSuccess]: (_, { payload }) => payload.data.user,
     [fetchAuthUserError]: () => ({}),
-    [resetUserAuthUser]: () => ({})
+    [resetUserAuthUser]: () => ({}),
+    //[putUserAuthRequest]: (_, { payload }) => payload.data.user,
+    [putUserAuthSuccess]: (_, { payload }) => payload.data.user,
+    [putUserAuthError]: () => ({})
   },
   {}
 );
@@ -47,20 +52,22 @@ const error = handleActions(
     [fetchAuthUserSuccess]: () => ({}),
     [fetchAuthUserError]: (_, { payload }) => payload,
     [resetUserAuthUser]: () => ({}),
+    [putUserAuthRequest]: () => ({}),
+    [putUserAuthError]: () => (_, { payload }) => payload,
     [resetError]: () => ({})
   },
   {}
 );
-const initial = handleActions(
+/* const initial = handleActions(
   {
     [setAuthUserInitial]: () => true
   },
   false
-);
+); */
 export default combineReducers({
   user,
   isLoggedIn,
   loading,
-  error,
-  initial
+  error
+  //initial
 });

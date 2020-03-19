@@ -6,13 +6,17 @@ import {
   //setAuthUserError,
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
-  fetchAuthUserError
+  fetchAuthUserError,
+  putUserAuthRequest,
+  putUserAuthSuccess,
+  putUserAuthError
 } from "./actions";
 
 import {
   sendUserToAuthorization,
   sendUserToRegistration,
-  getUserAuth
+  getUserAuth,
+  putUserAuth
 } from "./api";
 
 import { serializedUser } from "helpers/serializedUser";
@@ -22,6 +26,7 @@ function* fetchWatcher() {
   yield takeLatest(sendUserToRegistrationRequest, setUserRegistrationAPI);
   yield takeLatest(sendUserToAuthRequest, setUserAuthAPI);
   yield takeLatest(fetchAuthUserRequest, fetchUserAuthAPI);
+  yield takeLatest(putUserAuthRequest, putUserAuthAPI);
 }
 
 export function* setUserRegistrationAPI({ payload }) {
@@ -51,6 +56,15 @@ export function* fetchUserAuthAPI() {
     yield put(fetchAuthUserSuccess(userResponse));
   } catch (error) {
     yield put(fetchAuthUserError(error));
+  }
+}
+
+export function* putUserAuthAPI({ payload }) {
+  try {
+    const userResponse = yield call(putUserAuth, payload);
+    yield put(putUserAuthSuccess(userResponse));
+  } catch (error) {
+    yield put(putUserAuthError(error));
   }
 }
 

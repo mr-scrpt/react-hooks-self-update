@@ -7,9 +7,7 @@ export const sendUserToAuthRequest = createAction(
 export const sendUserToRegistrationRequest = createAction(
   "AUTH_USER/SEND_USER_TO_REGISTRATION_REQUEST"
 );
-export const setAuthUserInitial = createAction(
-  "AUTH_USER/SET_USER_AUTH_INITIAL"
-);
+
 export const resetUserAuthUser = createAction("AUTH_USER/RESET_USER_AUTH");
 
 export const fetchAuthUserRequest = createAction(
@@ -21,3 +19,14 @@ export const fetchAuthUserSuccess = createAction(
 export const fetchAuthUserError = createAction("AUTH_USER/FETCH_USER_ERROR");
 
 export const resetError = createAction("AUTH_USER/RESET_ERROR");
+
+// PUT PROFILE
+export const putUserAuthRequest = createAction(
+  "AUTH_USER/PUT_USER_AUTH_REQUEST"
+);
+
+export const putUserAuthSuccess = createAction(
+  "AUTH_USER/PUT_USER_AUTH_SUCCESS"
+);
+
+export const putUserAuthError = createAction("AUTH_USER/PUT_USER_AUTH_ERROR");

@@ -44,3 +44,20 @@ export const getUserAuth = async () => {
     };
   }
 };
+
+export const putUserAuth = async user => {
+  console.log("api", user);
+
+  try {
+    return await request(
+      {
+        url: `/user`,
+        method: "PUT",
+        data: {
+          user
+        }
+      },
+      true
+    );
+  } catch (error) {}
+};

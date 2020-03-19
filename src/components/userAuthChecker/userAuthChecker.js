@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchAuthUserRequest, setAuthUserInitial } from "modules/userAuth";
+import { fetchAuthUserRequest } from "modules/userAuth";
 import { localStorageUse } from "helpers/localStorageUse";
 console.log("autochecker user");
 
-const Component = ({ fetchAuthUserRequest, setAuthUserInitial }) => {
+const Component = ({ fetchAuthUserRequest }) => {
   const [token] = localStorageUse("token");
   useEffect(() => {
-    setAuthUserInitial();
+    //setAuthUserInitial();
     if (!token) return;
 
     fetchAuthUserRequest();
@@ -16,7 +16,6 @@ const Component = ({ fetchAuthUserRequest, setAuthUserInitial }) => {
 };
 
 const mapDispatchToProps = {
-  fetchAuthUserRequest,
-  setAuthUserInitial
+  fetchAuthUserRequest
 };
 export const UserAuthChecker = connect(null, mapDispatchToProps)(Component);
