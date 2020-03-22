@@ -9,7 +9,8 @@ import {
   fetchUserFeedsError,
   fetchUserFeedsFavoritedRequest,
   fetchUserFeedsFavoritedSuccess,
-  fetchUserFeedsFavoritedError
+  fetchUserFeedsFavoritedError,
+  fetchFa
 } from "./actions";
 
 import { getUser, getUserFeeds, getUserFeedsFavorited } from "./api";

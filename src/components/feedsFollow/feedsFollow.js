@@ -39,7 +39,7 @@ const Component = ({
       <ShowLoading loading={loading} />
       <ShowErrors errors={error} />
 
-      {!loading && isEmptyObject(error) && feedsList.length && (
+      {!loading && isEmptyObject(error) && (
         <>
           <Feeds articles={feedsList} />
           <Pagination

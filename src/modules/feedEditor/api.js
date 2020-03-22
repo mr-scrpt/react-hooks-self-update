@@ -10,7 +10,7 @@ export const createFeed = async data => {
 
 export const fetchFeed = async slug => {
   try {
-    return await request({ url: `/articles/${slug}`, method: "GET" });
+    return await request({ url: `/articles/${slug}`, method: "GET" }, true);
   } catch (error) {
     throw { status: 400, message: "Ошибка получения данных" };
   }
@@ -54,5 +54,43 @@ export const removeFeedIsFavirited = async slug => {
     );
   } catch (error) {
     throw { status: 400, message: "Ошибка удаления из избранного" };
+  }
+};
+
+export const togglelikeFeed = async ({ favorited, slug }) => {
+  const method = favorited ? "DELETE" : "POST";
+  try {
+    return await request({ url: `/articles/${slug}/favorite`, method }, true);
+  } catch (error) {
+    throw {
+      status: 400,
+      message: "Ошибка удаления или добавления в избранное"
+    };
+  }
+};
+
+export const toggleFollowAuthor = async ({ isFollow, author }) => {
+  const method = isFollow ? "DELETE" : "POST";
+  try {
+    return await request({ url: `/profiles/${author}/follow`, method }, true);
+  } catch (error) {
+    throw {
+      status: 400,
+      message: "Ошибка добавления или удаления автора из листа подписки"
+    };
+  }
+};
+
+export const fetchIsFollowAuthor = async ({ author }) => {
+  try {
+    return await request(
+      { url: `/profiles/${author}/follow`, method: "GET" },
+      true
+    );
+  } catch (error) {
+    throw {
+      status: 400,
+      message: "Ошибка добавления или удаления автора из листа подписки"
+    };
   }
 };

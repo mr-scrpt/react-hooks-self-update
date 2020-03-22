@@ -1,0 +1,1 @@
+export { BarSocialActivity } from "./barSocialActivity";

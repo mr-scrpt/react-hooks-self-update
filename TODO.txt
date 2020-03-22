@@ -1,7 +1,4 @@
-a) Компонент userProfile переделать в страницу page
-1) Прикрутить formik
-2) Перейти на redux + saga
-- проверить и полностю избавится от useFetch
+
 - чек автор для возможности редактировать свою статью и запрета редактировать чужую
 - 
 
@@ -9,7 +6,10 @@ a) Компонент userProfile переделать в страницу page
 
 страница settings  - редирект при логауте 
 
+AddToFavorite и BarSocialActivity
 
+-сократить название экшенов
+- User Profile - в селекторах getUser в стейте Profile - привести к одному имени
 - (https://medium.com/trabe/implementing-private-routes-with-react-router-and-hooks-ed38d0cf93d5)
   приватные роуты и контекст
 - сделать альтернативный способ проверки приватных роутов через стейт, а не контекст

@@ -1,1 +1,1 @@
-export { EditArticle } from './editArticle'
+export { EditArticle } from "./editArticle";

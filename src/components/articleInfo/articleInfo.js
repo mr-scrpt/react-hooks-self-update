@@ -1,12 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-
-import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
-
 import { Link } from "react-router-dom";
 import { TagList } from "components/tagList";
+import { BarEditor } from "components/barEditor";
+import { BarSocialActivity } from "components/barSocialActivity";
 
-const Component = ({ article, articleDelete, user, isLoggedIn }) => {
+export const ArticleInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   const {
     title,
     slug,
@@ -14,8 +12,8 @@ const Component = ({ article, articleDelete, user, isLoggedIn }) => {
     tagList,
     description,
     author,
-    favirited,
-    faviritedCount,
+    favorited,
+    favoritesCount,
     createdAt
   } = article;
 
@@ -41,23 +39,15 @@ const Component = ({ article, articleDelete, user, isLoggedIn }) => {
               )}
             </div>
             {isAuthor() && (
-              <span>
-                <Link
-                  to={`/articles/${slug}/edit`}
-                  className="btn btn-outline-secondary btn-sm"
-                >
-                  <i className="ion-edit"></i>
-                  Редактировать
-                </Link>
-                &nbsp;
-                <button
-                  onClick={articleDelete}
-                  className="btn btn-outline-danger btn-sm"
-                >
-                  <i className="ion-trash-a"></i>
-                  Удалить
-                </button>
-              </span>
+              <BarEditor slug={slug} articleDelete={articleDelete} />
+            )}
+            {!isAuthor() && (
+              <BarSocialActivity
+                favorited={favorited}
+                favoritesCount={favoritesCount}
+                author={author.username}
+                slug={slug}
+              />
             )}
           </div>
         </div>
@@ -76,9 +66,3 @@ const Component = ({ article, articleDelete, user, isLoggedIn }) => {
     </div>
   );
 };
-
-const mapStateToProps = state => ({
-  user: getUserAuth(state),
-  isLoggedIn: getIsLoggedIn(state)
-});
-export const ArticleInfo = connect(mapStateToProps)(Component);

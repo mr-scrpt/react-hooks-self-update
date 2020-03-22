@@ -12,6 +12,7 @@ import {
   clearFeed,
   resetBeDeleted
 } from "modules/feedEditor";
+import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
 
 import { ArticleInfo } from "components/articleInfo";
 import { ShowLoading } from "components/showLoading";
@@ -27,6 +28,8 @@ const Component = ({
   deleteFeedEditorRequest,
   clearFeed,
   resetBeDeleted,
+  user,
+  isLoggedIn,
   match
 }) => {
   const slug = match.params.slug;
@@ -54,7 +57,13 @@ const Component = ({
       <ShowErrors errors={error} />
 
       {!loading && !isEmptyObject(feed) && (
-        <ArticleInfo article={feed} slug={slug} articleDelete={deleteFeed} />
+        <ArticleInfo
+          article={feed}
+          slug={slug}
+          articleDelete={deleteFeed}
+          user={user}
+          isLoggedIn={isLoggedIn}
+        />
       )}
     </>
   );
@@ -64,7 +73,9 @@ const mapStateToProps = state => ({
   feed: getFeed(state),
   loading: getFeedLoading(state),
   error: getFeedError(state),
-  beDeleted: getBeDeleted(state)
+  beDeleted: getBeDeleted(state),
+  user: getUserAuth(state),
+  isLoggedIn: getIsLoggedIn(state)
 });
 const mapDispatchToProps = {
   fetchFeedEditorRequest,

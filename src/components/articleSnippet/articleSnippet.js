@@ -27,7 +27,7 @@ export const ArticleSnippet = ({ item }) => {
           />
         </Link>
         <div className="info">
-          <Link className="author" to={`/profiles/${username}`}>
+          <Link className="author" to={`/profile/${username}`}>
             {username}
           </Link>
           <span className="data">{createdAt}</span>

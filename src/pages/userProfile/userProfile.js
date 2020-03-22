@@ -29,7 +29,7 @@ const Component = ({
     return () => {
       resetProfileStore();
     };
-  }, [fetchProfileRequest]);
+  }, [fetchProfileRequest, slug]);
 
   return (
     <div className="profile-page">

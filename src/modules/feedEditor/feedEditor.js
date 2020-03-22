@@ -14,11 +14,15 @@ import {
   putFeedEditorRequest,
   putFeedEditorSuccess,
   putFeedEditorError,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError,
   clearFeed,
   resetBeCreated,
   resetBeEdited,
   resetBeDeleted,
-  resetError
+  resetError,
+  setAuthorToFollowSuccess,
+  setAuthorToFollowError
 } from "./actions";
 
 const feed = handleActions(
@@ -39,6 +43,18 @@ const feed = handleActions(
     [putFeedEditorSuccess]: (_, { payload }) => payload.data.article,
     [putFeedEditorError]: () => ({}),
 
+    [fetchLikeFeedSuccess]: state => ({
+      ...state,
+      favorited: !state.favorited,
+      favoritesCount: state.favorited
+        ? state.favoritesCount - 1
+        : state.favoritesCount + 1
+    }),
+
+    [setAuthorToFollowSuccess]: state => ({
+      ...state,
+      author: { ...state.author, following: !state.author.following }
+    }),
     [clearFeed]: () => ({})
   },
   {}
@@ -70,6 +86,7 @@ const error = handleActions(
     [deleteFeedEditorRequest]: () => ({}),
     [deleteFeedEditorSuccess]: () => ({}),
     [deleteFeedEditorError]: (_, { payload }) => payload,
+    [fetchLikeFeedError]: (_, { payload }) => payload,
     [resetError]: () => ({})
   },
   {}

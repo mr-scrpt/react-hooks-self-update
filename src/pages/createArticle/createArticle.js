@@ -25,6 +25,7 @@ const Component = ({
   const [submited, setSubmited] = useState(false);
 
   const onSubmit = async feed => {
+    feed.tagList = feed.tagList.split(" ");
     createFeedEditorRequest(feed);
     setSubmited(true);
   };
@@ -45,7 +46,7 @@ const Component = ({
   if (redirectTo !== "") {
     return <Redirect to={`/articles/${redirectTo}`} />;
   }
-  console.log("error server article", errorsServer);
+
   return (
     <>
       <FormArticle onSubmit={onSubmit} errorsServer={errorsServer} />

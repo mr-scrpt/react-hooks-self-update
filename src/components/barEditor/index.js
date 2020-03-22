@@ -1,0 +1,1 @@
+export { BarEditor } from "./barEditor";

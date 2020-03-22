@@ -10,18 +10,33 @@ import {
   deleteFeedEditorRequest,
   deleteFeedEditorSuccess,
   deleteFeedEditorError,
+  fetchLikeFeedRequest,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError,
   putFeedEditorRequest,
   putFeedEditorSuccess,
-  putFeedEditorError
+  putFeedEditorError,
+  setAuthorToFollowRequest,
+  setAuthorToFollowSuccess,
+  setAuthorToFollowError
 } from "./actions";
 
-import { createFeed, fetchFeed, deleteFeed, putFeed } from "./api";
+import {
+  createFeed,
+  fetchFeed,
+  deleteFeed,
+  putFeed,
+  togglelikeFeed,
+  toggleFollowAuthor
+} from "./api";
 
 function* fetchWatcher() {
   yield takeLatest(createFeedEditorRequest, createFeedAPI);
   yield takeLatest(fetchFeedEditorRequest, fetchFeedAPI);
   yield takeLatest(deleteFeedEditorRequest, deleteFeedAPI);
   yield takeLatest(putFeedEditorRequest, putFeedAPI);
+  yield takeLatest(fetchLikeFeedRequest, likeFeedAPI);
+  yield takeLatest(setAuthorToFollowRequest, followFeedAPI);
 }
 
 export function* createFeedAPI({ payload }) {
@@ -57,6 +72,24 @@ export function* putFeedAPI({ payload }) {
     yield put(putFeedEditorSuccess(feedPutResponse));
   } catch (error) {
     yield put(putFeedEditorError(error));
+  }
+}
+
+export function* likeFeedAPI({ payload }) {
+  try {
+    yield call(togglelikeFeed, payload);
+    yield put(fetchLikeFeedSuccess());
+  } catch (error) {
+    yield put(fetchLikeFeedError(error));
+  }
+}
+
+export function* followFeedAPI({ payload }) {
+  try {
+    yield call(toggleFollowAuthor, payload);
+    yield put(setAuthorToFollowSuccess());
+  } catch (error) {
+    yield put(setAuthorToFollowError(error));
   }
 }
 

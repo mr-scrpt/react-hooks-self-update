@@ -33,17 +33,17 @@ export const fetchUserFeedsError = createAction(
 export const resetUserFeedsStore = createAction(
   "USER_PROFILE/RESET_USER_FEED_STORE"
 );
+
 // FETHC USER FEED FAVORITED
+
 export const fetchUserFeedsFavoritedRequest = createAction(
-  "USER_PROFILE/FETCH_USER_FEED_FAVORITED_REQUEST"
+  "USER_PROFILE/FETCH_FEED_FAVORITED_REQUEST"
 );
-
 export const fetchUserFeedsFavoritedSuccess = createAction(
-  "USER_PROFILE/FETCH_USER_FEED_FAVORITED_SUCCESS"
+  "USER_PROFILE/FETCH_FEED_FAVORITED_SUCCESS"
 );
-
 export const fetchUserFeedsFavoritedError = createAction(
-  "USER_PROFILE/FETCH_USER_FEED_FAVORITED_ERROR"
+  "USER_PROFILE/FETCH_FEED_FAVORITED_ERROR"
 );
 
 export const resetUserFeedsFavoritedStore = createAction(

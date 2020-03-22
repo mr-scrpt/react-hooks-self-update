@@ -22,6 +22,7 @@ const user = handleActions(
     [fetchProfileRequest]: () => ({}),
     [fetchProfileSuccess]: (_, { payload }) => payload.data.profile,
     [fetchProfileError]: () => ({}),
+
     [resetProfileStore]: () => ({})
   },
   {}

@@ -27,3 +27,9 @@ export const getBeEdited = createSelector(
   state => state.feedEditorStore.beEdited,
   beEdited => beEdited
 );
+
+// USER FAVORITED
+export const getUserIsFollow = createSelector(
+  state => state.feedEditorStore.feed.author.following,
+  following => following
+);

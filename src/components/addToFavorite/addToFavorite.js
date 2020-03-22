@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import classNames from "classnames";
+import cx from "classnames";
 
 import { setFeedIsFavirited, removeFeedIsFavirited } from "modules/feedEditor";
 import { getIsLoggedIn } from "modules/userAuth";
@@ -42,7 +42,7 @@ const Component = ({
     }
   }, [request]);
 
-  const buttonClasses = classNames({
+  const buttonClasses = cx({
     btn: true,
     "btn-sm": true,
     "btn-primary": favorited,
@@ -63,7 +63,10 @@ const Component = ({
 const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state)
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setFeedIsFavirited,
+  removeFeedIsFavirited
+};
 export const AddToFavorite = connect(
   mapStateToProps,
   mapDispatchToProps
