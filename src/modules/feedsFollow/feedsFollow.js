@@ -1,41 +1,24 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 
+import { feedMapList } from "helpers/feedMapList";
+import { feedMapListLike } from "helpers/feedMapListLike";
+
 import {
   fetchFeedsFollowRequest,
   fetchFeedsFollowSuccess,
-  fetchFeedsFollowError
+  fetchFeedsFollowError,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError
 } from "./actions";
 
 const feedsList = handleActions(
   {
     [fetchFeedsFollowRequest]: () => [],
-    [fetchFeedsFollowSuccess]: (_state, { payload }) =>
-      payload.data.articles.map(
-        ({
-          title,
-          slug,
-          createdAt,
-          tagList,
-          description,
-          favorited,
-          favoritesCount,
-          author: { username, image }
-        }) => ({
-          title,
-          slug,
-          createdAt,
-          tagList,
-          description,
-          favorited,
-          favoritesCount,
-          author: {
-            username,
-            image
-          }
-        })
-      ),
-    [fetchFeedsFollowError]: () => []
+    [fetchFeedsFollowSuccess]: (_state, { payload }) => feedMapList(payload),
+    [fetchFeedsFollowError]: () => [],
+    [fetchLikeFeedSuccess]: (state, { payload }) =>
+      feedMapListLike(state, payload)
   },
   []
 );
@@ -43,8 +26,7 @@ const feedsList = handleActions(
 const feedsCount = handleActions(
   {
     [fetchFeedsFollowRequest]: () => 0,
-    [fetchFeedsFollowSuccess]: (_state, { payload }) =>
-      payload.data.articlesCount,
+    [fetchFeedsFollowSuccess]: (_, { payload }) => payload.data.articlesCount,
     [fetchFeedsFollowError]: () => 0
   },
   0
@@ -63,7 +45,8 @@ const error = handleActions(
   {
     [fetchFeedsFollowRequest]: () => ({}),
     [fetchFeedsFollowSuccess]: () => ({}),
-    [fetchFeedsFollowError]: (_state, action) => action.payload
+    [fetchFeedsFollowError]: (_, action) => action.payload,
+    [fetchLikeFeedError]: (_, action) => action.payload
   },
   {}
 );

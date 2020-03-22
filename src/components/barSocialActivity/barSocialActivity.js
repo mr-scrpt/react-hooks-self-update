@@ -37,22 +37,22 @@ export const Component = ({
     "btn-outline-danger": isFollow
   });
 
-  const liker = favorited => {
+  const liker = () => {
     fetchLikeFeedRequest({ slug, favorited });
   };
 
-  const follower = isFollow => {
+  const follower = () => {
     setAuthorToFollowRequest({ author, isFollow });
   };
   return (
     <>
       <span>
-        <button className={likeCx} onClick={() => liker(favorited)}>
+        <button className={likeCx} onClick={liker}>
           <i className="ion-heart"></i>
           &nbsp; Лайк ({favoritesCount})
         </button>
         &nbsp;
-        <button onClick={() => follower(isFollow)} className={followCx}>
+        <button onClick={follower} className={followCx}>
           {isFollow ? (
             <>
               <i className="ion-minus-round"></i>

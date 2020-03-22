@@ -1,0 +1,1 @@
+export { feedMapListLike } from "./feedMapListLike";

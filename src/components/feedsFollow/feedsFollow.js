@@ -6,7 +6,8 @@ import {
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
-  getFeedsError
+  getFeedsError,
+  fetchLikeFeedRequest
 } from "modules/feedsFollow";
 
 import { Feeds } from "components/feeds";
@@ -24,6 +25,7 @@ const Component = ({
   loading,
   error,
   fetchFeedsFollowRequest,
+  fetchLikeFeedRequest,
   location: { search },
   match: { url }
 }) => {
@@ -41,7 +43,10 @@ const Component = ({
 
       {!loading && isEmptyObject(error) && (
         <>
-          <Feeds articles={feedsList} />
+          <Feeds
+            articles={feedsList}
+            dispatchToLikeToggle={fetchLikeFeedRequest}
+          />
           <Pagination
             total={feedsCount}
             limit={limit}
@@ -60,7 +65,8 @@ const mapStateToProps = state => ({
   error: getFeedsError(state)
 });
 const mapDispatchToProps = {
-  fetchFeedsFollowRequest
+  fetchFeedsFollowRequest,
+  fetchLikeFeedRequest
 };
 
 export const FeedsFollow = connect(

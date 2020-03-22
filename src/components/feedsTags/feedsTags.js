@@ -6,7 +6,8 @@ import {
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
-  getFeedsError
+  getFeedsError,
+  fetchLikeFeedRequest
 } from "modules/feedsTags";
 
 import { setFeedsTagsActive } from "modules/tagsPopular";
@@ -26,6 +27,7 @@ export const Component = ({
   feedsCount,
   fetchFeedsTagsRequest,
   setFeedsTagsActive,
+  fetchLikeFeedRequest,
   location: { search },
   match: {
     url,
@@ -47,9 +49,12 @@ export const Component = ({
       <ShowLoading loading={loading} />
       <ShowErrors errors={error} />
 
-      {!loading && isEmptyObject(error) && feedsList.length && (
+      {!loading && isEmptyObject(error) && (
         <>
-          <Feeds articles={feedsList} />
+          <Feeds
+            articles={feedsList}
+            dispatchToLikeToggle={fetchLikeFeedRequest}
+          />
           <Pagination
             total={feedsCount}
             limit={limit}
@@ -70,7 +75,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchFeedsTagsRequest,
-  setFeedsTagsActive
+  setFeedsTagsActive,
+  fetchLikeFeedRequest
 };
 
 export const FeedsTags = connect(

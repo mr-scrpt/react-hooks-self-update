@@ -1,41 +1,24 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 
+import { feedMapList } from "helpers/feedMapList";
+import { feedMapListLike } from "helpers/feedMapListLike";
+
 import {
   fetchFeedsTagsRequest,
   fetchFeedsTagsSuccess,
-  fetchFeedsTagsError
+  fetchFeedsTagsError,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError
 } from "./actions";
 
 const feedsList = handleActions(
   {
     [fetchFeedsTagsRequest]: () => [],
-    [fetchFeedsTagsSuccess]: (_state, { payload }) =>
-      payload.data.articles.map(
-        ({
-          title,
-          slug,
-          createdAt,
-          tagList,
-          description,
-          favorited,
-          favoritesCount,
-          author: { username, image }
-        }) => ({
-          title,
-          slug,
-          createdAt,
-          tagList,
-          description,
-          favorited,
-          favoritesCount,
-          author: {
-            username,
-            image
-          }
-        })
-      ),
-    [fetchFeedsTagsError]: () => []
+    [fetchFeedsTagsSuccess]: (_, { payload }) => feedMapList(payload),
+    [fetchFeedsTagsError]: () => [],
+    [fetchLikeFeedSuccess]: (state, { payload }) =>
+      feedMapListLike(state, payload)
   },
   []
 );
@@ -61,7 +44,8 @@ const error = handleActions(
   {
     [fetchFeedsTagsRequest]: () => ({}),
     [fetchFeedsTagsSuccess]: () => ({}),
-    [fetchFeedsTagsError]: () => []
+    [fetchFeedsTagsError]: () => [],
+    [fetchLikeFeedError]: (_, action) => action.payload
   },
   {}
 );

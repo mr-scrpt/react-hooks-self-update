@@ -8,6 +8,7 @@
 
 AddToFavorite и BarSocialActivity
 
+функции liker и follower вынести в отдельные файлы
 -сократить название экшенов
 - User Profile - в селекторах getUser в стейте Profile - привести к одному имени
 - (https://medium.com/trabe/implementing-private-routes-with-react-router-and-hooks-ed38d0cf93d5)

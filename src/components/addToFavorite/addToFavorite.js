@@ -2,46 +2,16 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import cx from "classnames";
 
-import { setFeedIsFavirited, removeFeedIsFavirited } from "modules/feedEditor";
+import { fetchLikeFeedRequest } from "modules/feedsGlobal";
 import { getIsLoggedIn } from "modules/userAuth";
 
 const Component = ({
-  isFavorited,
+  isLoggedIn,
+  slug,
+  favorited,
   favoritesCount,
-  articleSlug,
-  isLoggedIn
+  dispatchToLikeToggle
 }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!favoritesCount) return;
-    setCount(favoritesCount);
-  }, [favoritesCount]);
-
-  const [favorited, setFavorited] = useState(false);
-
-  useEffect(() => {
-    if (!isFavorited) return;
-    setFavorited(isFavorited);
-  }, [isFavorited]);
-
-  const [request, setRequest] = useState({});
-
-  const handleLike = async () => {
-    if (favorited && isLoggedIn) {
-      setRequest(await removeFeedIsFavirited(articleSlug));
-    }
-    if (!favorited && isLoggedIn) {
-      setRequest(await setFeedIsFavirited(articleSlug));
-    }
-  };
-  useEffect(() => {
-    if (request.data) {
-      setCount(request.data.article.favoritesCount);
-      setFavorited(request.data.article.favorited);
-    }
-  }, [request]);
-
   const buttonClasses = cx({
     btn: true,
     "btn-sm": true,
@@ -49,14 +19,14 @@ const Component = ({
     "btn-outline-primary": !favorited
   });
 
+  const liker = () => {
+    dispatchToLikeToggle({ slug, favorited });
+  };
+
   return (
-    <button
-      className={buttonClasses}
-      onClick={handleLike}
-      disabled={!isLoggedIn}
-    >
+    <button className={buttonClasses} onClick={liker} disabled={!isLoggedIn}>
       <i className="ion-heart"></i>
-      <span>&nbsp; {count}</span>
+      <span>&nbsp; {favoritesCount}</span>
     </button>
   );
 };
@@ -64,8 +34,7 @@ const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state)
 });
 const mapDispatchToProps = {
-  setFeedIsFavirited,
-  removeFeedIsFavirited
+  fetchLikeFeedRequest
 };
 export const AddToFavorite = connect(
   mapStateToProps,
