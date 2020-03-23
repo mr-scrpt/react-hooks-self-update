@@ -1,1 +1,0 @@
-export { feedMapList } from "./feedMapList";

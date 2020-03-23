@@ -49,3 +49,14 @@ export const fetchUserFeedsFavoritedError = createAction(
 export const resetUserFeedsFavoritedStore = createAction(
   "USER_PROFILE/RESET_USER_FEED_FAVORITED_STORE"
 );
+
+// LIKE FEED
+export const fetchLikeFeedRequest = createAction(
+  "USER_PROFILE/FETCH_LIKE_FEED_REQUEST"
+);
+export const fetchLikeFeedSuccess = createAction(
+  "USER_PROFILE/FETCH_LIKE_FEED_SUCCESS"
+);
+export const fetchLikeFeedError = createAction(
+  "USER_PROFILE/FETCH_LIKE_FEED_ERROR"
+);

@@ -1,7 +1,6 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 
-import { feedMapList } from "helpers/feedMapList";
 import { feedMapListLike } from "helpers/feedMapListLike";
 
 import {
@@ -15,7 +14,7 @@ import {
 const feedsList = handleActions(
   {
     [fetchFeedsFollowRequest]: () => [],
-    [fetchFeedsFollowSuccess]: (_state, { payload }) => feedMapList(payload),
+    [fetchFeedsFollowSuccess]: (_state, { payload }) => payload.data.articles,
     [fetchFeedsFollowError]: () => [],
     [fetchLikeFeedSuccess]: (state, { payload }) =>
       feedMapListLike(state, payload)

@@ -1,0 +1,91 @@
+/* .nav-pills.outline-active .nav-link.active {
+  animation-duration: 0.5s;
+  animation-name: tabAnimation;
+  box-shadow: 0px 3px 0px #5cb85c !important;
+  color: #5cb85c !important;
+  border-bottom: none !important;
+}
+
+@keyframes tabAnimation {
+  from {
+    box-shadow: 0px 3px 0px #aaa;
+    color: #aaa;
+  }
+
+  to {
+    box-shadow: 0px 3px 0px #5cb85c;
+    color: #5cb85c;
+  }
+} */
+
+/* .nav-pills.outline-active .flash-active-appear.active {
+  z-index: 1;
+  opacity: 1;
+
+  transition: linear opacity 0.4s, linear color 0.4s;
+
+  border-bottom: none !important;
+  box-shadow: 0px 3px 0px #aaa;
+  color: #aaa !important;
+}
+
+.nav-pills.outline-active .flash-active-appear-active.active {
+  z-index: 1;
+  opacity: 1;
+}
+
+.nav-pills.outline-active .flash-active-appear-done.active {
+  border-bottom: none !important;
+  box-shadow: 0px 3px 0px #5cb85c !important;
+  color: #5cb85c !important;
+}
+ */
+
+/* .nav-pills.outline-active .flash-active-enter.active {
+  z-index: 1;
+  opacity: 1;
+
+  transition: linear opacity 0.4s, linear color 0.4s;
+
+  border-bottom: none !important;
+  box-shadow: 0px 3px 0px #aaa;
+  color: #aaa !important;
+}
+
+.nav-pills.outline-active .flash-active-enter-active.active {
+  z-index: 1;
+  opacity: 1;
+}
+
+.nav-pills.outline-active .flash-active-enter-done.active {
+  border-bottom: none !important;
+  box-shadow: 0px 3px 0px #5cb85c !important;
+  color: #5cb85c !important;
+} */
+
+.flash-active-enter {
+  opacity: 0;
+}
+.flash-active-enter-active {
+  opacity: 1;
+  transition: opacity 800ms;
+}
+.flash-active-enter-done {
+  /*  color: red !important;*/
+}
+
+.flash-active-enter-done:not {
+  color: blue !important;
+  opacity: 0;
+}
+
+.flash-active-exit {
+  opacity: 1;
+}
+.flash-active-exit-active {
+  opacity: 0;
+  transition: opacity 800ms;
+}
+.flash-active-exit-done {
+  border: 2px solid red !important;
+}

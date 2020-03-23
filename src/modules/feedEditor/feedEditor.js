@@ -87,6 +87,7 @@ const error = handleActions(
     [deleteFeedEditorSuccess]: () => ({}),
     [deleteFeedEditorError]: (_, { payload }) => payload,
     [fetchLikeFeedError]: (_, { payload }) => payload,
+    [setAuthorToFollowError]: (_, { payload }) => payload,
     [resetError]: () => ({})
   },
   {}

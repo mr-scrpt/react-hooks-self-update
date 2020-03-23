@@ -1,7 +1,7 @@
 export const feedMapListLike = (state, payload) =>
   state.map(feed => {
     if (feed.slug !== payload.slug) {
-      return feed;
+      return { ...feed };
     }
     return {
       ...feed,

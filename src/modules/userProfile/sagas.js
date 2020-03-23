@@ -10,15 +10,18 @@ import {
   fetchUserFeedsFavoritedRequest,
   fetchUserFeedsFavoritedSuccess,
   fetchUserFeedsFavoritedError,
-  fetchFa
+  fetchLikeFeedRequest,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError
 } from "./actions";
 
 import { getUser, getUserFeeds, getUserFeedsFavorited } from "./api";
-
+import { togglelikeFeed } from "modules/feedEditor";
 function* fetchWacher() {
   yield takeLatest(fetchProfileRequest, getUserAPI);
   yield takeLatest(fetchUserFeedsRequest, getUserFeedsAPI);
   yield takeLatest(fetchUserFeedsFavoritedRequest, getUserFeedsFavoritedAPI);
+  yield takeLatest(fetchLikeFeedRequest, likeFeedAPI);
 }
 
 export function* getUserAPI({ payload }) {
@@ -50,6 +53,16 @@ export function* getUserFeedsFavoritedAPI({ payload }) {
     yield put(fetchUserFeedsFavoritedError(error));
   }
 }
+
+export function* likeFeedAPI({ payload }) {
+  try {
+    yield call(togglelikeFeed, payload);
+    yield put(fetchLikeFeedSuccess(payload));
+  } catch (error) {
+    yield put(fetchLikeFeedError(error));
+  }
+}
+
 export default function*() {
   yield fork(fetchWacher);
 }

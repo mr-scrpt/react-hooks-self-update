@@ -7,7 +7,8 @@ import {
   getUserFeedsIsLoading,
   getUserFeedsIsError,
   getUserFeedsCount,
-  resetUserFeedsStore
+  resetUserFeedsStore,
+  fetchLikeFeedRequest
 } from "modules/userProfile";
 
 import { limit } from "constant";
@@ -27,6 +28,7 @@ const Component = ({
   feedsLoading,
   feedsError,
   feedsCount,
+  fetchLikeFeedRequest,
   match: { url },
   location: { search }
 }) => {
@@ -49,9 +51,9 @@ const Component = ({
     <div>
       <ShowLoading loading={feedsLoading} />
       <ShowErrors errors={feedsError} />
-      {feeds && !feedsLoading && isEmptyObject(feedsError) && (
+      {!feedsLoading && isEmptyObject(feedsError) && (
         <>
-          <Feeds articles={feeds} />
+          <Feeds articles={feeds} dispatchToLikeToggle={fetchLikeFeedRequest} />
           <Pagination
             total={feedsCount}
             limit={limit}
@@ -74,7 +76,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchUserFeedsRequest,
-  resetUserFeedsStore
+  resetUserFeedsStore,
+  fetchLikeFeedRequest
 };
 
 export const UserFeeds = connect(

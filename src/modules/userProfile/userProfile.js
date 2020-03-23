@@ -1,6 +1,8 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 
+import { feedMapListLike } from "helpers/feedMapListLike";
+
 import {
   fetchProfileRequest,
   fetchProfileSuccess,
@@ -13,7 +15,9 @@ import {
   fetchUserFeedsFavoritedRequest,
   fetchUserFeedsFavoritedSuccess,
   fetchUserFeedsFavoritedError,
-  resetUserFeedsFavoritedStore
+  resetUserFeedsFavoritedStore,
+  fetchLikeFeedSuccess,
+  fetchLikeFeedError
 } from "./actions";
 
 // USER
@@ -22,7 +26,6 @@ const user = handleActions(
     [fetchProfileRequest]: () => ({}),
     [fetchProfileSuccess]: (_, { payload }) => payload.data.profile,
     [fetchProfileError]: () => ({}),
-
     [resetProfileStore]: () => ({})
   },
   {}
@@ -52,7 +55,10 @@ const userFeeds = handleActions(
     [fetchUserFeedsRequest]: () => [],
     [fetchUserFeedsSuccess]: (_, { payload }) => payload.data.articles,
     [fetchUserFeedsError]: () => [],
-    [resetUserFeedsStore]: () => []
+    [resetUserFeedsStore]: () => [],
+
+    [fetchLikeFeedSuccess]: (state, { payload }) =>
+      feedMapListLike(state, payload)
   },
   []
 );
@@ -80,7 +86,8 @@ const userFeedsError = handleActions(
   {
     [fetchUserFeedsRequest]: () => ({}),
     [fetchUserFeedsSuccess]: () => ({}),
-    [fetchUserFeedsError]: () => (_, { payload }) => payload
+    [fetchUserFeedsError]: () => (_, { payload }) => payload,
+    [fetchLikeFeedError]: (_, action) => action.payload
   },
   {}
 );
@@ -91,7 +98,9 @@ const userFeedsFavorited = handleActions(
     [fetchUserFeedsFavoritedRequest]: () => [],
     [fetchUserFeedsFavoritedSuccess]: (_, { payload }) => payload.data.articles,
     [fetchUserFeedsFavoritedError]: () => [],
-    [resetUserFeedsFavoritedStore]: () => []
+    [resetUserFeedsFavoritedStore]: () => [],
+    [fetchLikeFeedSuccess]: (state, { payload }) =>
+      feedMapListLike(state, payload)
   },
   []
 );

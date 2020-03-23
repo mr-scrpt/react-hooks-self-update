@@ -8,6 +8,12 @@
 
 AddToFavorite и BarSocialActivity
 
+
+!!Анимации!!
+
+feedsFollow - сделать ресет списка фидов и проверить в других местах
+
+
 функции liker и follower вынести в отдельные файлы
 -сократить название экшенов
 - User Profile - в селекторах getUser в стейте Profile - привести к одному имени
