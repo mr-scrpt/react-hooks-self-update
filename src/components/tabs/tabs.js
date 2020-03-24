@@ -14,7 +14,7 @@ export const Tabs = ({ tabs, resetActiveTag }) => {
             <CSSTransition
               in={show}
               //appear={true}
-              timeout={800}
+              timeout={2000}
               classNames="flash-active"
               //unmountOnExit
             >

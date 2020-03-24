@@ -1,7 +1,6 @@
-import React from 'react';
-import { isEmptyObject } from 'helpers/isEmptyObject';
-export const ShowErrors = ({ errors }) => {
-  if (!errors || isEmptyObject(errors)) return null;
+import React from "react";
 
-  return <div>Ошибка!</div>
-}
+export const ShowErrors = ({ errors }) => {
+  if (!errors) return null;
+  return <div>Ошибка</div>;
+};

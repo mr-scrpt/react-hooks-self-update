@@ -26,12 +26,11 @@ export const request = ({ url, method, data }, autorized) =>
     } catch (e) {
       if (e.response) {
         const eStatus = e.response.status || 404;
-        const eResponse = e.response.data;
-
-        console.group(`Error from: ${url}`);
-        console.info(`Status: ${eStatus}`);
+        //const eResponse = e.response.data;
+        /* console.group(`Error from: ${url}`);
+        console.info(`Status: ${eStatus}`); */
         //console.dir(eResponse);
-        console.groupEnd();
+        /* console.groupEnd(); */
 
         switch (eStatus) {
           case 401:
@@ -43,7 +42,7 @@ export const request = ({ url, method, data }, autorized) =>
           case 503:
             return reject({ details: "Ошибка сервера" });
           default:
-            return reject(eResponse);
+            return reject({ details: "Неизвестная ошибка сервера" });
         }
       } else {
         return reject(e.message);

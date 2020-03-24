@@ -4,15 +4,6 @@ export const getFeedCurrent = async slug => {
   try {
     return await request({ url: `/articles/${slug}`, method: "GET" });
   } catch (e) {
-    throw { status: 400, message: "Ошибка получения данных" };
+    throw new Error("Ошибка получения фида");
   }
 };
-
-/* export const deleteFeedCurrent = async slug => {
-  try {
-    return await request({ url: `/articles/${slug}`, method: "DELETE" }, true);
-  } catch (e) {
-    throw { status: 400, message: "Ошибка получения данных" };
-  }
-};
- */

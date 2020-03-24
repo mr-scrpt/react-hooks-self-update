@@ -4,7 +4,8 @@ import { compose } from "redux";
 
 import {
   fetchTagsPopularRequest,
-  setFeedsTagsActive
+  setFeedsTagsActive,
+  getTagList
 } from "modules/tagsPopular";
 import { PopularTagsLayout } from "./PopularTagsLayout";
 
@@ -25,7 +26,7 @@ const Copmponent = ({
 
   return (
     <PopularTagsLayout
-      tags={tagsList}
+      tagsList={tagsList}
       isLoading={loading}
       error={error}
       setActiveTag={setActiveTag}
@@ -33,7 +34,9 @@ const Copmponent = ({
   );
 };
 
-const mapStateToProps = ({ tagsPopularStore }) => tagsPopularStore;
+const mapStateToProps = state => ({
+  tagsList: getTagList(state)
+});
 const mapDispatchToProps = {
   fetchTagsPopularRequest,
   setFeedsTagsActive

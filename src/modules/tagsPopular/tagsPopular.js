@@ -12,7 +12,7 @@ import {
 const tagsList = handleActions(
   {
     [fetchTagsPopularRequest]: () => [],
-    [fetchTagsPopularSuccess]: (_state, action) => action.payload,
+    [fetchTagsPopularSuccess]: (_state, { payload }) => payload.data.tags,
     [fetchTagsPopularError]: () => []
   },
   []

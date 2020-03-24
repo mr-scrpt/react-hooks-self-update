@@ -9,15 +9,16 @@ export const getFeeds = async ({ limit, offset }) => {
   try {
     return await request(
       {
-        url: `/articles?${stingifyParams}`,
+        url: `/articles1?${stingifyParams}`,
         method: "GET"
       },
       true
     );
   } catch (e) {
-    throw {
+    throw new Error("Ошибка получения фидов");
+    /* throw {
       status: 400,
       message: "Ошибка получения данных"
-    };
+    }; */
   }
 };

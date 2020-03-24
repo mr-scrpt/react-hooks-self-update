@@ -1,0 +1,11 @@
+.feed-appear {
+  opacity: 0;
+}
+/* .feed-appear-active {
+  opacity: 1;
+  transition: opacity 1.5s;
+} */
+.feed-enter-done {
+  opacity: 1;
+  transition: opacity 0.5s;
+}

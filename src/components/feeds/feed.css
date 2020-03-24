@@ -1,8 +1,0 @@
-.feedInList-appear {
-  opacity: 0;
-  z-index: 1;
-}
-.feedInList-appear.feedInList-appear-active {
-  opacity: 1;
-  transition: opacity 250ms linear;
-}
