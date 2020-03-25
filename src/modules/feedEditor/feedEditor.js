@@ -5,6 +5,7 @@ import {
   createFeedEditorRequest,
   createFeedEditorSuccess,
   createFeedEditorError,
+  createFeedEditorErrorValidation,
   fetchFeedEditorRequest,
   fetchFeedEditorSuccess,
   fetchFeedEditorError,
@@ -77,17 +78,27 @@ const loading = handleActions(
 
 const error = handleActions(
   {
-    [createFeedEditorRequest]: () => ({}),
-    [createFeedEditorSuccess]: () => ({}),
+    [createFeedEditorRequest]: () => "",
+    [createFeedEditorSuccess]: () => "",
     [createFeedEditorError]: (_, { payload }) => payload,
-    [fetchFeedEditorRequest]: () => ({}),
-    [fetchFeedEditorSuccess]: () => ({}),
+    [fetchFeedEditorRequest]: () => "",
+    [fetchFeedEditorSuccess]: () => "",
     [fetchFeedEditorError]: (_, { payload }) => payload,
-    [deleteFeedEditorRequest]: () => ({}),
-    [deleteFeedEditorSuccess]: () => ({}),
+    [deleteFeedEditorRequest]: () => "",
+    [deleteFeedEditorSuccess]: () => "",
     [deleteFeedEditorError]: (_, { payload }) => payload,
     [fetchLikeFeedError]: (_, { payload }) => payload,
     [setAuthorToFollowError]: (_, { payload }) => payload,
+    [resetError]: () => ""
+  },
+  ""
+);
+
+const errorValidation = handleActions(
+  {
+    [createFeedEditorRequest]: () => ({}),
+    [createFeedEditorSuccess]: () => ({}),
+    [createFeedEditorErrorValidation]: (_, { payload }) => payload,
     [resetError]: () => ({})
   },
   {}
@@ -143,6 +154,7 @@ export default combineReducers({
   feed,
   loading,
   error,
+  errorValidation,
   beCreated,
   beEdited,
   beDeleted

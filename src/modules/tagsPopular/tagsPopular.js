@@ -19,7 +19,7 @@ const tagsList = handleActions(
 );
 const activeTag = handleActions(
   {
-    [setFeedsTagsActive]: (_, action) => action.payload,
+    [setFeedsTagsActive]: (_, { payload }) => payload,
     [resetFeedsTagsActive]: () => ""
   },
   ""
@@ -35,11 +35,11 @@ const loading = handleActions(
 
 const error = handleActions(
   {
-    [fetchTagsPopularRequest]: () => null,
-    [fetchTagsPopularSuccess]: () => null,
-    [fetchTagsPopularError]: (_state, action) => action.payload
+    [fetchTagsPopularRequest]: () => "",
+    [fetchTagsPopularSuccess]: () => "",
+    [fetchTagsPopularError]: (_state, { payload }) => payload
   },
-  null
+  ""
 );
 
 export default combineReducers({

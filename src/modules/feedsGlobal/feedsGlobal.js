@@ -41,12 +41,12 @@ const loading = handleActions(
 
 const error = handleActions(
   {
-    [fetchFeedsGlobalRequest]: () => ({}),
-    [fetchFeedsGlobalSuccess]: () => ({}),
-    [fetchFeedsGlobalError]: (_, action) => action.payload,
-    [fetchLikeFeedError]: (_, action) => action.payload
+    [fetchFeedsGlobalRequest]: () => "",
+    [fetchFeedsGlobalSuccess]: () => "",
+    [fetchFeedsGlobalError]: (_, { payload }) => payload,
+    [fetchLikeFeedError]: (_, { payload }) => payload
   },
-  {}
+  ""
 );
 
 export default combineReducers({

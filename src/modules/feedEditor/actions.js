@@ -13,6 +13,10 @@ export const createFeedEditorError = createAction(
   "FEED_EDITOR/CREATE_FEED_ERROR"
 );
 
+export const createFeedEditorErrorValidation = createAction(
+  "FEED_EDITOR/CREATE_FEED_ERROR_VALIDATION"
+);
+
 // FETHC
 export const fetchFeedEditorRequest = createAction(
   "FEED_EDITOR/FETCH_FEED_REQUEST"

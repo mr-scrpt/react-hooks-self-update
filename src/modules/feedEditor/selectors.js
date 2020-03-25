@@ -9,8 +9,12 @@ export const getFeedLoading = createSelector(
   loading => loading
 );
 export const getFeedError = createSelector(
-  state => state.feedEditorStore.error.message,
+  state => state.feedEditorStore.error,
   error => error
+);
+export const getFeedErrorValidation = createSelector(
+  state => state.feedEditorStore.errorValidation,
+  errorValidation => errorValidation
 );
 
 export const getBeDeleted = createSelector(

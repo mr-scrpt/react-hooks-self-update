@@ -38,7 +38,8 @@ export const FormArticle = ({ onSubmit, errorsServer, initialValues = {} }) => {
                     placeholder="Описание заметки"
                     className="form-control form-control-lg"
                     defaultValue={initialValues.description}
-                    ref={fieldShort(register)}
+                    //ref={fieldShort(register)}
+                    ref={register}
                   />
                   {errorsForm.description && (
                     <p>{errorsForm.description.message}</p>

@@ -4,7 +4,7 @@ export const createFeed = async data => {
   try {
     return await request({ url: `/articles`, method: "POST", data }, true);
   } catch (error) {
-    throw { status: 400, message: error.errors }; //получаем ошибки валидации от сервера
+    return Promise.reject(error); // сервер может вернуть ошибки валидации
   }
 };
 
@@ -12,7 +12,8 @@ export const fetchFeed = async slug => {
   try {
     return await request({ url: `/articles/${slug}`, method: "GET" }, true);
   } catch (error) {
-    throw { status: 400, message: "Ошибка получения данных" };
+    return Promise.reject("Ошибка получения фида");
+    //throw { status: 400, message: "Ошибка получения данных" };
   }
 };
 
@@ -20,7 +21,8 @@ export const deleteFeed = async slug => {
   try {
     return await request({ url: `/articles/${slug}`, method: "DELETE" }, true);
   } catch (error) {
-    throw { status: 400, message: "Ошибка удаления данных" };
+    return Promise.reject("Ошибка удаления фида");
+    //throw { status: 400, message: "Ошибка удаления данных" };
   }
 };
 
@@ -31,7 +33,8 @@ export const putFeed = async feed => {
       true
     );
   } catch (error) {
-    throw { status: 400, message: "Ошибка обновления данных" };
+    return Promise.reject("Ошибка обновления данных");
+    //throw { status: 400, message: "Ошибка обновления данных" };
   }
 };
 
@@ -42,7 +45,8 @@ export const setFeedIsFavirited = async slug => {
       true
     );
   } catch (error) {
-    throw { status: 400, message: "Ошибка добавление в избранное" };
+    return Promise.reject("Ошибка добавление в избранное");
+    //throw { status: 400, message: "Ошибка добавление в избранное" };
   }
 };
 
@@ -53,7 +57,8 @@ export const removeFeedIsFavirited = async slug => {
       true
     );
   } catch (error) {
-    throw { status: 400, message: "Ошибка удаления из избранного" };
+    return Promise.reject("Ошибка удаления из избранного");
+    //throw { status: 400, message: "Ошибка удаления из избранного" };
   }
 };
 
@@ -62,10 +67,11 @@ export const togglelikeFeed = async ({ favorited, slug }) => {
   try {
     return await request({ url: `/articles/${slug}/favorite`, method }, true);
   } catch (error) {
-    throw {
+    return Promise.reject("Ошибка удаления или добавления в избранное");
+    /* throw {
       status: 400,
       message: "Ошибка удаления или добавления в избранное"
-    };
+    }; */
   }
 };
 

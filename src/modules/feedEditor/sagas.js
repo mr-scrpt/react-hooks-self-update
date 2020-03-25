@@ -4,6 +4,7 @@ import {
   createFeedEditorRequest,
   createFeedEditorSuccess,
   createFeedEditorError,
+  createFeedEditorErrorValidation,
   fetchFeedEditorRequest,
   fetchFeedEditorSuccess,
   fetchFeedEditorError,
@@ -44,6 +45,9 @@ export function* createFeedAPI({ payload }) {
     const feedNewResponse = yield call(createFeed, payload);
     yield put(createFeedEditorSuccess(feedNewResponse));
   } catch (error) {
+    if (typeof error === "object") {
+      return yield put(createFeedEditorErrorValidation(error));
+    }
     yield put(createFeedEditorError(error));
   }
 }

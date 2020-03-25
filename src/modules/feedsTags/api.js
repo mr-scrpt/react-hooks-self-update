@@ -10,6 +10,6 @@ export const getFeeds = async ({ limit, offset, tagName: tag }) => {
       true
     );
   } catch (error) {
-    throw new Error({ status: 400, message: "Ошибка получения данных" });
+    return Promise.reject("Ошибка получения фидов по тэгу");
   }
 };

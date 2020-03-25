@@ -49,7 +49,7 @@ export const Component = ({
       <ShowLoading loading={loading} />
       <ShowErrors errors={error} />
 
-      {!loading && isEmptyObject(error) && (
+      {!loading && !error && (
         <>
           <Feeds
             articles={feedsList}

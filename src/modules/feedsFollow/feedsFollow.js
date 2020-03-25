@@ -42,12 +42,12 @@ const loading = handleActions(
 
 const error = handleActions(
   {
-    [fetchFeedsFollowRequest]: () => ({}),
-    [fetchFeedsFollowSuccess]: () => ({}),
-    [fetchFeedsFollowError]: (_, action) => action.payload,
-    [fetchLikeFeedError]: (_, action) => action.payload
+    [fetchFeedsFollowRequest]: () => "",
+    [fetchFeedsFollowSuccess]: () => "",
+    [fetchFeedsFollowError]: (_, { payload }) => payload,
+    [fetchLikeFeedError]: (_, { payload }) => payload
   },
-  {}
+  ""
 );
 
 export default combineReducers({

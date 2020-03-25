@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getActiveTag, resetFeedsTagsActive } from "modules/tagsPopular";
+import { resetFeedsTags } from "modules/feedsTags";
 import { getIsLoggedIn } from "modules/userAuth";
 
 import { Tabs } from "components/tabs";
@@ -16,7 +17,8 @@ const Component = ({
   location: { search },
   activeTag,
   isLoggedIn,
-  resetFeedsTagsActive
+  resetFeedsTagsActive,
+  resetFeedsTags
 }) => {
   const [tabs, setTabs] = useState([]);
   const [redirect, setRedirect] = useState(false);
@@ -55,6 +57,7 @@ const Component = ({
 
   const resetActiveTag = () => {
     resetFeedsTagsActive();
+    resetFeedsTags();
     setRedirect(true);
   };
 
@@ -93,7 +96,8 @@ const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state)
 });
 const mapDispatchToProps = {
-  resetFeedsTagsActive
+  resetFeedsTagsActive,
+  resetFeedsTags
 };
 
 export const FeedsLine = connect(

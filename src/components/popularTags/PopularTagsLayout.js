@@ -12,6 +12,8 @@ export const PopularTagsLayout = ({
   const prefix = "tags/";
   const classes = `tag-default tag-pill`;
   console.log("tags enter", tagsList);
+  console.log("error", error);
+
   return (
     <div className="sidebar">
       <h2>Популярные теги</h2>

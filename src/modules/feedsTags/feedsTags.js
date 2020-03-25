@@ -8,7 +8,8 @@ import {
   fetchFeedsTagsSuccess,
   fetchFeedsTagsError,
   fetchLikeFeedSuccess,
-  fetchLikeFeedError
+  fetchLikeFeedError,
+  resetFeedsTags
 } from "./actions";
 
 const feedsList = handleActions(
@@ -17,7 +18,8 @@ const feedsList = handleActions(
     [fetchFeedsTagsSuccess]: (_, { payload }) => payload.data.articles,
     [fetchFeedsTagsError]: () => [],
     [fetchLikeFeedSuccess]: (state, { payload }) =>
-      feedMapListLike(state, payload)
+      feedMapListLike(state, payload),
+    [resetFeedsTags]: () => []
   },
   []
 );
@@ -34,17 +36,17 @@ const loading = handleActions(
   {
     [fetchFeedsTagsRequest]: () => true,
     [fetchFeedsTagsSuccess]: () => false,
-    [fetchFeedsTagsError]: () => []
+    [fetchFeedsTagsError]: () => false
   },
   false
 );
 
 const error = handleActions(
   {
-    [fetchFeedsTagsRequest]: () => ({}),
-    [fetchFeedsTagsSuccess]: () => ({}),
-    [fetchFeedsTagsError]: () => [],
-    [fetchLikeFeedError]: (_, action) => action.payload
+    [fetchFeedsTagsRequest]: () => "",
+    [fetchFeedsTagsSuccess]: () => "",
+    [fetchFeedsTagsError]: (_, { payload }) => payload,
+    [fetchLikeFeedError]: (_, { payload }) => payload
   },
   {}
 );

@@ -15,6 +15,7 @@ export const getFeeds = async ({ limit, offset }) => {
       true
     );
   } catch (e) {
-    throw { status: 400, message: "Ошибка получения данных" };
+    return Promise.reject("Ошибка получения фидов от отслеживыемых авторов");
+    //throw { status: 400, message: "Ошибка получения данных" };
   }
 };

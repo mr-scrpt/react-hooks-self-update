@@ -17,12 +17,9 @@ function* fetchWatcher() {
 export function* getFeedsAPI({ payload }) {
   try {
     const feedsResponse = yield call(getFeeds, payload);
-    //console.log("получили данные", feedsResponse);
-
     yield put(fetchFeedsGlobalSuccess(feedsResponse));
   } catch (error) {
-    console.log("получили ошибку в саге!!!", error.message);
-    yield put(fetchFeedsGlobalError(error.message));
+    yield put(fetchFeedsGlobalError(error));
   }
 }
 export function* likeFeedAPI({ payload }) {

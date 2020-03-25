@@ -6,6 +6,11 @@ export const getTagList = createSelector(
 );
 
 export const getActiveTag = createSelector(
-  state => state.tagsPopularStore,
+  state => state.tagsPopularStore.activeTag,
   activeTag => activeTag
+);
+
+export const getIsError = createSelector(
+  state => state.tagsPopularStore.error,
+  error => error
 );

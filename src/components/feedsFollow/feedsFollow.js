@@ -16,7 +16,6 @@ import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
 
 import { getPaginators } from "helpers/getPaginators";
-import { isEmptyObject } from "helpers/isEmptyObject";
 import { limit } from "constant";
 
 const Component = ({
@@ -41,7 +40,7 @@ const Component = ({
       <ShowLoading loading={loading} />
       <ShowErrors errors={error} />
 
-      {!loading && isEmptyObject(error) && (
+      {!loading && !error && (
         <>
           <Feeds
             articles={feedsList}

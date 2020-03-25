@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { ShowErrors } from "components/showErrors";
 import { FormArticle } from "components/formArticle";
 
 import {
@@ -10,15 +11,17 @@ import {
   resetError,
   getFeed,
   getFeedError,
+  getFeedErrorValidation,
   getBeCreated
 } from "modules/feedEditor";
 
 const Component = ({
   createFeedEditorRequest,
   resetBeCreated,
+  error,
+  errorsServer,
   resetError,
   feed,
-  errorsServer,
   beCreated
 }) => {
   const [redirectTo, setRedirectTo] = useState("");
@@ -49,6 +52,7 @@ const Component = ({
 
   return (
     <>
+      <ShowErrors errors={error} />
       <FormArticle onSubmit={onSubmit} errorsServer={errorsServer} />
     </>
   );
@@ -56,7 +60,8 @@ const Component = ({
 
 const mapStateToProps = state => ({
   feed: getFeed(state),
-  errorsServer: getFeedError(state),
+  error: getFeedError(state),
+  errorsServer: getFeedErrorValidation(state),
   beCreated: getBeCreated(state)
 });
 const mapDispatchToProps = {

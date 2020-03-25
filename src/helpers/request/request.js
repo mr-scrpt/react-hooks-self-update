@@ -26,23 +26,25 @@ export const request = ({ url, method, data }, autorized) =>
     } catch (e) {
       if (e.response) {
         const eStatus = e.response.status || 404;
-        //const eResponse = e.response.data;
+        const eResponse = e.response.data;
         /* console.group(`Error from: ${url}`);
         console.info(`Status: ${eStatus}`); */
         //console.dir(eResponse);
         /* console.groupEnd(); */
-
+        console.log("rquest helper", e.response);
         switch (eStatus) {
           case 401:
           case 403:
           case 404:
-            return reject({ details: "Запрос не обработан, урл ненайден" });
+            return reject("Запрос не обработан, урл ненайден");
+          case 422:
+            return reject(eResponse.errors);
           case 500:
           case 502:
           case 503:
-            return reject({ details: "Ошибка сервера" });
+            return reject("Ошибка сервера");
           default:
-            return reject({ details: "Неизвестная ошибка сервера" });
+            return reject("Неизвестная ошибка сервера");
         }
       } else {
         return reject(e.message);
