@@ -74,7 +74,7 @@ const mapDispatchToProps = {
   fetchLikeFeedRequest
 };
 
-export const UserFeedsFavorited = connect(
+export const FeedsUserFavorited = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

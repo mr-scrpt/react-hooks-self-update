@@ -22,12 +22,7 @@ export const PopularTagsLayout = ({
       <TransitionGroup className="tag-list" component="div">
         {tagsList &&
           tagsList.map((tag, idx) => (
-            <CSSTransition
-              key={idx}
-              timeout={1130 * (idx + 1)}
-              classNames="feed"
-              appear={true}
-            >
+            <CSSTransition key={idx} timeout={20 * (idx + 1)} classNames="feed">
               <Tag
                 item={tag}
                 key={tag}

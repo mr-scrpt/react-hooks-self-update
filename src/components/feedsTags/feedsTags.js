@@ -11,19 +11,16 @@ import {
 } from "modules/feedsTags";
 
 import { setFeedsTagsActive } from "modules/tagsPopular";
-import { Feeds } from "components/feedsList";
-import { Pagination } from "components/pagination";
-import { ShowLoading } from "components/showLoading";
-import { ShowErrors } from "components/showErrors";
+import { FeedsList } from "components/feedsList";
 
 import { getPaginators } from "helpers/getPaginators";
-import { isEmptyObject } from "helpers/isEmptyObject";
+
 import { limit } from "constant";
 
 export const Component = ({
-  feedsList,
-  loading,
-  error,
+  feeds,
+  feedsLoading,
+  feedsError,
   feedsCount,
   fetchFeedsTagsRequest,
   setFeedsTagsActive,
@@ -45,32 +42,25 @@ export const Component = ({
   }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
   return (
-    <>
-      <ShowLoading loading={loading} />
-      <ShowErrors errors={error} />
-
-      {!loading && !error && (
-        <>
-          <Feeds
-            articles={feedsList}
-            dispatchToLikeToggle={fetchLikeFeedRequest}
-          />
-          <Pagination
-            total={feedsCount}
-            limit={limit}
-            url={url}
-            currentPage={currentPage}
-          />
-        </>
-      )}
-    </>
+    <div>
+      <FeedsList
+        feeds={feeds}
+        isLoading={feedsLoading}
+        isError={feedsError}
+        dispatchToLikeToggle={fetchLikeFeedRequest}
+        count={feedsCount}
+        limit={limit}
+        currentPage={currentPage}
+        url={url}
+      />
+    </div>
   );
 };
 const mapStateToProps = state => ({
-  feedsList: getFeedsList(state),
-  feedsCount: getFeedsCount(state),
-  loading: getFeedsLoading(state),
-  error: getFeedsError(state)
+  feeds: getFeedsList(state),
+  feedsLoading: getFeedsLoading(state),
+  feedsError: getFeedsError(state),
+  feedsCount: getFeedsCount(state)
 });
 
 const mapDispatchToProps = {

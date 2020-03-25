@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom";
 
 import { isEmptyObject } from "helpers/isEmptyObject";
 
-import { UserFeeds } from "components/userFeeds";
-import { UserFeedsFavorited } from "components/userFeedsFavorited";
+import { FeedsUser } from "components/feedsUser";
+import { FeedsUserFavorited } from "components/feedsUserFavorited";
 import { Tabs } from "components/tabs";
 
 export const UserFeedsSwitcher = ({ user, url }) => {
@@ -35,10 +35,10 @@ export const UserFeedsSwitcher = ({ user, url }) => {
             <Tabs tabs={tabs} />
           </div>
           <Switch>
-            <Route path={`${url}`} component={UserFeeds} exact />
+            <Route path={`${url}`} component={FeedsUser} exact />
             <Route
               path={`${url}/favorited`}
-              component={UserFeedsFavorited}
+              component={FeedsUserFavorited}
               exact
             />
             <Route render={() => <div>404</div>} />

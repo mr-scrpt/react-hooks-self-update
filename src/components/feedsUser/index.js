@@ -1,0 +1,1 @@
+export { FeedsUser } from "./feedsUser";

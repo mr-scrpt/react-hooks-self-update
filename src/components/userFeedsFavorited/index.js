@@ -1,1 +1,0 @@
-export { UserFeedsFavorited } from "./userFeedsFavorited";

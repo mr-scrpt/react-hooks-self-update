@@ -10,19 +10,16 @@ import {
   fetchLikeFeedRequest
 } from "modules/feedsFollow";
 
-import { Feeds } from "components/feedsList";
-import { Pagination } from "components/pagination";
-import { ShowLoading } from "components/showLoading";
-import { ShowErrors } from "components/showErrors";
+import { FeedsList } from "components/feedsList";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
 
 const Component = ({
-  feedsList,
+  feeds,
+  feedsLoading,
+  feedsError,
   feedsCount,
-  loading,
-  error,
   fetchFeedsFollowRequest,
   fetchLikeFeedRequest,
   location: { search },
@@ -36,32 +33,25 @@ const Component = ({
   const { currentPage, offset } = getPaginators(search);
 
   return (
-    <>
-      <ShowLoading loading={loading} />
-      <ShowErrors errors={error} />
-
-      {!loading && !error && (
-        <>
-          <Feeds
-            articles={feedsList}
-            dispatchToLikeToggle={fetchLikeFeedRequest}
-          />
-          <Pagination
-            total={feedsCount}
-            limit={limit}
-            url={url}
-            currentPage={currentPage}
-          />
-        </>
-      )}
-    </>
+    <div>
+      <FeedsList
+        feeds={feeds}
+        isLoading={feedsLoading}
+        isError={feedsError}
+        dispatchToLikeToggle={fetchLikeFeedRequest}
+        count={feedsCount}
+        limit={limit}
+        currentPage={currentPage}
+        url={url}
+      />
+    </div>
   );
 };
 const mapStateToProps = state => ({
-  feedsList: getFeedsList(state),
-  feedsCount: getFeedsCount(state),
-  loading: getFeedsLoading(state),
-  error: getFeedsError(state)
+  feeds: getFeedsList(state),
+  feedsLoading: getFeedsLoading(state),
+  feedsError: getFeedsError(state),
+  feedsCount: getFeedsCount(state)
 });
 const mapDispatchToProps = {
   fetchFeedsFollowRequest,

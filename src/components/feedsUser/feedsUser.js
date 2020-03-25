@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import {
   fetchUserFeedsRequest,
   getUser,
-  getUserFeeds,
-  getUserFeedsIsLoading,
-  getUserFeedsIsError,
-  getUserFeedsCount,
+  getFeedsList,
+  getFeedsLoading,
+  getFeedsError,
+  getFeedsCount,
   resetUserFeedsStore,
   fetchLikeFeedRequest
 } from "modules/userProfile";
@@ -15,10 +15,7 @@ import { limit } from "constant";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { getPaginators } from "helpers/getPaginators";
 
-import { Feeds } from "components/feedsList";
-import { ShowErrors } from "components/showErrors";
-import { ShowLoading } from "components/showLoading";
-import { Pagination } from "components/pagination";
+import { FeedsList } from "components/feedsList";
 
 const Component = ({
   user,
@@ -48,30 +45,25 @@ const Component = ({
   }, [fetchUserFeedsRequest, user, url, search]);
 
   return (
-    <div>
-      <ShowLoading loading={feedsLoading} />
-      <ShowErrors errors={feedsError} />
-      {!feedsLoading && !feedsError && (
-        <>
-          <Feeds articles={feeds} dispatchToLikeToggle={fetchLikeFeedRequest} />
-          <Pagination
-            total={feedsCount}
-            limit={limit}
-            url={url}
-            currentPage={currentPage}
-          />
-        </>
-      )}
-    </div>
+    <FeedsList
+      feeds={feeds}
+      isLoading={feedsLoading}
+      isError={feedsError}
+      dispatchToLikeToggle={fetchLikeFeedRequest}
+      count={feedsCount}
+      limit={limit}
+      currentPage={currentPage}
+      url={url}
+    />
   );
 };
 
 const mapStateToProps = state => ({
   user: getUser(state),
-  feeds: getUserFeeds(state),
-  feedsLoading: getUserFeedsIsLoading(state),
-  feedsError: getUserFeedsIsError(state),
-  feedsCount: getUserFeedsCount(state)
+  feeds: getFeedsList(state),
+  feedsLoading: getFeedsLoading(state),
+  feedsError: getFeedsError(state),
+  feedsCount: getFeedsCount(state)
 });
 
 const mapDispatchToProps = {
@@ -80,7 +72,7 @@ const mapDispatchToProps = {
   fetchLikeFeedRequest
 };
 
-export const UserFeeds = connect(
+export const FeedsUser = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

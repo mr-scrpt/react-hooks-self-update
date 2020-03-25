@@ -1,11 +1,46 @@
-.feed-appear {
+/* Apper */
+/* .feed-appear {
   opacity: 0;
+  background: blue;
 }
-/* .feed-appear-active {
+
+.feed-appear-active {
   opacity: 1;
   transition: opacity 1.5s;
+  background: blue;
+}
+
+.feed-appear-done {
+  opacity: 1;
+  transition: opacity 1.5s;
+  background: blue;
 } */
+/* Enter */
+.feed-enter {
+  opacity: 0;
+  /* transition: opacity 0.5s; */
+}
+
+/* .feed-enter-active {
+  opacity: 0.5;
+  transition: opacity 1.5s;
+  background: red;
+} */
+
 .feed-enter-done {
   opacity: 1;
   transition: opacity 0.5s;
 }
+.feed-exit {
+  display: none;
+}
+
+/* .feed-exit-active {
+  opacity: 0;
+  transition: opacity 0s;
+} */
+/* .feed-exit-done {
+  opacity: 1;
+  transition: opacity 0.5s;
+  background: orange;
+} */

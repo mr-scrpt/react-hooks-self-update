@@ -3,6 +3,7 @@ import { FeedSnippet } from "components/feedSnippet";
 import { FeedsEmpty } from "components/feedsEmpty";
 import { ShowErrors } from "components/showErrors";
 import { ShowLoading } from "components/showLoading";
+import { Pagination } from "components/pagination";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./feedsList.css";
 
@@ -13,7 +14,8 @@ export const FeedsList = ({
   dispatchToLikeToggle,
   count,
   limit,
-  currentPage
+  currentPage,
+  url
 }) => {
   return (
     <div className="feeds-list">
@@ -24,12 +26,7 @@ export const FeedsList = ({
         {!isLoading &&
           !isError &&
           feeds.map((feed, idx) => (
-            <CSSTransition
-              key={idx}
-              timeout={50 * (idx + 1)}
-              classNames="feed"
-              appear={true}
-            >
+            <CSSTransition key={idx} timeout={50 * (idx + 1)} classNames="feed">
               <FeedSnippet
                 item={feed}
                 key={idx}

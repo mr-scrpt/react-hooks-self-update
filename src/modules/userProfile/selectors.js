@@ -16,20 +16,20 @@ export const getUserIsError = createSelector(
 );
 
 // USER FEEDS
-export const getUserFeeds = createSelector(
+export const getFeedsList = createSelector(
   state => state.userProfileStore.userFeeds,
   userFeed => userFeed
 );
-export const getUserFeedsCount = createSelector(
+export const getFeedsCount = createSelector(
   state => state.userProfileStore.userFeedsCount,
   userFeedCount => userFeedCount
 );
-export const getUserFeedsIsLoading = createSelector(
+export const getFeedsLoading = createSelector(
   state => state.userProfileStore.userFeedsLoading,
   userFeedsLoading => userFeedsLoading
 );
 
-export const getUserFeedsIsError = createSelector(
+export const getFeedsError = createSelector(
   state => state.userProfileStore.userFeedsError,
   userFeedsError => userFeedsError
 );
