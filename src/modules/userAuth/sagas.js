@@ -2,14 +2,11 @@ import { takeLatest, fork, call, put } from "redux-saga/effects";
 import {
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
-  //setAuthUserSuccess,
-  //setAuthUserError,
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
-  fetchAuthUserError,
-  putUserAuthRequest,
-  putUserAuthSuccess,
-  putUserAuthError
+  putAuthUserRequest,
+  setAuthUserError,
+  setAuthUserErrorValidation
 } from "./actions";
 
 import {
@@ -26,7 +23,7 @@ function* fetchWatcher() {
   yield takeLatest(sendUserToRegistrationRequest, setUserRegistrationAPI);
   yield takeLatest(sendUserToAuthRequest, setUserAuthAPI);
   yield takeLatest(fetchAuthUserRequest, fetchUserAuthAPI);
-  yield takeLatest(putUserAuthRequest, putUserAuthAPI);
+  yield takeLatest(putAuthUserRequest, putUserAuthAPI);
 }
 
 export function* setUserRegistrationAPI({ payload }) {
@@ -35,7 +32,7 @@ export function* setUserRegistrationAPI({ payload }) {
     setToken(userResponse.data.user.token);
     yield put(fetchAuthUserSuccess(serializedUser(userResponse)));
   } catch (error) {
-    yield put(fetchAuthUserError(error));
+    yield put(setAuthUserError(error));
   }
 }
 
@@ -45,26 +42,25 @@ export function* setUserAuthAPI({ payload }) {
     setToken(userResponse.data.user.token);
     yield put(fetchAuthUserSuccess(serializedUser(userResponse)));
   } catch (error) {
-    yield put(fetchAuthUserError(error));
+    yield put(setAuthUserError(error));
   }
 }
 
 export function* fetchUserAuthAPI() {
   try {
     const userResponse = yield call(getUserAuth);
-
     yield put(fetchAuthUserSuccess(userResponse));
   } catch (error) {
-    yield put(fetchAuthUserError(error));
+    yield put(setAuthUserError(error));
   }
 }
 
 export function* putUserAuthAPI({ payload }) {
   try {
     const userResponse = yield call(putUserAuth, payload);
-    yield put(putUserAuthSuccess(userResponse));
+    yield put(fetchAuthUserSuccess(userResponse));
   } catch (error) {
-    yield put(putUserAuthError(error));
+    yield put(setAuthUserError(error));
   }
 }
 

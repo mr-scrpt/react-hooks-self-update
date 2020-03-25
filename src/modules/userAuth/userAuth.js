@@ -4,25 +4,22 @@ import { combineReducers } from "redux";
 import {
   fetchAuthUserRequest,
   fetchAuthUserSuccess,
-  fetchAuthUserError,
-  putUserAuthRequest,
-  putUserAuthSuccess,
-  putUserAuthError,
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
-  resetUserAuthUser,
-  resetError
+  resetAuthUser,
+  setAuthUserError,
+  setAuthUserErrorValidation,
+  resetAuthUserError
 } from "./actions";
 
 const user = handleActions(
   {
     [fetchAuthUserRequest]: () => ({}),
     [fetchAuthUserSuccess]: (_, { payload }) => payload.data.user,
-    [fetchAuthUserError]: () => ({}),
-    [resetUserAuthUser]: () => ({}),
-    //[putUserAuthRequest]: (_, { payload }) => payload.data.user,
-    [putUserAuthSuccess]: (_, { payload }) => payload.data.user,
-    [putUserAuthError]: () => ({})
+    [sendUserToAuthRequest]: () => ({}),
+    [resetAuthUser]: () => ({}),
+    [setAuthUserError]: () => ({}),
+    [setAuthUserErrorValidation]: () => ({})
   },
   {}
 );
@@ -30,8 +27,9 @@ const isLoggedIn = handleActions(
   {
     [fetchAuthUserRequest]: () => false,
     [fetchAuthUserSuccess]: () => true,
-    [fetchAuthUserError]: () => false,
-    [resetUserAuthUser]: () => false
+    [setAuthUserError]: () => false,
+    [setAuthUserErrorValidation]: () => false,
+    [resetAuthUser]: () => false
   },
   false
 );
@@ -41,33 +39,36 @@ const loading = handleActions(
     [sendUserToAuthRequest]: () => true,
     [sendUserToRegistrationRequest]: () => true,
     [fetchAuthUserSuccess]: () => false,
-    [fetchAuthUserError]: () => false,
-    [resetUserAuthUser]: () => false
+    [setAuthUserError]: () => false,
+    [setAuthUserErrorValidation]: () => false
   },
   false
 );
 const error = handleActions(
   {
-    [fetchAuthUserRequest]: () => ({}),
-    [fetchAuthUserSuccess]: () => ({}),
-    [fetchAuthUserError]: (_, { payload }) => payload,
-    [resetUserAuthUser]: () => ({}),
-    [putUserAuthRequest]: () => ({}),
-    [putUserAuthError]: () => (_, { payload }) => payload,
-    [resetError]: () => ({})
+    [setAuthUserError]: () => () => (_, { payload }) => payload,
+    [fetchAuthUserRequest]: () => "",
+    [fetchAuthUserSuccess]: () => "",
+    [sendUserToAuthRequest]: () => "",
+    [sendUserToRegistrationRequest]: () => "",
+    [resetAuthUser]: () => "",
+    [resetAuthUserError]: () => ""
+  },
+  ""
+);
+const errorValidation = handleActions(
+  {
+    [setAuthUserErrorValidation]: (_, { payload }) => payload,
+    [sendUserToAuthRequest]: () => ({}),
+    [sendUserToRegistrationRequest]: () => ({}),
+    [resetAuthUserError]: () => ({})
   },
   {}
 );
-/* const initial = handleActions(
-  {
-    [setAuthUserInitial]: () => true
-  },
-  false
-); */
 export default combineReducers({
   user,
   isLoggedIn,
   loading,
-  error
-  //initial
+  error,
+  errorValidation
 });

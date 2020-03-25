@@ -1,7 +1,7 @@
 import { request } from "helpers/request";
 export const getTagsPopular = async () => {
   try {
-    return await request({ url: `/tags1`, method: "GET" });
+    return await request({ url: `/tags`, method: "GET" });
   } catch (error) {
     return Promise.reject("Ошибка получения данных");
     /* throw {

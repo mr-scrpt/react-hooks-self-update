@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { AcceesDenied } from "components/accessDenied";
@@ -6,11 +6,13 @@ import { LoadingPrivatPage } from "components/loadingPrivatPage";
 import { getIsLoggedIn, getIsLoading } from "modules/userAuth";
 
 const Router = ({ component, isLoggedIn, isLoading, ...rest }) => {
-  let finalComponent = null;
+  let finalComponent = AcceesDenied;
 
+  console.log("logged in", isLoggedIn);
   if (isLoading) {
     finalComponent = LoadingPrivatPage;
   } else if (isLoggedIn) {
+    console.log("logged in", isLoggedIn);
     finalComponent = component;
   } else {
     finalComponent = AcceesDenied;

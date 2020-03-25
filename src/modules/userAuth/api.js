@@ -10,10 +10,11 @@ export const sendUserToRegistration = async user => {
       }
     });
   } catch (error) {
-    throw {
+    return Promise.reject(error);
+    /* throw {
       status: 400,
       message: error.errors //получаем ошибки валидации от сервера
-    };
+    }; */
   }
 };
 

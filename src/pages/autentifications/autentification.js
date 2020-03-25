@@ -8,7 +8,7 @@ import {
   getIsLoggedIn,
   getIsLoading,
   getIsError,
-  resetError
+  resetAuthUserError
 } from "modules/userAuth";
 
 import { FormLogin } from "components/formLogin";
@@ -18,7 +18,7 @@ import { ShowLoading } from "components/showLoading";
 const Component = ({
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
-  resetError,
+  resetAuthUserError,
   isLoggedIn,
   loading,
   errorsServer,
@@ -26,9 +26,9 @@ const Component = ({
 }) => {
   useEffect(() => {
     return () => {
-      resetError();
+      resetAuthUserError();
     };
-  }, [resetError]);
+  }, [resetAuthUserError]);
 
   const submitLogin = user => {
     sendUserToAuthRequest(user);
@@ -64,7 +64,7 @@ const Component = ({
 const mapDispatchToProps = {
   sendUserToAuthRequest,
   sendUserToRegistrationRequest,
-  resetError
+  resetAuthUserError
 };
 const mapStateToProps = state => ({
   isLoggedIn: getIsLoggedIn(state),

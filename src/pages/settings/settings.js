@@ -1,12 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
   getUserAuth,
   getIsLoading,
   getIsError,
-  resetUserAuthUser,
-  putUserAuthRequest
+  resetAuthUser,
+  putAuthUserRequest
 } from "modules/userAuth";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
@@ -14,19 +15,20 @@ import { SettingsForm } from "components/settingsForm";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { logout } from "helpers/logout/logout";
 const Page = ({
-  resetUserAuthUser,
-  putUserAuthRequest,
+  resetAuthUser,
+  putAuthUserRequest,
   user,
   isLoading,
   isError
 }) => {
+  const history = useHistory();
   const onSubmite = putUser => {
-    console.log(putUser);
-    putUserAuthRequest(putUser);
+    putAuthUserRequest(putUser);
   };
 
   const logoutUser = () => {
-    logout(resetUserAuthUser);
+    logout(resetAuthUser);
+    history.push("/");
   };
   return (
     <div className="settings-page">
@@ -56,8 +58,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  putUserAuthRequest,
-  resetUserAuthUser
+  resetAuthUser,
+  putAuthUserRequest
 };
 
 export const Settings = connect(mapStateToProps, mapDispatchToProps)(Page);
