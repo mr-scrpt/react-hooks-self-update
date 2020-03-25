@@ -54,7 +54,7 @@ const Component = ({
     <div>
       <ShowLoading loading={feedsLoading} />
       <ShowErrors errors={feedsError} />
-      {!feedsLoading && isEmptyObject(feedsError) && (
+      {!feedsLoading && !feedsError && (
         <>
           <Feeds articles={feeds} dispatchToLikeToggle={fetchLikeFeedRequest} />
           <Pagination

@@ -5,7 +5,8 @@ export const getUser = async slug => {
   try {
     return await request({ url: `profiles/${slug}`, method: "GET" }, true);
   } catch (e) {
-    throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
+    return Promise.reject("Ошибка получения пользователя");
+    //throw { status: 400, message: "Ошибка получения получения пользователя" };
   }
 };
 
@@ -22,7 +23,8 @@ export const getUserFeeds = async ({ limit, offset, author }) => {
       true
     );
   } catch (e) {
-    throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
+    return Promise.reject("Ошибка получения фидов пользователя");
+    //throw { status: 400, message: "Ошибка получения получения пользователя" };
   }
 };
 
@@ -32,13 +34,14 @@ export const getUserFeedsFavorited = async ({ limit, offset, author }) => {
     limit,
     offset
   });
-  /* articles?favorited=Dolce&limit=10&offset=0 */
+
   try {
     return await request(
       { url: `articles?${stingifyParams}`, method: "GET" },
       true
     );
   } catch (e) {
-    throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
+    return Promise.reject("Ошибка получения отслеживаемых фидов пользователя");
+    //throw { status: 400, message: "Ошибка получения получения пользователя" }; //получаем ошибки валидации от сервера
   }
 };

@@ -35,15 +35,12 @@ const Component = ({
     <div className="profile-page">
       <ShowLoading loading={userLoading} />
       <ShowErrors errors={userError} />
-      {!userLoading &&
-        isEmptyObject(userError) &&
-        user &&
-        !isEmptyObject(user) && (
-          <>
-            <UserInfo user={user} />
-            <UserFeedsSwitcher user={user} url={match.url} />
-          </>
-        )}
+      {!userLoading && !userError && (
+        <>
+          <UserInfo user={user} />
+          <UserFeedsSwitcher user={user} url={match.url} />
+        </>
+      )}
     </div>
   );
 };

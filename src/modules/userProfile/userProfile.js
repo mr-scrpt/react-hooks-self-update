@@ -42,11 +42,11 @@ const userLoading = handleActions(
 
 const userError = handleActions(
   {
-    [fetchProfileRequest]: () => ({}),
-    [fetchProfileSuccess]: () => ({}),
+    [fetchProfileRequest]: () => "",
+    [fetchProfileSuccess]: () => "",
     [fetchProfileError]: () => (_, { payload }) => payload
   },
-  {}
+  ""
 );
 
 // USER FEEDS
@@ -84,12 +84,12 @@ const userFeedsLoading = handleActions(
 
 const userFeedsError = handleActions(
   {
-    [fetchUserFeedsRequest]: () => ({}),
-    [fetchUserFeedsSuccess]: () => ({}),
+    [fetchUserFeedsRequest]: () => "",
+    [fetchUserFeedsSuccess]: () => "",
     [fetchUserFeedsError]: () => (_, { payload }) => payload,
-    [fetchLikeFeedError]: (_, action) => action.payload
+    [fetchLikeFeedError]: (_, { payload }) => payload
   },
-  {}
+  ""
 );
 
 // USER FEEDS FAVORITED
@@ -126,11 +126,11 @@ const userFeedsFavoritedLoading = handleActions(
 
 const userFeedsFavoritedError = handleActions(
   {
-    [fetchUserFeedsFavoritedRequest]: () => ({}),
-    [fetchUserFeedsFavoritedSuccess]: () => ({}),
+    [fetchUserFeedsFavoritedRequest]: () => "",
+    [fetchUserFeedsFavoritedSuccess]: () => "",
     [fetchUserFeedsFavoritedError]: () => (_, { payload }) => payload
   },
-  {}
+  ""
 );
 
 export default combineReducers({
