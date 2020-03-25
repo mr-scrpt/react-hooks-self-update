@@ -15,7 +15,7 @@ import { limit } from "constant";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { getPaginators } from "helpers/getPaginators";
 
-import { Feeds } from "components/feeds";
+import { Feeds } from "components/feedsList";
 import { ShowErrors } from "components/showErrors";
 import { ShowLoading } from "components/showLoading";
 import { Pagination } from "components/pagination";

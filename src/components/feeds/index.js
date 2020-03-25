@@ -1,1 +1,0 @@
-export { Feeds } from './feeds'

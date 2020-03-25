@@ -1,0 +1,1 @@
+export { FeedSnippet } from "./feedSnippet";

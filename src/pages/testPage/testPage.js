@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { compose } from 'recompose';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
-import { fetchFeedsGlobalRequest } from 'modules/feedsGlobal';
-import { FeedToggler } from 'components/feedToggler';
-import { ShowLoading } from 'components/showLoading';
-import { ShowErrors } from 'components/showErrors';
-import { Feeds } from 'components/feeds';
-import { Pagination } from 'components/pagination';
-import { PopularTags } from 'components/popularTags';
-import { getPaginators } from 'helpers/getPaginators';
-const Page = ({ feeds, loading, error, fetchFeedsGlobalRequest, match: { url }, location: { search } }) => {
-
+import { fetchFeedsGlobalRequest } from "modules/feedsGlobal";
+import { FeedToggler } from "components/feedToggler";
+import { ShowLoading } from "components/showLoading";
+import { ShowErrors } from "components/showErrors";
+import { Feeds } from "components/feedsList";
+import { Pagination } from "components/pagination";
+import { PopularTags } from "components/popularTags";
+import { getPaginators } from "helpers/getPaginators";
+const Page = ({
+  feeds,
+  loading,
+  error,
+  fetchFeedsGlobalRequest,
+  match: { url },
+  location: { search }
+}) => {
   const { currentPage, offset } = getPaginators(search);
   const [feedsList, setFeedsList] = useState(null);
 
   useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
-    fetchFeedsGlobalRequest({ limit: 10, offset })
-
+    fetchFeedsGlobalRequest({ limit: 10, offset });
   }, [fetchFeedsGlobalRequest, currentPage]);
 
   useEffect(() => {
     if (!feeds) return;
-    setFeedsList(feeds.data)
+    setFeedsList(feeds.data);
   }, [feeds]);
-
 
   return (
     <div className="home-page">
@@ -46,10 +50,14 @@ const Page = ({ feeds, loading, error, fetchFeedsGlobalRequest, match: { url }, 
             {feedsList && !loading && (
               <>
                 <Feeds articles={feedsList.articles} />
-                <Pagination total={feedsList.articlesCount} limit={10} url={url} currentPage={currentPage} />
+                <Pagination
+                  total={feedsList.articlesCount}
+                  limit={10}
+                  url={url}
+                  currentPage={currentPage}
+                />
               </>
-            )
-            }
+            )}
           </div>
           <div className="col-md-3">
             {/* <PopularTags search={search} /> */}
@@ -57,15 +65,14 @@ const Page = ({ feeds, loading, error, fetchFeedsGlobalRequest, match: { url }, 
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const mapStateToProps = ({ feedsStore }) => (feedsStore);
+const mapStateToProps = ({ feedsStore }) => feedsStore;
 const mapDispatchToProps = {
   fetchFeedsGlobalRequest
 };
 
-
-export const TestPage = compose(
-  connect(mapStateToProps, mapDispatchToProps)
-)(Page);
+export const TestPage = compose(connect(mapStateToProps, mapDispatchToProps))(
+  Page
+);

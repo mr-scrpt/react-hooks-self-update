@@ -11,7 +11,7 @@ import {
 } from "modules/feedsTags";
 
 import { setFeedsTagsActive } from "modules/tagsPopular";
-import { Feeds } from "components/feeds";
+import { Feeds } from "components/feedsList";
 import { Pagination } from "components/pagination";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";

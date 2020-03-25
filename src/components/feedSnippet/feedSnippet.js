@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { TagList } from "components/tagList";
 import { AddToFavorite } from "components/addToFavorite";
 
-export const ArticleSnippet = ({ item, dispatchToLikeToggle }) => {
+export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
   const {
     title,
     slug,
