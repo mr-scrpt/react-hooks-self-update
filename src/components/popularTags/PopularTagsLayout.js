@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tag } from "components/tag";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
@@ -11,8 +11,6 @@ export const PopularTagsLayout = ({
 }) => {
   const prefix = "tags/";
   const classes = `tag-default tag-pill`;
-  console.log("tags enter", tagsList);
-  console.log("error", error);
 
   return (
     <div className="sidebar">

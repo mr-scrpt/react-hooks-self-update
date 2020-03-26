@@ -54,7 +54,9 @@ const Component = ({
       }
     };
   }, [activeTag, isLoggedIn]);
-
+  useEffect(() => {
+    console.log("Ререндер");
+  }, []);
   const resetActiveTag = () => {
     resetFeedsTagsActive();
     resetFeedsTags();

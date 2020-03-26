@@ -12,7 +12,6 @@ const Router = ({ component, isLoggedIn, isLoading, ...rest }) => {
   if (isLoading) {
     finalComponent = LoadingPrivatPage;
   } else if (isLoggedIn) {
-    console.log("logged in", isLoggedIn);
     finalComponent = component;
   } else {
     finalComponent = AcceesDenied;
