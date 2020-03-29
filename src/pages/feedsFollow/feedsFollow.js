@@ -12,7 +12,7 @@ import {
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsPageTemplate } from "templates/feedsPageTemplate";
+import { FeedsPageTemplate } from "templates";
 
 const Component = ({
   feeds,

@@ -2,10 +2,9 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { PrivatRoute } from "routes/privatRoute";
 
-import { FeedsGlobal } from "components/feedsGlobal";
-import { FeedsTags } from "components/feedsTags";
-import { FeedsFollow } from "components/feedsFollow";
-
+import { FeedsGlobal } from "pages/feedsGlobal";
+import { FeedsTags } from "pages/feedsTags";
+import { FeedsFollow } from "pages/feedsFollow";
 import { CreateArticle } from "pages/createArticle";
 import { Article } from "pages/article";
 import { Autentifications } from "pages/autentifications";

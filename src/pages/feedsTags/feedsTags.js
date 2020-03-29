@@ -2,33 +2,43 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  fetchFeedsGlobalRequest,
+  fetchFeedsTagsRequest,
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
   getFeedsError,
   fetchLikeFeedRequest
-} from "modules/feedsGlobal";
+} from "modules/feedsTags";
+
+import { setFeedsTagsActive } from "modules/tagsPopular";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsPageTemplate } from "templates/feedsPageTemplate";
-const Component = ({
+import { FeedsPageTemplate } from "templates";
+
+export const Component = ({
   feeds,
   feedsLoading,
   feedsError,
   feedsCount,
-  fetchFeedsGlobalRequest,
+  fetchFeedsTagsRequest,
+  setFeedsTagsActive,
   fetchLikeFeedRequest,
-  match: { url },
-  location: { search }
+  location: { search },
+  match: {
+    url,
+    params: { tagName }
+  }
 }) => {
+  useEffect(() => {
+    setFeedsTagsActive(tagName);
+  }, [setFeedsTagsActive]);
+
   const { currentPage, offset } = getPaginators(search);
 
   useEffect(() => {
-    if (!fetchFeedsGlobalRequest) return;
-    fetchFeedsGlobalRequest({ limit, offset });
-  }, [fetchFeedsGlobalRequest, currentPage]);
+    fetchFeedsTagsRequest({ limit, offset, tagName });
+  }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
   return (
     <FeedsPageTemplate
@@ -43,19 +53,20 @@ const Component = ({
     />
   );
 };
-
 const mapStateToProps = state => ({
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
   feedsCount: getFeedsCount(state)
 });
+
 const mapDispatchToProps = {
-  fetchFeedsGlobalRequest,
-  fetchLikeFeedRequest
+  fetchFeedsTagsRequest,
+  fetchLikeFeedRequest,
+  setFeedsTagsActive
 };
 
-export const FeedsGlobal = connect(
+export const FeedsTags = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
