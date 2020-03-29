@@ -2,21 +2,25 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { PrivatRoute } from "routes/privatRoute";
 
-import { FeedsLine } from "pages/feedsLine";
+import { FeedsGlobal } from "components/feedsGlobal";
+import { FeedsTags } from "components/feedsTags";
+import { FeedsFollow } from "components/feedsFollow";
+
 import { CreateArticle } from "pages/createArticle";
 import { Article } from "pages/article";
 import { Autentifications } from "pages/autentifications";
 import { Settings } from "pages/settings";
 import { UserProfile } from "pages/userProfile";
 import { EditArticle } from "pages/editArticle";
+
 export default () => {
   return (
     <div>
       <Switch>
-        <Route path="/" component={FeedsLine} exact />
-        <PrivatRoute path="/feedFollow" component={FeedsLine} />
-        <Route path="/feedTags/:tagName" component={FeedsLine} />
+        <Route path="/" component={FeedsGlobal} exact />
+        <PrivatRoute path="/feedFollow" component={FeedsFollow} />
 
+        <Route path="/feedTags/:tagName" component={FeedsTags} />
         <PrivatRoute path="/articles/new" component={CreateArticle} />
         <Route path="/articles/:slug" component={Article} exact />
         <Route path="/articles/:slug/edit" component={EditArticle} />

@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { TopBar } from "components/topBar";
 import { UserAuthChecker } from "components/userAuthChecker";
 import { createAppStore } from "reduxStore";
-import { TestAnimation } from "components/testAnimation";
+
 const store = createAppStore();
 export const App = () => {
   return (
@@ -15,7 +15,7 @@ export const App = () => {
 
       <Router>
         <TopBar />
-        {/* <TestAnimation /> */}
+
         <Routes />
       </Router>
     </ReduxProvider>

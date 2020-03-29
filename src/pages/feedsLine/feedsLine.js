@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getActiveTag, resetFeedsTagsActive } from "modules/tagsPopular";
@@ -54,9 +54,7 @@ const Component = ({
       }
     };
   }, [activeTag, isLoggedIn]);
-  useEffect(() => {
-    console.log("Ререндер");
-  }, []);
+
   const resetActiveTag = () => {
     resetFeedsTagsActive();
     resetFeedsTags();

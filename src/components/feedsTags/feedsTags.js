@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+
 import {
   fetchFeedsTagsRequest,
   getFeedsList,
@@ -11,11 +11,10 @@ import {
 } from "modules/feedsTags";
 
 import { setFeedsTagsActive } from "modules/tagsPopular";
-import { FeedsList } from "components/feedsList";
 
 import { getPaginators } from "helpers/getPaginators";
-
 import { limit } from "constant";
+import { FeedsPageTemplate } from "templates/feedsPageTemplate";
 
 export const Component = ({
   feeds,
@@ -42,18 +41,16 @@ export const Component = ({
   }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
   return (
-    <div>
-      <FeedsList
-        feeds={feeds}
-        isLoading={feedsLoading}
-        isError={feedsError}
-        dispatchToLikeToggle={fetchLikeFeedRequest}
-        count={feedsCount}
-        limit={limit}
-        currentPage={currentPage}
-        url={url}
-      />
-    </div>
+    <FeedsPageTemplate
+      feeds={feeds}
+      feedsLoading={feedsLoading}
+      feedsError={feedsError}
+      feedsCount={feedsCount}
+      fetchLikeFeedRequest={fetchLikeFeedRequest}
+      limit={limit}
+      currentPage={currentPage}
+      url={url}
+    />
   );
 };
 const mapStateToProps = state => ({
@@ -65,8 +62,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchFeedsTagsRequest,
-  setFeedsTagsActive,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
+  setFeedsTagsActive
 };
 
 export const FeedsTags = connect(

@@ -1,0 +1,1 @@
+export { FeedsPageTemplate } from "./feedsPageTemplate";

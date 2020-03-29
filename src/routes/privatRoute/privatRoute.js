@@ -8,7 +8,6 @@ import { getIsLoggedIn, getIsLoading } from "modules/userAuth";
 const Router = ({ component, isLoggedIn, isLoading, ...rest }) => {
   let finalComponent = AcceesDenied;
 
-  console.log("logged in", isLoggedIn);
   if (isLoading) {
     finalComponent = LoadingPrivatPage;
   } else if (isLoggedIn) {

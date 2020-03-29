@@ -1,28 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
 import "./tabs.css";
-export const Tabs = ({ tabs, resetActiveTag }) => {
-  return (
-    <ul className="nav nav-pills outline-active">
-      {tabs &&
-        tabs.map(tab => (
-          <li className="nav-item" key={tab.url}>
-            <NavLink to={tab.url} className="nav-link" exact>
-              {tab.tags && <i className="ion-pound"></i>}
-              {tab.name} &nbsp;
-              {tab.tags && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    resetActiveTag();
-                  }}
-                  className="btn btn-sm ion-close btn-outline-warning"
-                ></button>
-              )}
-            </NavLink>
-          </li>
-        ))}
-    </ul>
-  );
+
+import { TabsList } from "components/tabsList";
+
+import { getActiveTag, resetFeedsTagsActive } from "modules/tagsPopular";
+import { resetFeedsTags } from "modules/feedsTags";
+import { getIsLoggedIn } from "modules/userAuth";
+
+const Component = ({
+  activeTag,
+  isLoggedIn,
+  resetFeedsTagsActive,
+  resetFeedsTags
+}) => {
+  const [tabs, setTabs] = useState([]);
+
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    const genTabs = [
+      {
+        url: `/`,
+        name: `Все фиды`,
+        tags: false
+      }
+    ];
+
+    if (isLoggedIn) {
+      genTabs.push({
+        url: `/feedFollow`,
+        name: `Отслеживаемые фиды`,
+        tags: false
+      });
+    }
+    if (activeTag) {
+      genTabs.push({
+        url: `/feedTags/${activeTag}`,
+        name: `${activeTag}`,
+        tags: true
+      });
+    }
+
+    setTabs(genTabs);
+
+    return () => {
+      if (activeTag !== "") {
+        setRedirect(false);
+      }
+    };
+  }, [activeTag, isLoggedIn]);
+
+  const resetActiveTag = () => {
+    resetFeedsTagsActive();
+    resetFeedsTags();
+    setRedirect(true);
+  };
+
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
+
+  return <TabsList tabs={tabs} resetActiveTag={resetActiveTag} />;
 };
+
+const mapStateToProps = state => ({
+  activeTag: getActiveTag(state),
+  isLoggedIn: getIsLoggedIn(state)
+});
+const mapDispatchToProps = {
+  resetFeedsTagsActive,
+  resetFeedsTags
+};
+
+export const Tabs = connect(mapStateToProps, mapDispatchToProps)(Component);

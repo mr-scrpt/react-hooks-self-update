@@ -10,11 +10,9 @@ import {
   fetchLikeFeedRequest
 } from "modules/feedsGlobal";
 
-import { FeedsList } from "components/feedsList";
-
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-
+import { FeedsPageTemplate } from "templates/feedsPageTemplate";
 const Component = ({
   feeds,
   feedsLoading,
@@ -33,18 +31,16 @@ const Component = ({
   }, [fetchFeedsGlobalRequest, currentPage]);
 
   return (
-    <div>
-      <FeedsList
-        feeds={feeds}
-        isLoading={feedsLoading}
-        isError={feedsError}
-        dispatchToLikeToggle={fetchLikeFeedRequest}
-        count={feedsCount}
-        limit={limit}
-        currentPage={currentPage}
-        url={url}
-      />
-    </div>
+    <FeedsPageTemplate
+      feeds={feeds}
+      feedsLoading={feedsLoading}
+      feedsError={feedsError}
+      feedsCount={feedsCount}
+      fetchLikeFeedRequest={fetchLikeFeedRequest}
+      limit={limit}
+      currentPage={currentPage}
+      url={url}
+    />
   );
 };
 
