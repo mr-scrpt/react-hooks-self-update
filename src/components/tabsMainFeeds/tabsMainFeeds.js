@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import "./tabs.css";
-
 import { TabsList } from "components/tabsList";
 
 import { getActiveTag, resetFeedsTagsActive } from "modules/tagsPopular";
@@ -75,4 +73,7 @@ const mapDispatchToProps = {
   resetFeedsTags
 };
 
-export const Tabs = connect(mapStateToProps, mapDispatchToProps)(Component);
+export const TabsMainFeeds = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);

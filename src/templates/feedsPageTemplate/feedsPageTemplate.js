@@ -1,6 +1,6 @@
 import React from "react";
 import { FeedsList } from "components/feedsList";
-import { Tabs } from "components/tabs";
+import { TabsMainFeeds } from "components/tabsMainFeeds";
 import { PopularTags } from "components/popularTags";
 
 export const FeedsPageTemplate = ({
@@ -24,7 +24,7 @@ export const FeedsPageTemplate = ({
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            <Tabs />
+            <TabsMainFeeds />
             <FeedsList
               feeds={feeds}
               isLoading={feedsLoading}

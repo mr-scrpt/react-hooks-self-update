@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
-
-import { isEmptyObject } from "helpers/isEmptyObject";
 
 import { FeedsUser } from "components/feedsUser";
 import { FeedsUserFavorited } from "components/feedsUserFavorited";
-import { Tabs } from "components/tabs";
+import { TabsProfileFeeds } from "components/tabsProfileFeeds";
 
 export const UserFeedsSwitcher = ({ user, url }) => {
-  const [tabs, setTabs] = useState([]);
-
-  useEffect(() => {
-    if (isEmptyObject(user)) return;
-    const genTabs = [
-      {
-        url: `${url}`,
-        name: `Посты ${user.username}`,
-        tags: false
-      },
-      {
-        url: `${url}/favorited`,
-        name: `Избранные посты`,
-        tags: false
-      }
-    ];
-    setTabs(genTabs);
-  }, [user]);
-
   return (
     <div className="container">
       <div className="row">
         <div className="col-xs-12 col-md-10 offset-md-1">
           <div className="articles-toggle">
-            <Tabs tabs={tabs} />
+            <TabsProfileFeeds user={user} />
           </div>
           <Switch>
             <Route path={`${url}`} component={FeedsUser} exact />

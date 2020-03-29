@@ -1,0 +1,1 @@
+export { TabsMainFeeds } from "./tabsMainFeeds";

@@ -10,7 +10,6 @@ import {
 } from "modules/userProfile";
 import { ShowErrors } from "components/showErrors";
 import { ShowLoading } from "components/showLoading";
-import { isEmptyObject } from "helpers/isEmptyObject";
 import { UserInfo } from "components/userInfo";
 import { UserFeedsSwitcher } from "components/userFeedsSwitcher";
 

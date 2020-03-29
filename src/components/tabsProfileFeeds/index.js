@@ -1,0 +1,1 @@
+export { TabsProfileFeeds } from "./tabsProfileFeeds";
