@@ -12,7 +12,7 @@ import {
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsPageTemplate } from "templates";
+import { FeedsMediaBlock } from "components/feedsMediaBlock";
 const Component = ({
   feeds,
   feedsLoading,
@@ -31,7 +31,7 @@ const Component = ({
   }, [fetchFeedsGlobalRequest, currentPage]);
 
   return (
-    <FeedsPageTemplate
+    <FeedsMediaBlock
       feeds={feeds}
       feedsLoading={feedsLoading}
       feedsError={feedsError}

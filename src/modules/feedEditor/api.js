@@ -29,7 +29,7 @@ export const deleteFeed = async slug => {
 export const putFeed = async feed => {
   try {
     return await request(
-      { url: `/articles/${feed.slug}`, method: "PUT", data: feed },
+      { url: `/articles/${feed.slug}11`, method: "PUT", data: feed },
       true
     );
   } catch (error) {

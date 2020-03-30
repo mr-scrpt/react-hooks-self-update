@@ -14,7 +14,7 @@ import { setFeedsTagsActive } from "modules/tagsPopular";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsPageTemplate } from "templates";
+import { FeedsMediaBlock } from "components/feedsMediaBlock";
 
 export const Component = ({
   feeds,
@@ -41,7 +41,7 @@ export const Component = ({
   }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
   return (
-    <FeedsPageTemplate
+    <FeedsMediaBlock
       feeds={feeds}
       feedsLoading={feedsLoading}
       feedsError={feedsError}

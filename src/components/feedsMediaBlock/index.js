@@ -1,0 +1,1 @@
+export { FeedsMediaBlock } from "./feedsMediaBlock";

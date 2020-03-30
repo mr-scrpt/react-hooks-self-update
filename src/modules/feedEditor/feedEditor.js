@@ -81,6 +81,7 @@ const error = handleActions(
     [createFeedEditorRequest]: () => "",
     [createFeedEditorSuccess]: () => "",
     [createFeedEditorError]: (_, { payload }) => payload,
+    [putFeedEditorError]: (_, { payload }) => payload,
     [fetchFeedEditorRequest]: () => "",
     [fetchFeedEditorSuccess]: () => "",
     [fetchFeedEditorError]: (_, { payload }) => payload,

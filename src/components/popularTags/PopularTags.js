@@ -6,6 +6,7 @@ import {
   fetchTagsPopularRequest,
   setFeedsTagsActive,
   getTagList,
+  getIsLoading,
   getIsError
 } from "modules/tagsPopular";
 import { PopularTagsLayout } from "./PopularTagsLayout";
@@ -28,7 +29,7 @@ const Copmponent = ({
   return (
     <PopularTagsLayout
       tagsList={tagsList}
-      isLoading={loading}
+      loading={loading}
       error={error}
       setActiveTag={setActiveTag}
     />
@@ -37,7 +38,8 @@ const Copmponent = ({
 
 const mapStateToProps = state => ({
   tagsList: getTagList(state),
-  error: getIsError(state)
+  error: getIsError(state),
+  loading: getIsLoading(state)
 });
 const mapDispatchToProps = {
   fetchTagsPopularRequest,

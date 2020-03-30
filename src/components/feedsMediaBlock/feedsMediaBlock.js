@@ -3,7 +3,7 @@ import { FeedsList } from "components/feedsList";
 import { TabsMainFeeds } from "components/tabsMainFeeds";
 import { PopularTags } from "components/popularTags";
 
-export const FeedsPageTemplate = ({
+export const FeedsMediaBlock = ({
   feeds,
   feedsLoading,
   feedsError,

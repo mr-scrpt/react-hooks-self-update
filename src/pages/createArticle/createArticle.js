@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
-import { ShowErrors } from "components/showErrors";
-import { FormArticle } from "components/formArticle";
+import { FormArticleLayout } from "components/formArticle";
 
 import {
   createFeedEditorRequest,
@@ -51,10 +49,11 @@ const Component = ({
   }
 
   return (
-    <>
-      <ShowErrors errors={error} />
-      <FormArticle onSubmit={onSubmit} errorsServer={errorsServer} />
-    </>
+    <FormArticleLayout
+      onSubmit={onSubmit}
+      errorsServer={errorsServer}
+      error={error}
+    />
   );
 };
 

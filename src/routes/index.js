@@ -14,29 +14,22 @@ import { EditArticle } from "pages/editArticle";
 
 export default () => {
   return (
-    <div>
-      <Switch>
-        <Route path="/" component={FeedsGlobal} exact />
-        <PrivatRoute path="/feedFollow" component={FeedsFollow} />
+    <Switch>
+      <Route path="/" component={FeedsGlobal} exact />
+      <PrivatRoute path="/feedFollow" component={FeedsFollow} />
+      <Route path="/feedTags/:tagName" component={FeedsTags} />
 
-        <Route path="/feedTags/:tagName" component={FeedsTags} />
-        <PrivatRoute path="/articles/new" component={CreateArticle} />
-        <Route path="/articles/:slug" component={Article} exact />
-        <Route path="/articles/:slug/edit" component={EditArticle} />
-        <Route path="/login" component={Autentifications} />
-        <Route path="/registration" component={Autentifications} />
-        <PrivatRoute path="/settings" component={Settings} />
-        <Route path="/profile/:slug" component={UserProfile} />
+      <PrivatRoute path="/articles/new" component={CreateArticle} />
+      <Route path="/articles/:slug" component={Article} exact />
+      <Route path="/articles/:slug/edit" component={EditArticle} />
+      <Route path="/login" component={Autentifications} />
+      <Route path="/registration" component={Autentifications} />
+      <PrivatRoute path="/settings" component={Settings} />
+      <Route path="/profile/:slug" component={UserProfile} />
 
-        {/* <Route path="/articles/:slug/edit" component={EditArticle} />
-       
-        
-        <Route path="/registration" component={Autentifications} />
-        
-         */}
+      <Route path="/registration" component={Autentifications} />
 
-        <Route render={() => <div>404</div>} />
-      </Switch>
-    </div>
+      <Route render={() => <div>404</div>} />
+    </Switch>
   );
 };

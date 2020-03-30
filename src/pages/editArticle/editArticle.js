@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   fetchFeedEditorRequest,
@@ -7,15 +7,18 @@ import {
   getFeed,
   getFeedLoading,
   getFeedError,
+  getFeedErrorValidation,
   getBeEdited
 } from "modules/feedEditor";
-import { FormArticle } from "components/formArticle";
+import { FormArticleLayout } from "components/formArticle";
 import { Redirect } from "react-router-dom";
 
 const Component = ({
   match,
   feed,
   error,
+  errorsServer,
+  loading,
   fetchFeedEditorRequest,
   putFeedEditorRequest,
   resetBeEdited,
@@ -34,7 +37,7 @@ const Component = ({
     fetchFeedEditorRequest(slug);
   }, [fetchFeedEditorRequest]);
 
-  const handleSubmit = data => {
+  const onSubmit = data => {
     data.slug = slug;
     putFeedEditorRequest(data);
   };
@@ -44,7 +47,13 @@ const Component = ({
   }
 
   return (
-    <FormArticle onSubmit={handleSubmit} errors={error} initialValues={feed} />
+    <FormArticleLayout
+      onSubmit={onSubmit}
+      errorsServer={errorsServer}
+      error={error}
+      loading={loading}
+      initialValues={feed}
+    />
   );
 };
 
@@ -58,6 +67,7 @@ const mapStateToProps = state => ({
   feed: getFeed(state),
   loading: getFeedLoading(state),
   error: getFeedError(state),
+  errorsServer: getFeedErrorValidation(state),
   beEdited: getBeEdited(state)
 });
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-export const TabsList = ({ tabs, resetActiveTag }) => {
+export const TabsList = ({ tabs, resetActiveTag = () => {} }) => {
   return (
     <ul className="nav nav-pills outline-active">
       {tabs &&

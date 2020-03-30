@@ -10,6 +10,11 @@ export const getActiveTag = createSelector(
   activeTag => activeTag
 );
 
+export const getIsLoading = createSelector(
+  state => state.tagsPopularStore.loading,
+  loading => loading
+);
+
 export const getIsError = createSelector(
   state => state.tagsPopularStore.error,
   error => error
