@@ -14,9 +14,9 @@ const Component = ({
 }) => {
   const buttonClasses = cx({
     btn: true,
-    "btn-sm": true,
-    "btn-primary": favorited,
-    "btn-outline-primary": !favorited
+    "btn-small": true,
+    pink: favorited,
+    teal: !favorited
   });
 
   const liker = () => {
@@ -25,8 +25,10 @@ const Component = ({
 
   return (
     <button className={buttonClasses} onClick={liker} disabled={!isLoggedIn}>
-      <i className="ion-heart"></i>
-      <span>&nbsp; {favoritesCount}</span>
+      <i class="material-icons left">
+        {!favorited ? "favorite_border" : "favorite"}
+      </i>
+      <span>{favoritesCount}</span>
     </button>
   );
 };

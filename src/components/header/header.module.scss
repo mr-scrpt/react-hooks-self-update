@@ -1,0 +1,147 @@
+@import "../../basestyles/_variables/colors";
+@import "../../basestyles/_variables/transition";
+@import "../../basestyles/gridOnly/gridOnly";
+
+.header {
+  background-color: $gray-800;
+  display: flex;
+}
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+.menuButton {
+  display: none;
+  padding: 0 12px;
+  @include media-breakpoint-down(sm) {
+    display: flex;
+    position: absolute;
+    height: 54px;
+    z-index: 2;
+  }
+}
+.logo {
+  align-self: center;
+  @include media-breakpoint-down(md) {
+    margin: auto;
+    padding: 20px 0;
+  }
+  @include media-breakpoint-down(sm) {
+    order: 1;
+    padding: 0;
+  }
+}
+.nav {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  @include media-breakpoint-down(md) {
+    margin: auto;
+  }
+  @include media-breakpoint-down(sm) {
+    order: 0;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    left: 0;
+    top: 0px;
+    flex-direction: column;
+    background-color: $gray-800;
+    width: 80px;
+    z-index: 1;
+    transition: $transition-time left;
+    padding-top: 54px;
+  }
+  &_hidden {
+    left: -80px;
+  }
+}
+.link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: $pink;
+  background-color: transparent;
+  transition: $transition-time color, $transition-time background-color;
+  &:hover {
+    background-color: $pink;
+    color: $white;
+  }
+  @include media-breakpoint-down(sm) {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+  }
+}
+.linkText {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+.btn {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  @include media-breakpoint-down(sm) {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+.icon {
+  padding: 0 5px;
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.btnText {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+/* 
+.nav {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  //align-items: center;
+}
+
+.navlink {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  color: $pink;
+  transition: $transition-time color, $transition-time background-color;
+  &:hover {
+    background-color: $pink;
+    color: $white;
+  }
+}
+.icon {
+  padding: 0 3px;
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.btnLink {
+  padding: 0 5px;
+}
+ */

@@ -1,0 +1,11 @@
+.link {
+  transition: box-shadow $transition-time, color $transition-time;
+  box-shadow: 0 2px 0 transparent;
+  color: $link-color;
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    box-shadow: 0 2px 0 $link-hover-color;
+  }
+}

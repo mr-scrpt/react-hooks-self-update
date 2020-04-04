@@ -1,0 +1,44 @@
+.inner {
+  padding: 15px;
+}
+
+.user {
+  /* text-align: center; */
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.username {
+  text-align: center;
+}
+.author {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 14px;
+  color: #9e9e9e;
+}
+.likeButton {
+  padding: 15px 0;
+}
+
+.infoBlock {
+  height: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.description {
+  flex-grow: 1;
+  flex-wrap: 1;
+}

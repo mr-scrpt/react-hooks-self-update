@@ -8,7 +8,7 @@ import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
 import { Feeds } from "components/feedsList";
 import { Pagination } from "components/pagination";
-import { PopularTags } from "components/popularTags";
+import { PopularTags } from "components/tags/tagsPopular";
 import { getPaginators } from "helpers/getPaginators";
 const Page = ({
   feeds,

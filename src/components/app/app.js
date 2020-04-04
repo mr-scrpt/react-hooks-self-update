@@ -3,19 +3,19 @@ import { Provider as ReduxProvider } from "react-redux";
 
 import Routes from "routes/index.js";
 import { BrowserRouter as Router } from "react-router-dom";
-import { TopBar } from "components/topBar";
+import { Header } from "components/header";
+import { TestHeader } from "components/testHeader";
 import { UserAuthChecker } from "components/userAuthChecker";
 import { createAppStore } from "reduxStore";
-
+import "./app.scss";
 const store = createAppStore();
 export const App = () => {
   return (
     <ReduxProvider store={store}>
       <UserAuthChecker />
-
       <Router>
-        <TopBar />
-
+        <Header />
+        {/* <TestHeader /> */}
         <Routes />
       </Router>
     </ReduxProvider>

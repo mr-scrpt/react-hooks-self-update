@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import { FeedsUser } from "components/feedsUser";
 import { FeedsUserFavorited } from "components/feedsUserFavorited";
-import { TabsProfileFeeds } from "components/tabsProfileFeeds";
+import { TabsProfileFeeds } from "components/tabs/tabsProfileFeeds";
 
 export const UserFeedsSwitcher = ({ user, url }) => {
   return (

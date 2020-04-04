@@ -8,7 +8,7 @@ import { Pagination } from "components/pagination";
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
 
-import { PopularTags } from "components/popularTags";
+import { PopularTags } from "components/tags/tagsPopular";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
 import { FeedToggler } from "components/feedToggler";

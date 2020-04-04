@@ -1,0 +1,30 @@
+@import "../../basestyles/_variables/colors";
+@import "../../basestyles/_variables/transition";
+@import "../../basestyles/gridOnly/gridOnly";
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: $pink;
+  transition: color $transition-time;
+
+  &:hover {
+    color: darken($pink, 15%);
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 38px;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 32px;
+    padding: 3px 0;
+  }
+}
+.icon {
+  padding-left: 15px;
+  padding-right: 7.5px;
+}
+.slogan {
+  padding-right: 15px;
+  padding-left: 7.5px;
+}

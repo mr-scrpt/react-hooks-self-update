@@ -1,0 +1,18 @@
+@import "../../basestyles/gridOnly/gridOnly";
+
+.feedCol {
+  background-color: yellow;
+  @include make-col-ready();
+  @include make-col(9);
+  @include media-breakpoint-down(md) {
+    @include make-col(12);
+  }
+}
+.tagsCol {
+  background-color: green;
+  @include make-col-ready();
+  @include make-col(3);
+  @include media-breakpoint-down(md) {
+    @include make-col(12);
+  }
+}

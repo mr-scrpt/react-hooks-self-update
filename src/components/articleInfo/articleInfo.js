@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TagList } from "components/tagList";
+import { TagList } from "components/tags/tagsList";
 import { BarEditor } from "components/barEditor";
 import { BarSocialActivity } from "components/barSocialActivity";
 

@@ -1,8 +1,0 @@
-.flash-appear {
-  opacity: 0;
-  z-index: 1;
-}
-.flash-appear.flash-appear-active {
-  opacity: 1;
-  transition: opacity 0.4s linear;
-}
