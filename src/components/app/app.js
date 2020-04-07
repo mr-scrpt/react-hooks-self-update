@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
 
-/* import Routes from "routes/index.js"; */
+import Routes from "routes/index.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "components/header";
 
@@ -15,8 +15,7 @@ export const App = () => {
       <UserAuthChecker />
       <Router>
         <Header />
-        {/* <TestHeader />
-        <Routes /> */}
+        <Routes />
       </Router>
     </ReduxProvider>
   );

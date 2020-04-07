@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { menuOutsideClose } from "helpers/menuOutsideClose";
 
-export const MenuAdaptive = ({ listsss }) => {
+export const MenuAdaptive = ({ menu }) => {
   const menuRef = useRef(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -15,11 +15,6 @@ export const MenuAdaptive = ({ listsss }) => {
     [s.menuWrap_open]: isMenuOpen,
   });
 
-  const list = [
-    { name: "Домой", to: "/", icon: "home" },
-    { name: "Создать фид", to: "/articles/new", icon: "add" },
-    { name: "Настройки", to: "/articles/new", icon: "settings" },
-  ];
   useEffect(() => {
     const closer = menuOutsideClose(menuRef, setMenuOpen);
     return () => {
@@ -61,7 +56,7 @@ export const MenuAdaptive = ({ listsss }) => {
         >
           <i className={`material-icons ${s.buttonIcon}`}>close</i>
         </span>
-        {list.map((item) => {
+        {menu.map((item) => {
           return (
             <NavLink
               to={item.to}

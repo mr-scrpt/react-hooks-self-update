@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
 
+import { menuList } from "helpers/menuList";
 import { NavLink } from "react-router-dom";
 import { Logo } from "components/logo";
 import { MenuAdaptive } from "components/menuAdaptive";
 import s from "./header.module.scss";
 
 export const Component = ({ user, isLoggedIn }) => {
+  const menu = menuList(isLoggedIn, user);
+
   return (
     <div className={s.header}>
       <div className={`container ${s.inner}`}>
@@ -18,7 +21,7 @@ export const Component = ({ user, isLoggedIn }) => {
           </NavLink>
         </div>
         <div className={s.menu}>
-          <MenuAdaptive />
+          <MenuAdaptive menu={menu} />
         </div>
       </div>
     </div>
