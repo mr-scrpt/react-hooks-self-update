@@ -4,10 +4,11 @@
 .logo {
   display: flex;
   align-items: center;
-  font-size: 28px;
   color: $pink;
   transition: color $transition-time;
-
+  margin: 0;
+  padding: 0;
+  font-size: 32px;
   &:hover {
     color: darken($pink, 15%);
   }
@@ -17,7 +18,6 @@
   }
   @include media-breakpoint-down(sm) {
     font-size: 32px;
-    padding: 3px 0;
   }
 }
 .icon {
@@ -25,6 +25,7 @@
   padding-right: 7.5px;
 }
 .slogan {
+  display: inline;
   padding-right: 15px;
   padding-left: 7.5px;
 }

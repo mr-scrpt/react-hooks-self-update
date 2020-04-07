@@ -1,0 +1,1 @@
+export { menuOutsideClose } from "./menuOutsideClose";
