@@ -19,7 +19,7 @@ export const Component = ({ user, isLoggedIn }) => {
         </div>
         <div className={s.menu}>
           <MenuAdaptive />
-        </div> 
+        </div>
       </div>
     </div>
   );

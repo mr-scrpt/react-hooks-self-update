@@ -7,138 +7,114 @@ $link__color_hover: $white;
 $link__color-bg: transparent;
 $link__color-bg_hover: $pink;
 $menu_bg-adaptive: $gray-800;
+
 .nav {
   display: flex;
   position: relative;
   flex-wrap: wrap;
-  background-color: transparent; //Поставить трансперент
+  align-items: center;
+  background-color: transparent;
+  font-size: 18px;
   @include media-breakpoint-down(md) {
-    //width: 60px;
     flex-direction: column;
     z-index: 1;
+    font-size: 28px;
   }
 }
 
-.button {
-  width: 60px;
-  display: none;
-  padding: 10px 15px;
-  font-size: 32px;
-  line-height: 1.5rem;
-
-  @include media-breakpoint-down(md) {
-    display: flex;
-    &_open {
-      &_enter {
-        opacity: 0;
-        transition: $transition-time opacity;
-      }
-      &_enterActive {
-        opacity: 1;
-      }
-      &_enterDone {
-        opacity: 1;
-      }
-
-      &_exit {
-        opacity: 1;
-        transition: $transition-time opacity;
-      }
-      &_exitActive {
-        opacity: 0;
-      }
-      &_exitDone {
-        opacity: 0;
-      }
-    }
-    &_close {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-}
-.buttonClose {
-  //width: 60px;
-}
-.buttonIcon {
-  //z-index: 2;
-  width: 100vh;
-  text-align: center;
-  cursor: pointer;
-
-  display: flex;
-  background-color: $link__color-bg;
-  transition: $transition-time color, $transition-time background-color;
-  color: $link__color;
-  &:hover {
-    color: $link__color_hover;
-    background-color: $link__color-bg_hover;
-  }
-}
 .menuWrap {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  transition: $transition-time left;
-  justify-content: flex-end;
+  align-items: center;
   @include media-breakpoint-down(md) {
-    position: fixed;
-
-    top: 0;
-    left: -65px;
-    padding-top: 54px;
-    width: 65px;
-
-    height: 100vh;
+    padding-right: 0;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: flex-start;
-    background-color: $menu_bg-adaptive;
+    position: fixed;
+    left: -65px;
+    top: 0;
+    height: 100vh;
     overflow-x: hidden;
-
+    background-color: $menu_bg-adaptive;
+    box-shadow: 8px 0 8px -8px rgba($gray-900, 0.5);
+    transition: $transition-time left;
     &::-webkit-scrollbar {
       width: 5px;
     }
 
     &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: $gray-600;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      outline: 1px solid slategrey;
+      background-color: $pink;
+      outline: 1px solid $gray-900;
     }
   }
   &_open {
     left: 0;
   }
 }
+
 .link {
-  font-size: 18px;
-  line-height: 1.5rem;
-  padding: 15px 20px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  color: $link__color;
   background-color: $link__color-bg;
   transition: $transition-time color, $transition-time background-color;
-  color: $link__color;
+  padding: 10px 15px;
   &:hover {
     color: $link__color_hover;
     background-color: $link__color-bg_hover;
   }
-  @include media-breakpoint-down(md) {
-    justify-content: center;
-    font-size: 32px;
-    //width: 60px;
-  }
 }
+
 .linkIcon {
   padding-right: 2.5px;
+  @include media-breakpoint-down(md) {
+    padding-right: 0;
+  }
 }
 .linkText {
   padding-left: 2.5px;
   @include media-breakpoint-down(md) {
     display: none;
+  }
+}
+
+.open {
+  cursor: pointer;
+  display: none;
+  @include media-breakpoint-down(md) {
+    display: block;
+    &_enter {
+      opacity: 0;
+      transition: $transition-time opacity;
+    }
+    &_enterActive {
+      opacity: 1;
+    }
+    &_enterDone {
+      opacity: 1;
+    }
+
+    &_exit {
+      opacity: 1;
+      transition: $transition-time opacity;
+    }
+    &_exitActive {
+      opacity: 0;
+    }
+    &_exitDone {
+      opacity: 0;
+    }
+  }
+}
+
+.close {
+  cursor: pointer;
+  display: none;
+  @include media-breakpoint-down(md) {
+    display: block;
   }
 }

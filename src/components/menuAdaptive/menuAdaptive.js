@@ -19,11 +19,7 @@ export const MenuAdaptive = ({ listsss }) => {
     { name: "Домой", to: "/", icon: "home" },
     { name: "Создать фид", to: "/articles/new", icon: "add" },
     { name: "Настройки", to: "/articles/new", icon: "settings" },
-    { name: "Создать фид", to: "/articles/new", icon: "add" },
-    { name: "Создать фид", to: "/articles/new", icon: "add" },
-    { name: "С", to: "/articles/new", icon: "add" },
   ];
-
   useEffect(() => {
     const closer = menuOutsideClose(menuRef, setMenuOpen);
     return () => {
@@ -34,18 +30,6 @@ export const MenuAdaptive = ({ listsss }) => {
   const handleClick = () => {
     setMenuOpen(false);
   };
-  /*  const [inProp, setInProp] = useState(false);
-
-  return (
-    <div>
-      <CSSTransition in={inProp} timeout={200} classNames="my-node">
-        <div>{"I'll receive my-node-* classes"}</div>
-      </CSSTransition>
-      <button type="button" onClick={() => setInProp(true)}>
-        Click to Enter
-      </button>
-    </div>
-  ); */
 
   return (
     <nav className={s.nav} ref={menuRef}>
@@ -55,26 +39,25 @@ export const MenuAdaptive = ({ listsss }) => {
         unmountOnExit
         in={!isMenuOpen}
         classNames={{
-          enter: s.button_open_enter,
-          enterActive: s.button_open_enterActive,
-          enterDone: s.button_open_enterDone,
-          exit: s.button_open_exit,
-          exitActive: s.button_open_exitActive,
-          exitDone: s.button_open_exitDone,
+          enter: s.open_enter,
+          enterActive: s.open_enterActive,
+          enterDone: s.open_enterDone,
+          exit: s.open_exit,
+          exitActive: s.open_exitActive,
+          exitDone: s.open_exitDone,
         }}
       >
         <span
-          className={`${s.button} ${s.button_open}`}
-          onClick={() => setMenuOpen(!isMenuOpen)}
+          className={`${s.link} ${s.open}`}
+          onClick={() => setMenuOpen(true)}
         >
-          <i className={`material-icons ${s.buttonIcon}`}>menu</i>
+          <i className={`material-icons`}>menu</i>
         </span>
       </CSSTransition>
-
       <div className={menuWrap}>
         <span
-          className={`${s.button} ${s.button_close}`}
-          onClick={() => setMenuOpen(!isMenuOpen)}
+          className={`${s.link} ${s.close}`}
+          onClick={() => setMenuOpen(false)}
         >
           <i className={`material-icons ${s.buttonIcon}`}>close</i>
         </span>
