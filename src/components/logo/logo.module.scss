@@ -3,6 +3,7 @@
 @import "../../basestyles/gridOnly/gridOnly";
 .logo {
   display: flex;
+
   align-items: center;
   color: $pink;
   transition: color $transition-time;

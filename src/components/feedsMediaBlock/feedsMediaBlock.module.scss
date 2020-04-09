@@ -1,7 +1,7 @@
 @import "../../basestyles/gridOnly/gridOnly";
 
 .feedCol {
-  background-color: yellow;
+  //background-color: yellow;
   @include make-col-ready();
   @include make-col(9);
   @include media-breakpoint-down(md) {
@@ -9,7 +9,7 @@
   }
 }
 .tagsCol {
-  background-color: green;
+  //background-color: green;
   @include make-col-ready();
   @include make-col(3);
   @include media-breakpoint-down(md) {

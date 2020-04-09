@@ -1,3 +1,6 @@
+@import "../../../basestyles/_variables/colors";
+@import "../../../basestyles/_variables/transition";
+
 $button__color_standart: $blue;
 $border__color_standart: $blue;
 $button__color_alt: $pink;
@@ -39,21 +42,6 @@ $border__radius_inner: 3px;
     vertical-align: top;
     color: $font__color_standart;
   }
-
-  &_alt {
-    background: $border__color_alt;
-    border-radius: 0;
-    & .btn__text {
-      color: $font__color_alt;
-    }
-  }
-
-  &_pseudo {
-    background: #fff;
-  }
-  &_menu {
-    background: none;
-  }
 }
 
 .btn {
@@ -70,21 +58,6 @@ $border__radius_inner: 3px;
       border-radius: $border__radius_inner;
     }
   }
-  &_alt:before {
-    background: $button__color_alt;
-    border-radius: 0;
-  }
-
-  &_pseudo:before {
-    background: #fff;
-  }
-  &_menu:before {
-    background: none;
-  }
-}
-
-.btn_type_link {
-  text-decoration: none;
 }
 
 /*Размеры кнопок*/
@@ -94,7 +67,7 @@ $border__radius_inner: 3px;
   line-height: 22px;
 }
 .btn_size_xs .btn__text {
-  margin: 0 8px;
+  margin: 0 8px 0 0;
 }
 /*XS - КОНЕЦ*/
 
@@ -105,7 +78,7 @@ $border__radius_inner: 3px;
 }
 
 .btn_size_s .btn__text {
-  margin: 0 10px;
+  margin: 0 10px 0 0;
 }
 /*S - КОНЕЦ*/
 
@@ -115,7 +88,7 @@ $border__radius_inner: 3px;
   line-height: 28px;
 }
 .btn_size_m .btn__text {
-  margin: 0 13px;
+  margin: 0 13px 0 0;
 }
 /*M - КОНЕЦ*/
 
@@ -125,7 +98,7 @@ $border__radius_inner: 3px;
   line-height: 32px;
 }
 .btn_size_l .btn__text {
-  margin: 0 15px;
+  margin: 0 15px 0 0;
 }
 /*L - КОНЕЦ*/
 
@@ -136,66 +109,9 @@ $border__radius_inner: 3px;
 }
 
 .btn_size_xl .btn__text {
-  margin: 0 18px;
+  margin: 0 18px 0 0;
 }
 /*XL - КОНЕЦ*/
-/*Кнопка с иконкой*/
-.btn .icon {
-  min-width: 1em;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  background-position: 50%;
-  background-repeat: no-repeat;
-}
-/*Кнопка с иконкой - картинка для кнопки*/
-
-.btn .icon + .btn__text {
-  margin-left: 0;
-}
-
-/*Размеры*/
-.btn.btn_size_xs .icon {
-  width: 16px;
-}
-
-.btn.btn_size_s .icon {
-  width: 20px;
-}
-
-.btn.btn_size_m .icon {
-  width: 28px;
-}
-.btn.btn_size_l .icon {
-  width: 30px;
-}
-.btn.btn_size_xl .icon {
-  width: 36px;
-}
-
-/*Кнопка с картинкой*/
-.btn__img {
-  min-width: 1em;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  background-position: 50%;
-  background-repeat: no-repeat;
-}
-
-.btn .btn__img + .btn__text {
-  margin-left: 0;
-}
-
-.btn.btn_menu .btn__icon {
-  color: #fff;
-  transition: $transition-time color;
-  font-size: 28px;
-}
-
-.btn.btn_menu:hover .btn__icon {
-  color: $pink;
-}
 
 /*Состояния*/
 //Стандартная кнопка
@@ -210,25 +126,43 @@ $border__radius_inner: 3px;
   }
 }
 
-//Псевдо
-
-.btn.btn_pseudo:hover {
-  cursor: pointer;
-  background: 0 0;
+/*Кнопка с картинкой*/
+.btn__img {
+  min-width: 1em;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background-position: 50%;
+  background-repeat: no-repeat;
 }
 
-.btn.btn_pseudo:hover {
-  &:before {
-    background: $green;
-  }
+/*Размеры*/
+.btn__img_arround {
+  border-radius: 50%;
+}
+.btn__img {
+  width: 16px;
+  padding: 2px;
 }
 
-.btn.btn_menu:hover {
-  cursor: pointer;
-  background: 0 0;
+.btn__img {
+  width: 20px;
+  padding: 2px;
 }
-.btn.btn_menu:hover {
-  &:before {
-    background: none;
-  }
+
+.btn__img {
+  width: 28px;
+  padding: 2px;
 }
+.btn__img {
+  width: 30px;
+  padding: 3px;
+}
+.btn__img {
+  width: 36px;
+  padding: 4px;
+}
+
+/* .btn .btn__img + .btn__text {
+  margin-left: 0;
+} */

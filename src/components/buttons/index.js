@@ -1,0 +1,1 @@
+export { ButtonWithImg } from "./buttonWithImg";

@@ -7,6 +7,7 @@ import { menuList } from "helpers/menuList";
 import { NavLink } from "react-router-dom";
 import { Logo } from "components/logo";
 import { MenuAdaptive } from "components/menuAdaptive";
+import { ButtonWithImg } from "components/buttons";
 import s from "./header.module.scss";
 
 export const Component = ({ user, isLoggedIn }) => {
@@ -16,13 +17,32 @@ export const Component = ({ user, isLoggedIn }) => {
     <div className={s.header}>
       <div className={`container ${s.inner}`}>
         <div className={s.logo}>
-          <NavLink to="/" exact>
+          <NavLink to="/" exact className={s.logoLink}>
             <Logo />
           </NavLink>
         </div>
         <div className={s.menu}>
           <MenuAdaptive menu={menu} />
         </div>
+        {isLoggedIn && (
+          <div className={s.user}>
+            <NavLink
+              to={`/profile/${user.username}`}
+              exact
+              className={s.logoLink}
+            >
+              <ButtonWithImg
+                tag="div"
+                size="xl"
+                img={user.image}
+                alt={`Аватарка ${user.username}`}
+                imgDefault={"//dummyimage.com/100x100/abq/fre"}
+              >
+                {user.username}
+              </ButtonWithImg>
+            </NavLink>
+          </div>
+        )}
       </div>
     </div>
   );

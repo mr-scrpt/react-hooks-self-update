@@ -14,10 +14,20 @@
 
 .logo {
   @include media-breakpoint-down(md) {
-    order: 1;
-    margin-right: 0;
-    margin-left: auto;
+    order: 2;
+    /* margin-right: 0;
+    margin-left: auto; */
+    flex-grow: 1;
     padding: 15px 0;
+  }
+  @include media-breakpoint-down(sm) {
+    order: 2;
+  }
+}
+.logoLink {
+  @include media-breakpoint-down(md) {
+    display: flex;
+    justify-content: center;
   }
 }
 .menu {
@@ -27,5 +37,24 @@
     order: 0;
     width: 60px;
     margin-left: 0;
+  }
+  @include media-breakpoint-down(sm) {
+    order: 0;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  @include media-breakpoint-down(md) {
+    order: 1;
+    margin-left: 0;
+  }
+  @include media-breakpoint-down(sm) {
+    order: 1;
+    margin-left: auto;
+    margin-right: 0;
+    padding: 15px 0;
+    //justify-content: center;
   }
 }
