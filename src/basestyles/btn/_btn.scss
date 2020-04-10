@@ -13,6 +13,11 @@ $border__color_active: $pink;
 $button__color_active_hovered: darken($pink, 10%);
 $border__color_active_hovered: $pink;
 
+$font__color_disabled: $gray-600;
+$button__color_disabled: $gray-300;
+$border__color_disabled: $gray-400;
+$font__color_disabled: $gray-600;
+
 $border__radius_outer: 4px;
 $border__radius_inner: 3px;
 
@@ -35,6 +40,12 @@ $border__radius_inner: 3px;
   }
   &:focus {
     outline: none;
+  }
+  &:disabled {
+    background-color: $border__color_disabled;
+    .btn__text {
+      color: $font__color_disabled;
+    }
   }
   & .btn__text {
     position: relative;
@@ -67,6 +78,11 @@ $border__radius_inner: 3px;
   &_active {
     &:before {
       background: $button__color_active;
+    }
+  }
+  &:disabled {
+    &:before {
+      background-color: $button__color_disabled;
     }
   }
 }
@@ -128,15 +144,21 @@ $border__radius_inner: 3px;
 }
 /*XL - КОНЕЦ*/
 /*Кнопка с иконкой*/
-.btn .icon {
-  min-width: 1em;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  color: $font__color_icon;
+.btn {
+  & .icon {
+    min-width: 1em;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    color: $font__color_icon;
+  }
+  &:disabled .icon {
+    color: $font__color_disabled;
+  }
 }
+
 /*Кнопка с иконкой - картинка для кнопки*/
 
 .btn .icon + .btn__text {

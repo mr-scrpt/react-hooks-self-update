@@ -26,7 +26,13 @@ const Component = ({
   const icon = favorited ? "sentiment_very_satisfied" : "sentiment_neutral";
   return (
     <>
-      <ButtonWithIcon size="l" icon={icon} onClick={liker} isActive={favorited}>
+      <ButtonWithIcon
+        size="l"
+        icon={icon}
+        onClick={liker}
+        isActive={favorited}
+        disabled={!isLoggedIn}
+      >
         {favoritesCount}
       </ButtonWithIcon>
       {/* <button className={buttonClasses} onClick={liker} disabled={!isLoggedIn}>

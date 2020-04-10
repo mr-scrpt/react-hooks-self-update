@@ -1,0 +1,12 @@
+@import "../../../basestyles/_variables/colors";
+
+.tag {
+  display: block;
+}
+
+.inner {
+  padding: 10px 15px;
+  background-color: $gray-400;
+  border-radius: 6px;
+  margin: 5px;
+}

@@ -1,28 +1,29 @@
 import React from "react";
 import cx from "classnames";
-export const ButtonWithIcon = ({
+import { Link } from "react-router-dom";
+
+export const Button = ({
   tag = "button",
   size,
-  icon,
-  onClick,
-  isActive,
-  disabled,
+  to,
   children,
+
+  onClick = () => {},
 }) => {
-  const Tag = tag;
+  let Tag = tag !== "a" ? tag : Link;
+
   const btnClass = cx({
     btn: true,
+    btn_type_link: tag === "a" && true,
     btn_size_xs: size === "xs",
-    btn_size_s: size === "s",
     btn_size_m: size === "m",
     btn_size_l: size === "l",
+    btn_size_s: size === "s",
     btn_size_xl: size === "xl",
-    btn_active: isActive,
   });
 
   return (
-    <Tag className={btnClass} onClick={onClick} disabled={disabled}>
-      {icon && <i className="material-icons icon">{icon}</i>}
+    <Tag className={btnClass} onClick={onClick} to={to}>
       <span className="btn__text">{children}</span>
     </Tag>
   );
