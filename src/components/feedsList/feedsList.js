@@ -15,7 +15,7 @@ export const FeedsList = ({
   count,
   limit,
   currentPage,
-  url
+  url,
 }) => {
   return (
     <div className="feeds-list">

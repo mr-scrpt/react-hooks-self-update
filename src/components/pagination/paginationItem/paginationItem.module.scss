@@ -1,0 +1,19 @@
+@import "../../../basestyles/_variables/colors";
+@import "../../../basestyles/_variables/transition";
+.item {
+  background-color: $pink;
+  color: $white;
+  border-radius: 4px;
+  transition: $transition-time background-color;
+  &:hover {
+    background-color: darken($pink, 15%);
+  }
+}
+.active {
+  background-color: darken($pink, 15%);
+}
+
+.link {
+  padding: 0.5rem 0.75rem;
+  display: block;
+}

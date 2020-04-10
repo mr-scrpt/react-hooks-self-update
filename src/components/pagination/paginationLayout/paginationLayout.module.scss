@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+
+.item {
+  margin: 0 5px 5px;
+  /* &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  } */
+}
+
+.appear {
+  opacity: 0;
+}
+
+.appearActive {
+  opacity: 0;
+}
+.appearDone {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
