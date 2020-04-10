@@ -1,0 +1,77 @@
+@import "../../basestyles/_variables/colors";
+
+.inner {
+  display: flex;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
+  padding: 15px;
+}
+.user {
+  width: 25%; //calc(33.3333% - 15px);
+  padding-right: 15px;
+  //background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.avatar {
+  border-radius: 50%;
+}
+.author {
+  font-size: 18px;
+  color: $teal;
+  font-weight: bold;
+}
+.date {
+  font-size: 14px;
+  columns: $gray-500;
+}
+.info {
+  width: 75%; //calc(66.6666% - 15px);
+  padding-left: 15px;
+  //background-color: green;
+}
+
+/* .user {
+  
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.username {
+  text-align: center;
+}
+.author {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 14px;
+  color: #9e9e9e;
+}
+.likeButton {
+  padding: 15px 0;
+}
+
+.infoBlock {
+  height: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.description {
+  flex-grow: 1;
+  flex-wrap: 1;
+}
+ */

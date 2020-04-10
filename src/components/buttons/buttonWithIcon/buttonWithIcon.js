@@ -1,18 +1,16 @@
 import React from "react";
-//import { withButtonStyle } from "components/buttons";
-import s from "./buttonWithImg.module.scss";
+import s from "./buttonWithIcon.module.scss";
 import cx from "classnames";
-export const ButtonWithImg = ({
+export const ButtonWithIcon = ({
   tag = "button",
   size,
-  img,
-  imgDefault = "",
+  icon,
+  onClick,
+  isActive,
   children,
-  alt,
-  onClick = () => {},
 }) => {
-  const avatar = img ? img : imgDefault;
   const Tag = tag;
+  console.log("is-active", isActive);
 
   const btnClass = cx({
     [s.btn]: true,
@@ -21,15 +19,12 @@ export const ButtonWithImg = ({
     [s.btn_size_m]: size === "m",
     [s.btn_size_l]: size === "l",
     [s.btn_size_xl]: size === "xl",
+    [s.active]: isActive,
   });
 
   return (
     <Tag className={btnClass} onClick={onClick}>
-      <img
-        src={avatar}
-        alt={alt}
-        className={`${s.btn__img} ${s.btn__img_arround}`}
-      />
+      {icon && <i className={`material-icons ${s.icon}`}>{icon}</i>}
       <span className={s.btn__text}>{children}</span>
     </Tag>
   );
