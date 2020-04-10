@@ -175,25 +175,33 @@ $border__radius_inner: 3px;
   text-align: center;
   background-position: 50%;
   background-repeat: no-repeat;
+  &_round {
+    border-radius: 50%;
+  }
 }
 
 /*Размеры*/
 .btn.btn_size_xs .btn__img {
   width: 16px;
+  padding: 1px;
 }
 
 .btn.btn_size_s .btn__img {
   width: 20px;
+  padding: 1px;
 }
 
 .btn.btn_size_m .btn__img {
   width: 28px;
+  padding: 2px;
 }
 .btn.btn_size_l .btn__img {
   width: 30px;
+  padding: 4px;
 }
 .btn.btn_size_xl .btn__img {
   width: 36px;
+  padding: 4px;
 }
 
 .btn .btn__img + .btn__text {
@@ -231,27 +239,3 @@ $border__radius_inner: 3px;
     background: $button__color_active_hovered;
   }
 }
-
-//Псевдо
-/* 
-.btn.btn_pseudo:hover {
-  cursor: pointer;
-  background: 0 0;
-}
-
-.btn.btn_pseudo:hover {
-  &:before {
-    background: $green;
-  }
-}
-
-.btn.btn_menu:hover {
-  cursor: pointer;
-  background: 0 0;
-}
-.btn.btn_menu:hover {
-  &:before {
-    background: none;
-  }
-}
- */

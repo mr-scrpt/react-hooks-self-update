@@ -23,7 +23,7 @@ export const ButtonWithIcon = ({
   }); */
 
   const btnClass = cx({
-    //[s.btn]: true,
+    btn: true,
     btn_size_xs: size === "xs",
     btn_size_s: size === "s",
     btn_size_m: size === "m",
@@ -33,7 +33,7 @@ export const ButtonWithIcon = ({
   });
 
   return (
-    <Tag className={`btn ${btnClass}`} onClick={onClick}>
+    <Tag className={btnClass} onClick={onClick}>
       {icon && <i className="material-icons icon">{icon}</i>}
       <span className="btn__text">{children}</span>
     </Tag>
