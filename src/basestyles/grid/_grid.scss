@@ -3,7 +3,7 @@
 .container {
   @include make-container();
   @include make-container-max-widths();
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .row {

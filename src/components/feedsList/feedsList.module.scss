@@ -1,0 +1,12 @@
+/* Enter */
+.enter {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.done {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.exit {
+  display: none;
+}

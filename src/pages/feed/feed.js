@@ -10,11 +10,11 @@ import {
   getBeDeleted,
   deleteFeedEditorRequest,
   clearFeed,
-  resetBeDeleted
+  resetBeDeleted,
 } from "modules/feedEditor";
 import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
 
-import { ArticleInfo } from "components/articleInfo";
+import { FeedInfo } from "components/feedInfo";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
 import { Redirect } from "react-router-dom";
@@ -30,7 +30,7 @@ const Component = ({
   resetBeDeleted,
   user,
   isLoggedIn,
-  match
+  match,
 }) => {
   const slug = match.params.slug;
 
@@ -57,7 +57,7 @@ const Component = ({
       <ShowErrors errors={error} />
 
       {!loading && !isEmptyObject(feed) && (
-        <ArticleInfo
+        <FeedInfo
           article={feed}
           slug={slug}
           articleDelete={deleteFeed}
@@ -69,18 +69,18 @@ const Component = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   feed: getFeed(state),
   loading: getFeedLoading(state),
   error: getFeedError(state),
   beDeleted: getBeDeleted(state),
   user: getUserAuth(state),
-  isLoggedIn: getIsLoggedIn(state)
+  isLoggedIn: getIsLoggedIn(state),
 });
 const mapDispatchToProps = {
   fetchFeedEditorRequest,
   deleteFeedEditorRequest,
   clearFeed,
-  resetBeDeleted
+  resetBeDeleted,
 };
-export const Article = connect(mapStateToProps, mapDispatchToProps)(Component);
+export const Feed = connect(mapStateToProps, mapDispatchToProps)(Component);

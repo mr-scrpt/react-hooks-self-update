@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { Logo } from "components/logo";
 import { MenuAdaptive } from "components/menuAdaptive";
 import { ButtonWithImg } from "components/buttons";
+import { ReactComponent as ReactLogoComponent } from "./churros.svg";
 import s from "./header.module.scss";
 
 export const Component = ({ user, isLoggedIn }) => {
@@ -20,6 +21,7 @@ export const Component = ({ user, isLoggedIn }) => {
           <NavLink to="/" exact className={s.logoLink}>
             <Logo />
           </NavLink>
+          <ReactLogoComponent width={50} height={50} />
         </div>
         <div className={s.menu}>
           <MenuAdaptive menu={menu} />

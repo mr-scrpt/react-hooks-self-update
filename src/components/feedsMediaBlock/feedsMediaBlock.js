@@ -12,7 +12,7 @@ export const FeedsMediaBlock = ({
   fetchLikeFeedRequest,
   limit,
   currentPage,
-  url
+  url,
 }) => {
   return (
     <section className="page">
@@ -32,7 +32,9 @@ export const FeedsMediaBlock = ({
               url={url}
             />
           </div>
-          <div className={s.tagsCol}>2{/*  <TagsPopular /> */}</div>
+          <div className={s.tagsCol}>
+            <TagsPopular />
+          </div>
         </div>
       </div>
     </section>

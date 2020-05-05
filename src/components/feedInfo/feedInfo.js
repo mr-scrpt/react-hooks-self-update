@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TagList } from "components/tags/tagsList";
+import { TagsList } from "components/tags";
 import { BarEditor } from "components/barEditor";
 import { BarSocialActivity } from "components/barSocialActivity";
 
-export const ArticleInfo = ({ article, articleDelete, user, isLoggedIn }) => {
+export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   const {
     title,
     slug,
@@ -14,7 +14,7 @@ export const ArticleInfo = ({ article, articleDelete, user, isLoggedIn }) => {
     author,
     favorited,
     favoritesCount,
-    createdAt
+    createdAt,
   } = article;
 
   const isAuthor = () => {
@@ -59,7 +59,7 @@ export const ArticleInfo = ({ article, articleDelete, user, isLoggedIn }) => {
               <p>{body}</p>
               <p>{description}</p>
             </div>
-            <TagList tagList={tagList} />
+            <TagsList tagsList={tagList} />
           </div>
         </div>
       </div>

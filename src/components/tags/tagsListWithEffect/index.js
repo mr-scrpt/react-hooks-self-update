@@ -1,0 +1,1 @@
+export { TagsListWithEffect } from "./tagsListWithEffect";

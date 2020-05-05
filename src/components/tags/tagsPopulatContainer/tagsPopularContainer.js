@@ -1,19 +1,4 @@
-import React from "react";
-import { TagsPopularContainer } from "components/tags";
-import s from "./tagsPopular.module.scss";
-
-export const TagsPopular = () => {
-  return (
-    <div className="">
-      <div className={s.inner}>
-        <div className={s.title}>Популярные теги теги теги</div>
-        <TagsPopularContainer />
-      </div>
-    </div>
-  );
-};
-
-/* import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
@@ -24,7 +9,7 @@ import {
   getIsLoading,
   getIsError,
 } from "modules/tagsPopular";
-import { TagsPopularLayout } from "components/tags/tagsPopularLayout";
+import { TagsListWithEffect } from "components/tags";
 
 const Copmponent = ({
   tagsList,
@@ -42,7 +27,7 @@ const Copmponent = ({
   };
 
   return (
-    <TagsPopularLayout
+    <TagsListWithEffect
       tagsList={tagsList}
       loading={loading}
       error={error}
@@ -61,7 +46,6 @@ const mapDispatchToProps = {
   setFeedsTagsActive,
 };
 
-export const TagsPopular = compose(
+export const TagsPopularContainer = compose(
   connect(mapStateToProps, mapDispatchToProps)
 )(Copmponent);
- */

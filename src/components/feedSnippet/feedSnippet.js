@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TagList } from "components/tags/tagsList";
+import { TagsSnippetContainer } from "components/tags";
 import { AddToFavorite } from "components/addToFavorite";
 import { Button } from "components/buttons";
 import { dateFormater } from "helpers/dateFormater";
@@ -60,12 +60,12 @@ export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
           </Link>
           <p className={s.description}>{description}</p>
           <div className={s.bottom}>
-            <ul className={s.list}>
-              <TagList tagList={tagList} />
-            </ul>
-            <Button size="l" tag="a" to={`/articles/${slug}`}>
-              Читать далее...
-            </Button>
+            <TagsSnippetContainer tagsList={tagList} mix={s.tagList} />
+            <div className={s.about}>
+              <Button size="l" tag="a" to={`/articles/${slug}`}>
+                Читать далее...
+              </Button>
+            </div>
           </div>
         </div>
       </div>

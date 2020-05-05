@@ -1,0 +1,1 @@
+export { TagsPopularLayout } from "./tagsPopularLayout";

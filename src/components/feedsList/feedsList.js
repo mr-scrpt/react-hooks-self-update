@@ -5,8 +5,7 @@ import { ShowErrors } from "components/showErrors";
 import { ShowLoading } from "components/showLoading";
 import { Pagination } from "components/pagination";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./feedsList.css";
-
+import s from "./feedsList.module.scss";
 export const FeedsList = ({
   feeds,
   isLoading,
@@ -26,7 +25,16 @@ export const FeedsList = ({
         {!isLoading &&
           !isError &&
           feeds.map((feed, idx) => (
-            <CSSTransition key={idx} timeout={50 * (idx + 1)} classNames="feed">
+            <CSSTransition
+              key={idx}
+              timeout={50 * (idx + 1)}
+              classNames={{
+                enter: s.enter,
+                enterActive: s.active,
+                enterDone: s.done,
+                exit: s.exit,
+              }}
+            >
               <FeedSnippet
                 item={feed}
                 key={idx}

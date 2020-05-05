@@ -1,14 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import s from "./tag.module.scss";
-export const Tag = ({ item, setActiveTag }) => {
+import cx from "classnames";
+
+export const Tag = ({ item, setActiveTag, mix }) => {
+  const tagClass = cx(
+    {
+      [s.tag]: true,
+    },
+    mix
+  );
   return (
     <Link
       to={`/feedTags/${item}`}
-      className={s.tag}
+      className={tagClass}
       onClick={() => setActiveTag(item)}
     >
-      <span className={s.inner}>{item}</span>
+      <div className={s.inner}>{item}</div>
     </Link>
   );
 };

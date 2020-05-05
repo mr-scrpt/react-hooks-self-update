@@ -1,10 +1,10 @@
 @import "../../basestyles/_variables/colors";
 @import "../../basestyles/gridOnly/gridOnly";
+@import "../../basestyles/_variables/placeholders";
 
 .inner {
   display: flex;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  @extend %boxshadow;
   margin-bottom: 15px;
   padding: 15px;
   overflow: hidden;
@@ -12,10 +12,10 @@
     flex-direction: column;
   }
 }
+
 .user {
-  width: 25%; //calc(33.3333% - 15px);
+  width: 25%;
   padding-right: 15px;
-  //background-color: yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,47 +84,9 @@
   margin-right: 0;
 }
 
-.list {
+.tagList {
   flex-grow: 1;
 }
-/* .user {
-  
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
+.tag {
+  padding: 2px;
 }
-.username {
-  text-align: center;
-}
-.author {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 14px;
-  color: #9e9e9e;
-}
-.likeButton {
-  padding: 15px 0;
-}
-
-.infoBlock {
-  height: 100%;
-}
-.info {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-size: 28px;
-}
-
-.description {
-  flex-grow: 1;
-  flex-wrap: 1;
-}
- */

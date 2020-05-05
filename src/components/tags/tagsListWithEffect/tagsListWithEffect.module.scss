@@ -1,0 +1,20 @@
+@import "../../../basestyles/_variables/placeholders";
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 2px 4px;
+}
+/* Enter */
+.enter {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.done {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.exit {
+  display: none;
+}

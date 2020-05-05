@@ -6,7 +6,7 @@ import { FeedsGlobal } from "pages/feedsGlobal";
 import { FeedsTags } from "pages/feedsTags";
 import { FeedsFollow } from "pages/feedsFollow";
 import { CreateArticle } from "pages/createArticle";
-import { Article } from "pages/article";
+import { Feed } from "pages/feed";
 import { Autentifications } from "pages/autentifications";
 import { Settings } from "pages/settings";
 import { UserProfile } from "pages/userProfile";
@@ -20,7 +20,7 @@ export default () => {
       <Route path="/feedTags/:tagName" component={FeedsTags} />
 
       <PrivatRoute path="/articles/new" component={CreateArticle} />
-      <Route path="/articles/:slug" component={Article} exact />
+      <Route path="/articles/:slug" component={Feed} exact />
       <Route path="/articles/:slug/edit" component={EditArticle} />
       <Route path="/login" component={Autentifications} />
       <Route path="/registration" component={Autentifications} />

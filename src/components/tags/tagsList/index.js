@@ -1,1 +1,1 @@
-export { TagList } from './tagList'
+export { TagsList } from "./tagsList";
