@@ -1,0 +1,5 @@
+.articlePage {
+  & .container {
+    background-color: red;
+  }
+}

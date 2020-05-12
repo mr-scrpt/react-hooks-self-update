@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { TagsList } from "components/tags";
 import { BarEditor } from "components/barEditor";
 import { BarSocialActivity } from "components/barSocialActivity";
-
+import s from "./feedinfo.module.css";
 export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   const {
     title,
@@ -23,7 +23,7 @@ export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   };
 
   return (
-    <div className="article-page">
+    <div className={s.articlePage}>
       <div className="banner">
         <div className="container">
           <h1 className="article">{title}</h1>
@@ -32,7 +32,9 @@ export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
               <img src={author.image} alt={author.username} />
             </Link>
             <div className="info">
-              <Link to={`/profile/${author.username}`}>{author.username}</Link>
+              <Link to={`/profile/${author.username}`} className={s.authorname}>
+                {author.username}
+              </Link>
               <span className="date">{createdAt}</span>
               {isAuthor() && (
                 <Link to={`/articles/${slug}/edit`}>Редактовровать</Link>
