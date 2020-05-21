@@ -8,27 +8,29 @@ $link__color-bg_hover: var(--pink);
 $transition-time: var(--transition-time);
 $menu_bg-adaptive: var(--gray-800);
 
-.nav {	
-	display: flex;	
+.nav {
+	height: 100%;
 	position: relative;
-	flex-wrap: wrap;
-	align-items: center;
-	background-color: transparent;	
-	font-size: 18px;	
-	@mixin md-block {		
-		flex-direction: column;
-		z-index: 1;
-		font-size: 28px;
-	}
-}
-.nav__wrap{
-	margin-left: auto;
-	margin-right: 0;
-}
-.nav__inner {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;	
+
+	background-color: transparent;
+	@mixin md-block {
+		flex-direction: column;
+		z-index: 1;
+	}
+}
+.nav__inner {
+	margin-left: auto;
+	margin-right: 0;
+	height: 100%;
+}
+.nav__wrap {
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+
 	@mixin md-block {
 		padding-right: 0;
 		flex-direction: column;
@@ -46,90 +48,84 @@ $menu_bg-adaptive: var(--gray-800);
 		}
 
 		&::-webkit-scrollbar-track {
-			background-color: var(--gray-600); 
+			background-color: var(--gray-600);
 		}
 
 		&::-webkit-scrollbar-thumb {
 			background-color: var(--pink);
-			outline: 1px solid var(--gray-900); 
+			outline: 1px solid var(--gray-900);
 		}
 	}
 	&_open {
 		left: 0;
-		
 	}
 }
 
-.nav__link {	
-	
+.nav__link {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	padding: 0 15px;
+	font-size: 18px;
 	color: $link__color;
 	background-color: $link__color-bg;
 	transition: $transition-time color, $transition-time background-color;
-	padding: 0 15px;
-	height: 70px;
-	@mixin md-block {
-		padding-top: 15px;
-		padding-bottom: 15px;		
-	} 
 	&:hover {
 		color: $link__color_hover;
 		background-color: $link__color-bg_hover;
 	}
+	@mixin md-block {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	&_close {
+		cursor: pointer;
+		display: none;
+		@mixin md-block {
+			display: flex;
+		}
+	}
+	&_open {
+		display: none;
+		@mixin md-block {
+			height: 100%;
+			padding-top: 0px;
+			padding-bottom: 0px;
+			display: flex;
+			cursor: pointer;
+			&_enter {
+				opacity: 0;
+				transition: $transition-time opacity;
+			}
+			&_enterActive {
+				opacity: 1;
+			}
+			&_enterDone {
+				opacity: 1;
+			}
+
+			&_exit {
+				opacity: 1;
+				transition: $transition-time opacity;
+			}
+			&_exitActive {
+				opacity: 0;
+			}
+			&_exitDone {
+				opacity: 0;
+			}
+		}
+	}
 }
 
 .nav__linkIcon {
-	padding-right: 2.5px;
+	margin-right: 5px;
 	@mixin md-block {
-		padding-right: 0;
+		margin-right: 0px;
 		font-size: 36px;
 	}
 }
 .nav__linkText {
-	padding-left: 2.5px;
 	@mixin md-block {
 		display: none;
-	}
-}
-
-.nav__open {
-	cursor: pointer;
-	display: none;
-	@mixin md-block {
-		display: block;
-		
-		&_enter {
-			opacity: 0;
-			transition: $transition-time opacity;
-		}
-		&_enterActive {
-			opacity: 1;
-		}
-		&_enterDone {
-			opacity: 1;
-		}
-
-		&_exit {
-			opacity: 1;
-			transition: $transition-time opacity;
-		}
-		&_exitActive {
-			opacity: 0;
-		}
-		&_exitDone {
-			opacity: 0;
-		}
-	}
-}
-
-.nav__close {
-	cursor: pointer;
-	display: none;
-	@mixin md-block {
-		display: block;
-		
-		margin-bottom: 15px
 	}
 }

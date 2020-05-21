@@ -20,10 +20,10 @@ export const Component = ({ user, isLoggedIn }) => {
       <div className={s.header__wrap}>
         <div className={s.header__inner}>
           <div className={s.header__logo}>
-            <NavLink to="/" exact className={s.header__logoLink}>
-              <Logo />
-            </NavLink>
+            <Logo />
           </div>
+
+
           <div className={s.header__menu}>
             <MenuAdaptive menu={menu} />
           </div>

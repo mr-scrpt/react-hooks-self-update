@@ -1,12 +1,19 @@
 @import "../../lib/lib.css";
-.logo {
-  display: flex;
+.logo {  
+  height: 100%;  
+}
+.logo__img {
+  min-width: 50px
+}
+.logo__link {
+  height: 100%;
+  display: inline-flex;
   align-items: center;
   color: var(--pink);
   transition: color var(--transition-time);
   margin: 0;
   padding: 0;
-  font-size: 32px;
+  font-size: 32px;  
   &:hover {
     color: color(var(--pink) shade(15%));
   }
@@ -17,12 +24,7 @@
     font-size: 32px;
   }
 }
-.icon {
-  padding-left: 15px;
-  padding-right: 7.5px;
-}
 .slogan {
   display: inline;
-  padding-right: 15px;
-  padding-left: 7.5px;
+  
 }

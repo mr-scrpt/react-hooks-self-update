@@ -8,11 +8,11 @@ import { menuOutsideClose } from '@hl/menuOutsideClose';
 
 export const MenuAdaptive = ({ menu }) => {
 	const menuRef = useRef(null);
-	const [isMenuOpen, setMenuOpen] = useState(true);
+	const [ isMenuOpen, setMenuOpen ] = useState(false);
 
-	const menuWrap = cx({
-		[s.nav__inner]: true,
-		[s.nav__inner_open]: isMenuOpen
+	const menuWrapper = cx({
+		[s.nav__wrap]: true,
+		[s.nav__wrap_open]: isMenuOpen
 	});
 
 	useEffect(
@@ -22,7 +22,7 @@ export const MenuAdaptive = ({ menu }) => {
 				closer();
 			};
 		},
-		[menuRef]
+		[ menuRef ]
 	);
 
 	const handleClick = () => {
@@ -31,28 +31,28 @@ export const MenuAdaptive = ({ menu }) => {
 
 	return (
 		<nav className={s.nav} ref={menuRef}>
-			<div className={s.nav__wrap}>
+			<div className={s.nav__inner}>
 				<CSSTransition
 					timeout={250}
 					mountOnEnter
 					unmountOnExit
 					in={!isMenuOpen}
 					classNames={{
-						enter: s.open_enter,
-						enterActive: s.open_enterActive,
-						enterDone: s.open_enterDone,
-						exit: s.open_exit,
-						exitActive: s.open_exitActive,
-						exitDone: s.open_exitDone
+						enter: s.nav__link_open_enter,
+						enterActive: s.nav__link_open_enterActive,
+						enterDone: s.nav__link_open_enterDone,
+						exit: s.nav__link_open_exit,
+						exitActive: s.nav__link_open_exitActive,
+						exitDone: s.nav__link_open_exitDone
 					}}
 				>
-					<span className={`${s.nav__link} ${s.nav__open}`} onClick={() => setMenuOpen(true)}>
-						<i className={`material-icons`}>menu</i>
+					<span className={`${s.nav__link} ${s.nav__link_open}`} onClick={() => setMenuOpen(true)}>
+						<i className={`material-icons ${s.nav__linkIcon}`}>menu</i>
 					</span>
 				</CSSTransition>
-				<div className={menuWrap}>
-					<span className={`${s.nav__link} ${s.nav__close}`} onClick={() => setMenuOpen(false)}>
-						<i className={`material-icons ${s.buttonIcon}`}>close</i>
+				<div className={menuWrapper}>
+					<span className={`${s.nav__link} ${s.nav__link_close}`} onClick={() => setMenuOpen(false)}>
+						<i className={`material-icons ${s.nav__linkIcon}`}>close</i>
 					</span>
 					{menu.map((item) => {
 						return (

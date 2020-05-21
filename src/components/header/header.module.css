@@ -6,16 +6,17 @@
    
   }
   &__inner {
-    @mixin row-flex;  
-    align-items: center;
+    @mixin row-flex; 
+    
     height: 70px;    
   }
   &__logo {
     @mixin col;
-    @mixin size 3;       
-    &Link {
-      text-decoration: none;
-    }
+    @mixin size 3;  
+    display: block;    
+    text-decoration: none;
+    height: 100%; 
+    
   }
   &__menu {
     @mixin col;
