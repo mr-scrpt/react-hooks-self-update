@@ -1,5 +1,10 @@
 @import "../../lib/grid/post-grid.css";
 @mixin reset;
+
 :root {
-  font-family: "Roboto", system-ui;
+	font-family: "Roboto", system-ui;
+}
+
+body {
+	
 }

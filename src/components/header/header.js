@@ -27,7 +27,7 @@ export const Component = ({ user, isLoggedIn }) => {
           <div className={s.header__menu}>
             <MenuAdaptive menu={menu} />
           </div>
-          <Button
+          {/* <Button
             size="xl"
             isActive={true}
             tag="a"
@@ -40,8 +40,8 @@ export const Component = ({ user, isLoggedIn }) => {
           </ButtonWithIcon>
           <ButtonWithImg size="xl" img={AvatarDefault} type="around">
             Кнопка с картинкой
-          </ButtonWithImg>
-          {isLoggedIn && (
+          </ButtonWithImg> */}
+          {/* {isLoggedIn && (
             <div className={s.header__user}>
               <ButtonWithImg
                 tag="a"
@@ -55,7 +55,7 @@ export const Component = ({ user, isLoggedIn }) => {
                 {user.username}
               </ButtonWithImg>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

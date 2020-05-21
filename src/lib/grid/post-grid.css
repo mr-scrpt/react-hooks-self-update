@@ -244,6 +244,9 @@ $fields_sm: 15px;
     max-width: 100%;
     height: auto;
   }
+  a{
+    text-decoration: none
+  }
 }
 @define-mixin debug $background, $outline {
   height: 100vh;

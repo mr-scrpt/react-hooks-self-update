@@ -4,7 +4,10 @@ export const menuList = (isLoggedIn) => {
   if (!isLoggedIn) {
     menu.push(
       { name: "Войти", to: "/login", icon: "arrow_forward" },
-      { name: "Реистрация", to: "/registration", icon: "check" }
+      { name: "Реистрация", to: "/registration", icon: "check" },
+      { name: "Домой", to: "/", icon: "home" },
+      { name: "Реистрация", to: "/registration", icon: "check" },
+      { name: "Войти", to: "/login", icon: "arrow_forward" }
     );
   } else if (isLoggedIn) {
     menu.push(
