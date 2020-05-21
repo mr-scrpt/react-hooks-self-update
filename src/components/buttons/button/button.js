@@ -1,33 +1,33 @@
 import React from "react";
-import cx from "classnames";
 import { Link } from "react-router-dom";
-
+import cx from "classnames";
+import s from "../button.module.css";
 export const Button = ({
   tag = "button",
   size,
   to,
   children,
-  mix,
+  disabled,
+  isActive,
   onClick = () => {},
 }) => {
   let Tag = tag !== "a" ? tag : Link;
 
-  const btnClass = cx(
-    {
-      btn: true,
-      btn_type_link: tag === "a" && true,
-      btn_size_xs: size === "xs",
-      btn_size_m: size === "m",
-      btn_size_l: size === "l",
-      btn_size_s: size === "s",
-      btn_size_xl: size === "xl",
-    },
-    mix
-  );
+  const btnClass = cx({
+    [s.btn]: true,
+    [s.btn_type_link]: tag === "a",
+    //[s.btn_type_pseudo]: type === "pseudo",
+    [s.btn_size_xs]: size === "xs",
+    [s.btn_size_m]: size === "m",
+    [s.btn_size_l]: size === "l",
+    [s.btn_size_s]: size === "s",
+    [s.btn_size_xl]: size === "xl",
+    [s.btn_active]: isActive,
+  });
 
   return (
-    <Tag className={btnClass} onClick={onClick} to={to}>
-      <span className="btn__text">{children}</span>
+    <Tag className={btnClass} onClick={onClick} to={to} disabled={disabled}>
+      <span className={s.btn__text}>{children}</span>
     </Tag>
   );
 };

@@ -40,4 +40,4 @@ var settings = {
   }
 };
 
-smartgrid("./src/shared/smartgrid", settings);
+smartgrid("./", settings);

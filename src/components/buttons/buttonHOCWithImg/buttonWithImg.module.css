@@ -1,0 +1,40 @@
+.btn__img {
+  min-width: 1em;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background-position: 50%;
+  background-repeat: no-repeat;
+
+  &_arround {
+    border-radius: 50%;
+  }
+}
+
+/*Размеры*/
+.btn.btn_size_xs .btn__img {
+  width: 16px;
+  padding: 1px;
+}
+
+.btn.btn_size_s .btn__img {
+  width: 20px;
+  padding: 1px;
+}
+
+.btn.btn_size_m .btn__img {
+  width: 28px;
+  padding: 2px;
+}
+.btn.btn_size_l .btn__img {
+  width: 30px;
+  padding: 4px;
+}
+.btn.btn_size_xl .btn__img {
+  width: 36px;
+  padding: 4px;
+}
+
+.btn .btn__img + .btn__text {
+  margin-left: 0;
+}

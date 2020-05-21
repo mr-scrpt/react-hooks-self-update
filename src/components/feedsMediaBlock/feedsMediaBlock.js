@@ -2,7 +2,7 @@ import React from "react";
 import { FeedsList } from "components/feedsList";
 import { TabsMainFeeds } from "components/tabs";
 import { TagsPopular } from "components/tags";
-import s from "./feedsMediaBlock.module.scss";
+/* import s from "./feedsMediaBlock.module.scss"; */
 import { Banner } from "components/banner";
 export const FeedsMediaBlock = ({
   feeds,
@@ -19,7 +19,7 @@ export const FeedsMediaBlock = ({
       <Banner />
       <div className="container page">
         <div className="row">
-          <div className={s.feedCol}>
+          <div className={""}>
             <TabsMainFeeds />
             <FeedsList
               feeds={feeds}
@@ -32,7 +32,7 @@ export const FeedsMediaBlock = ({
               url={url}
             />
           </div>
-          <div className={s.tagsCol}>
+          <div className={""}>
             <TagsPopular />
           </div>
         </div>

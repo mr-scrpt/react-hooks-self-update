@@ -7,42 +7,56 @@ import { menuList } from "helpers/menuList";
 import { NavLink } from "react-router-dom";
 import { Logo } from "components/logo";
 import { MenuAdaptive } from "components/menuAdaptive";
-import { ButtonWithImg } from "components/buttons";
-import s from "./header.module.scss";
+
+import { Button, ButtonWithIcon, ButtonWithImg } from "components/buttons";
+import AvatarDefault from "assets/img/avatar_default.jpg";
+import s from "./header.module.css";
 
 export const Component = ({ user, isLoggedIn }) => {
   const menu = menuList(isLoggedIn, user);
 
   return (
     <div className={s.header}>
-      <div className={`container ${s.inner}`}>
-        <div className={s.logo}>
-          <NavLink to="/" exact className={s.logoLink}>
-            <Logo />
-          </NavLink>
-        </div>
-        <div className={s.menu}>
-          <MenuAdaptive menu={menu} />
-        </div>
-        {isLoggedIn && (
-          <div className={s.user}>
-            <NavLink
-              to={`/profile/${user.username}`}
-              exact
-              className={s.logoLink}
-            >
+      <div className={s.header__wrap}>
+        <div className={s.header__inner}>
+          <div className={s.header__logo}>
+            <NavLink to="/" exact className={s.header__logoLink}>
+              <Logo />
+            </NavLink>
+          </div>
+          <div className={s.header__menu}>
+            <MenuAdaptive menu={menu} />
+          </div>
+          <Button
+            size="xl"
+            isActive={true}
+            tag="a"
+            to={`/profile/${user.username}`}
+          >
+            Кнока простая
+          </Button>
+          <ButtonWithIcon size="xl" icon="close" disabled={true}>
+            Кнока-иконка
+          </ButtonWithIcon>
+          <ButtonWithImg size="xl" img={AvatarDefault} type="around">
+            Кнопка с картинкой
+          </ButtonWithImg>
+          {isLoggedIn && (
+            <div className={s.header__user}>
               <ButtonWithImg
-                tag="div"
-                size="xl"
+                tag="a"
+                to={`/profile/${user.username}`}
+                size="l"
                 img={user.image}
                 alt={`Аватарка ${user.username}`}
                 imgDefault={"//dummyimage.com/100x100/abq/fre"}
+                type="around"
               >
                 {user.username}
               </ButtonWithImg>
-            </NavLink>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

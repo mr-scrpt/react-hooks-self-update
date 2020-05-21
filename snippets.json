@@ -1,0 +1,18 @@
+{
+  "html": {
+    "snippets": {
+      "ull": "ul>li[id=${1} class=${2}]*2{ Will work with html, pug, haml and slim }",
+      "oll": "<ol><li id=${1} class=${2}> Will only work in html </ol>",
+      "ran": "{ Wrap plain text in curly braces }"
+    }
+  },
+  "css": {
+    "snippets": {
+      "mix": "@mixin $1;$2",
+      "mir": "@mixin row-flex;$1",
+      "mic": "@mixin col;$1",
+      "mis": "@mixin size $1;$2",
+      "mib": "@mixin $1-block{$2};$3"
+    }
+  }
+}

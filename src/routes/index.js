@@ -1,22 +1,22 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { PrivatRoute } from "routes/privatRoute";
+/* import { PrivatRoute } from "routes/privatRoute"; */
 
 import { FeedsGlobal } from "pages/feedsGlobal";
-import { FeedsTags } from "pages/feedsTags";
+/* import { FeedsTags } from "pages/feedsTags";
 import { FeedsFollow } from "pages/feedsFollow";
 import { CreateArticle } from "pages/createArticle";
 import { Feed } from "pages/feed";
 import { Autentifications } from "pages/autentifications";
 import { Settings } from "pages/settings";
 import { UserProfile } from "pages/userProfile";
-import { EditArticle } from "pages/editArticle";
+import { EditArticle } from "pages/editArticle"; */
 
 export default () => {
   return (
     <Switch>
       <Route path="/" component={FeedsGlobal} exact />
-      <PrivatRoute path="/feedFollow" component={FeedsFollow} />
+      {/*  <PrivatRoute path="/feedFollow" component={FeedsFollow} />
       <Route path="/feedTags/:tagName" component={FeedsTags} />
 
       <PrivatRoute path="/articles/new" component={CreateArticle} />
@@ -29,7 +29,7 @@ export default () => {
 
       <Route path="/registration" component={Autentifications} />
 
-      <Route render={() => <div>404</div>} />
+      <Route render={() => <div>404</div>} /> */}
     </Switch>
   );
 };

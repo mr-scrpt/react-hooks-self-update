@@ -1,0 +1,17 @@
+:root {
+  --font-size: 55px;
+}
+.article {
+  font-size: var(--font-size);
+  @media (--size-s) {
+    color: red;
+  }
+}
+.article-meta {
+}
+
+body {
+  :--heading {
+    color: blue;
+  }
+}

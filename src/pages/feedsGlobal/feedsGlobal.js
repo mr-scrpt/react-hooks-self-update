@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
+import { General } from "layouts/general";
 import {
   fetchFeedsGlobalRequest,
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
   getFeedsError,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 } from "modules/feedsGlobal";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsMediaBlock } from "components/feedsMediaBlock";
+/* import { FeedsMediaBlock } from "components/feedsMediaBlock"; */
 const Component = ({
   feeds,
   feedsLoading,
@@ -21,7 +21,7 @@ const Component = ({
   fetchFeedsGlobalRequest,
   fetchLikeFeedRequest,
   match: { url },
-  location: { search }
+  location: { search },
 }) => {
   const { currentPage, offset } = getPaginators(search);
 
@@ -31,28 +31,30 @@ const Component = ({
   }, [fetchFeedsGlobalRequest, currentPage]);
 
   return (
-    <FeedsMediaBlock
-      feeds={feeds}
-      feedsLoading={feedsLoading}
-      feedsError={feedsError}
-      feedsCount={feedsCount}
-      fetchLikeFeedRequest={fetchLikeFeedRequest}
-      limit={limit}
-      currentPage={currentPage}
-      url={url}
-    />
+    <General>
+      {/*  <FeedsMediaBlock
+        feeds={feeds}
+        feedsLoading={feedsLoading}
+        feedsError={feedsError}
+        feedsCount={feedsCount}
+        fetchLikeFeedRequest={fetchLikeFeedRequest}
+        limit={limit}
+        currentPage={currentPage}
+        url={url}
+      /> */}
+    </General>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
-  feedsCount: getFeedsCount(state)
+  feedsCount: getFeedsCount(state),
 });
 const mapDispatchToProps = {
   fetchFeedsGlobalRequest,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 };
 
 export const FeedsGlobal = connect(

@@ -1,22 +1,25 @@
-import React from "react";
-import { Provider as ReduxProvider } from "react-redux";
+import React from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 
-import Routes from "routes/index.js";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Header } from "components/header";
+import Routes from 'routes/index.js';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { UserAuthChecker } from "components/userAuthChecker";
-import { createAppStore } from "reduxStore";
-import "./app.scss";
+import { UserAuthChecker } from 'components/userAuthChecker';
+import { createAppStore } from 'reduxStore';
+
+import { Debug } from '@cm/debug';
+import s from './app.module.css';
 const store = createAppStore();
 export const App = () => {
-  return (
-    <ReduxProvider store={store}>
-      <UserAuthChecker />
-      <Router>
-        <Header />
-        <Routes />
-      </Router>
-    </ReduxProvider>
-  );
+	return (
+		<div className={s.app}>
+			<Debug show={false} />
+			<ReduxProvider store={store}>
+				<UserAuthChecker />
+				<Router>
+					<Routes />
+				</Router>
+			</ReduxProvider>
+		</div>
+	);
 };

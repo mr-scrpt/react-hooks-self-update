@@ -1,0 +1,21 @@
+@import "../../lib/lib.css";
+.header {
+  background-color: var(--gray-900);
+  &__wrap {
+    @mixin wrapper;
+  }
+  &__inner {
+    @mixin row-flex;
+  }
+  &__logo {
+    @mixin col;
+    @mixin size 3;
+    &Link {
+      text-decoration: none;
+    }
+  }
+  &__menu {
+    @mixin col;
+    @mixin size 9;
+  }
+}

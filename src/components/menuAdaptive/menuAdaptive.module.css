@@ -1,0 +1,120 @@
+/* @import "../../lib/lib.css"; */
+/* @import "~@lb/lib.css"; */
+@import "~@lb/lib.css";
+$link__color: var(--pink);
+$link__color_hover: var(--white);
+$link__color-bg: transparent;
+$link__color-bg_hover: var(--pink);
+$transition-time: var(--transition-time);
+$menu_bg-adaptive: var(--gray-800);
+
+.nav {
+	display: flex;
+	position: relative;
+	flex-wrap: wrap;
+	align-items: center;
+	background-color: transparent;
+	font-size: 18px;
+	@mixin md-block {
+		flex-direction: column;
+		z-index: 1;
+		font-size: 28px;
+	}
+}
+
+.nav__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	@mixin md-block {
+		padding-right: 0;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		position: fixed;
+		left: -65px;
+		top: 0;
+		height: 100vh;
+		overflow-x: hidden;
+		background-color: $menu_bg-adaptive;
+		box-shadow: 8px 0 8px -8px blue; /* $gray-900 */
+		transition: $transition-time left;
+		&::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: red; /* $gray-600 */
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: yellow; /* $pink */
+			outline: 1px solid green; /* $gray-900 */
+		}
+	}
+	&_open {
+		left: 0;
+	}
+}
+
+.nav__link {
+	display: flex;
+	justify-content: center;
+	color: $link__color;
+	background-color: $link__color-bg;
+	transition: $transition-time color, $transition-time background-color;
+	padding: 10px 15px;
+	&:hover {
+		color: $link__color_hover;
+		background-color: $link__color-bg_hover;
+	}
+}
+
+.nav__linkIcon {
+	padding-right: 2.5px;
+	@mixin md-block {
+		padding-right: 0;
+	}
+}
+.nav__linkText {
+	padding-left: 2.5px;
+	@mixin md-block {
+		display: none;
+	}
+}
+
+.nav__open {
+	cursor: pointer;
+	display: none;
+	@mixin md-block {
+		display: block;
+		&_enter {
+			opacity: 0;
+			transition: $transition-time opacity;
+		}
+		&_enterActive {
+			opacity: 1;
+		}
+		&_enterDone {
+			opacity: 1;
+		}
+
+		&_exit {
+			opacity: 1;
+			transition: $transition-time opacity;
+		}
+		&_exitActive {
+			opacity: 0;
+		}
+		&_exitDone {
+			opacity: 0;
+		}
+	}
+}
+
+.nav__close {
+	cursor: pointer;
+	display: none;
+	@mixin md-block {
+		display: block;
+	}
+}

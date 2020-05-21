@@ -4,6 +4,7 @@ import { TagsList } from "components/tags";
 import { BarEditor } from "components/barEditor";
 import { BarSocialActivity } from "components/barSocialActivity";
 import s from "./feedinfo.module.css";
+import "./feedInfo.css";
 export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   const {
     title,
@@ -23,7 +24,7 @@ export const FeedInfo = ({ article, articleDelete, user, isLoggedIn }) => {
   };
 
   return (
-    <div className={s.articlePage}>
+    <div className={"articlePage"}>
       <div className="banner">
         <div className="container">
           <h1 className="article">{title}</h1>
