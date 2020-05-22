@@ -8,11 +8,11 @@ import {
   getFeedsLoading,
   getFeedsError,
   fetchLikeFeedRequest,
-} from "modules/feedsGlobal";
+} from "@md/feedsGlobal";
 
-import { getPaginators } from "helpers/getPaginators";
+import { getPaginators } from "@hl/getPaginators";
 import { limit } from "constant";
-/* import { FeedsMediaBlock } from "components/feedsMediaBlock"; */
+import { FeedsMediaBlock } from "@cm/feedsMediaBlock";
 const Component = ({
   feeds,
   feedsLoading,
@@ -32,7 +32,7 @@ const Component = ({
 
   return (
     <General>
-      {/*  <FeedsMediaBlock
+      <FeedsMediaBlock
         feeds={feeds}
         feedsLoading={feedsLoading}
         feedsError={feedsError}
@@ -41,7 +41,7 @@ const Component = ({
         limit={limit}
         currentPage={currentPage}
         url={url}
-      /> */}
+      />
     </General>
   );
 };

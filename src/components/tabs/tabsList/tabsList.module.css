@@ -1,0 +1,11 @@
+@import "~@lb/lib.css";
+
+.tabs {
+  width: 100%;
+  &__inner {
+    display: flex;
+    margin-bottom: 15px;
+
+    @extend boxshadow;
+  }
+}

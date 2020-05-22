@@ -1,0 +1,45 @@
+@import "~@lb/lib.css";
+
+.footer {
+  width: 100%;
+  background-color: var(--cyan);
+  &__wrapper {
+    @mixin wrapper;
+  }
+  &__inner {
+    @mixin row-flex;
+    padding: 20px 0;
+  }
+  &__info {
+    @mixin col;
+    @mixin size 8;
+  }
+  &__slogan {
+    color: var(--gray-100);
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  &__copyright {
+    display: flex;
+    align-items: center;
+    color: var(--gray-100);
+  }
+  &__icon {
+    font-size: 68px;
+    opacity: 0.2;
+  }
+  &__text {
+    font-size: 16px;
+    padding-left: 10px;
+  }
+  &__logo {
+    @mixin col;
+    @mixin size 4;
+    filter: grayscale(100%);
+    transition: var(--transition-time) filter;
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+}

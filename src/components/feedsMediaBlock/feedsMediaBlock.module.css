@@ -1,0 +1,20 @@
+/* @import "~@lb/lib.css"; */
+/* .media {
+  width: 100%;
+  &_wrapper {
+    @mixin wrapper;
+  }
+  &__inner {
+    @mixin row-flex;
+    padding: 15px 0;
+  }
+  &__serp {
+    @mixin col;
+    @mixin size 9;
+  }
+  &__bar {
+    @mixin col;
+    @mixin size 3;
+  }
+}
+ */
