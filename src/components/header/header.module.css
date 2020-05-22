@@ -21,8 +21,11 @@
 		height: 100%;
 		display: flex;
 		@mixin xs-block {
-			@mixin size 12;
-			justify-content: center;
+			@mixin size 6;
+			&_auth {
+				justify-content: center;
+				@mixin size 12;
+			}
 		}
 	}
 	&__media {
@@ -31,9 +34,12 @@
 		display: flex;
 		flex-wrap: wrap;
 		@mixin xs-block {
-			@mixin size 12;
+			@mixin size 6;
 			justify-content: space-between;
-			padding: 15px 0;
+			&_auth {
+				padding: 15px 0;
+				@mixin size 12;
+			}
 		}
 	}
 	&__menu {
@@ -42,7 +48,10 @@
 		@mixin md-block {
 			order: 1;
 			min-width: 95px;
-			margin: 0;
+
+			&_auth {
+				margin: 0;
+			}
 		}
 	}
 	&__user {

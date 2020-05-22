@@ -10,21 +10,38 @@ import { MenuAdaptive } from 'components/menuAdaptive';
 
 import { Button, ButtonWithIcon, ButtonWithImg } from 'components/buttons';
 import AvatarDefault from 'assets/img/avatar_default.jpg';
+import cx from 'classnames';
+
 import s from './header.module.css';
 
 export const Component = ({ user, isLoggedIn }) => {
 	const menu = menuList(isLoggedIn, user);
 
+	const menuClasses = cx({
+		[s.header__menu]: true,
+		[s.header__menu_auth]: isLoggedIn
+	});
+
+	const logoClasses = cx({
+		[s.header__logo]: true,
+		[s.header__logo_auth]: isLoggedIn
+	});
+
+	const mediaClasses = cx({
+		[s.header__media]: true,
+		[s.header__media_auth]: isLoggedIn
+	});
+
 	return (
 		<div className={s.header}>
 			<div className={s.header__wrap}>
 				<div className={s.header__inner}>
-					<div className={s.header__logo}>
+					<div className={logoClasses}>
 						<Logo />
 					</div>
 
-					<div className={s.header__media}>
-						<div className={s.header__menu}>
+					<div className={mediaClasses}>
+						<div className={menuClasses}>
 							<MenuAdaptive menu={menu} />
 						</div>
 

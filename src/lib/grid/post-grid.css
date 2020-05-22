@@ -244,8 +244,8 @@ $fields_sm: 15px;
     max-width: 100%;
     height: auto;
   }
-  a{
-    text-decoration: none
+  a {
+    text-decoration: none;
   }
 }
 @define-mixin debug $background, $outline {
@@ -271,11 +271,3 @@ $fields_sm: 15px;
     }
   }
 }
-/* @define-mixin icon $name {
-  padding-left: 16px;
-  &::after {
-    content: "";
-    background: url(/icons/$(name).png);
-  }
-}
- */
