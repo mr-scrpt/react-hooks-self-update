@@ -1,26 +1,62 @@
 @import "~@lb/lib.css";
 .header {
-  background-color: var(--gray-900);  
-  &__wrap {
-    @mixin wrapper;  
-   
-  }
-  &__inner {
-    @mixin row-flex; 
-    
-    height: 70px;    
-  }
-  &__logo {
-    @mixin col;
-    @mixin size 3;  
-    display: block;    
-    text-decoration: none;
-    height: 100%; 
-    
-  }
-  &__menu {
-    @mixin col;
-    @mixin size 9;  
-     
-  }
+	background-color: var(--gray-900);
+	&__wrap {
+		@mixin wrapper;
+	}
+	&__inner {
+		@mixin row-flex;
+
+		/* 	height: 70px; */
+		@mixin xs-block {
+			padding: 15px 0;
+		}
+	}
+	&__logo {
+		@mixin col;
+		@mixin size 3;
+		align-self: center;
+		display: block;
+		text-decoration: none;
+		height: 100%;
+		display: flex;
+		@mixin xs-block {
+			@mixin size 12;
+			justify-content: center;
+		}
+	}
+	&__media {
+		@mixin col;
+		@mixin size 9;
+		display: flex;
+		flex-wrap: wrap;
+		@mixin xs-block {
+			@mixin size 12;
+			justify-content: space-between;
+			padding: 15px 0;
+		}
+	}
+	&__menu {
+		margin-left: auto;
+		margin-right: 0;
+		@mixin md-block {
+			order: 1;
+			min-width: 95px;
+			margin: 0;
+		}
+	}
+	&__user {
+		display: flex;
+		align-items: center;
+		width: 150px;
+		padding-left: 15px;
+		@mixin md-block {
+			order: 0;
+			margin-left: auto;
+			margin-right: 0;
+		}
+		@mixin xs-block {
+			margin: 0;
+		}
+	}
 }
