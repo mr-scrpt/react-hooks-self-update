@@ -1,10 +1,9 @@
 import React from "react";
-import { FeedsList } from "components/feedsList";
-import { TabsMainFeeds } from "components/tabs";
-import { TagsPopular } from "components/tags";
-import s from "./feedsMediaBlock.module.css";
+import { FeedsSerp } from "@cm/feedsSerp";
+import { TagsPopular } from "@cm/tags";
+import s from "./feedsMedia.module.css";
 
-export const FeedsMediaBlock = ({
+export const FeedsMedia = ({
   feeds,
   feedsLoading,
   feedsError,
@@ -18,8 +17,7 @@ export const FeedsMediaBlock = ({
     <section className={`${s.media} ${s.media_wrapper}`}>
       <div className={s.media__inner}>
         <div className={s.media__serp}>
-          <TabsMainFeeds />
-          <FeedsList
+          <FeedsSerp
             feeds={feeds}
             isLoading={feedsLoading}
             isError={feedsError}

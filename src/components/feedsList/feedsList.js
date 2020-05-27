@@ -1,27 +1,25 @@
 import React from "react";
-import { FeedSnippet } from "components/feedSnippet";
-import { FeedsEmpty } from "components/feedsEmpty";
-import { ShowErrors } from "components/showErrors";
-import { ShowLoading } from "components/showLoading";
-import { Pagination } from "components/pagination";
+
+import { FeedSnippet } from "@cm/feedSnippet";
+import { FeedsEmpty } from "@cm/feedsEmpty";
+import { ShowErrors } from "@cm/showErrors";
+import { ShowLoading } from "@cm/showLoading";
+
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import s from "./feedsList.module.scss";
+
+import s from "./feedsList.module.css";
 export const FeedsList = ({
   feeds,
   isLoading,
   isError,
   dispatchToLikeToggle,
-  count,
-  limit,
-  currentPage,
-  url,
 }) => {
   return (
-    <div className="feeds-list">
+    <div className={s.feedList}>
       <FeedsEmpty length={feeds.length} />
       <ShowLoading loading={isLoading} />
       <ShowErrors errors={isError} />
-      <TransitionGroup className="list-wrapper" component="div">
+      <TransitionGroup className={s.feedSerp__inner} component="div">
         {!isLoading &&
           !isError &&
           feeds.map((feed, idx) => (
@@ -29,10 +27,10 @@ export const FeedsList = ({
               key={idx}
               timeout={50 * (idx + 1)}
               classNames={{
-                enter: s.enter,
-                enterActive: s.active,
-                enterDone: s.done,
-                exit: s.exit,
+                enter: s.feedList__enter,
+                enterActive: s.feedList__active,
+                enterDone: s.feedList__done,
+                exit: s.feedList__exit,
               }}
             >
               <FeedSnippet
@@ -43,12 +41,6 @@ export const FeedsList = ({
             </CSSTransition>
           ))}
       </TransitionGroup>
-      <Pagination
-        total={count}
-        limit={limit}
-        url={url}
-        currentPage={currentPage}
-      />
     </div>
   );
 };

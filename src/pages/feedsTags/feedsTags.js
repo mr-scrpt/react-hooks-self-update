@@ -7,14 +7,14 @@ import {
   getFeedsCount,
   getFeedsLoading,
   getFeedsError,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 } from "modules/feedsTags";
 
 import { setFeedsTagsActive } from "modules/tagsPopular";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsMediaBlock } from "components/feedsMediaBlock";
+import { FeedsMediaBlock } from "@cm/feedsMedia";
 
 export const Component = ({
   feeds,
@@ -27,8 +27,8 @@ export const Component = ({
   location: { search },
   match: {
     url,
-    params: { tagName }
-  }
+    params: { tagName },
+  },
 }) => {
   useEffect(() => {
     setFeedsTagsActive(tagName);
@@ -53,17 +53,17 @@ export const Component = ({
     />
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
-  feedsCount: getFeedsCount(state)
+  feedsCount: getFeedsCount(state),
 });
 
 const mapDispatchToProps = {
   fetchFeedsTagsRequest,
   fetchLikeFeedRequest,
-  setFeedsTagsActive
+  setFeedsTagsActive,
 };
 
 export const FeedsTags = connect(

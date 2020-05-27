@@ -8,14 +8,14 @@ import {
   getUserFeedsFavoritedIsError,
   getUserFeedsFavoritedCount,
   resetUserFeedsFavoritedStore,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 } from "modules/userProfile";
 
 import { limit } from "constant";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { getPaginators } from "helpers/getPaginators";
 
-import { FeedsList } from "components/feedsList";
+import { FeedsList } from "@cm/feedsSerp";
 
 import { Pagination } from "components/pagination";
 
@@ -29,7 +29,7 @@ const Component = ({
   feedsCount,
   fetchLikeFeedRequest,
   match: { url },
-  location: { search }
+  location: { search },
 }) => {
   const { currentPage, offset } = getPaginators(search);
 
@@ -39,7 +39,7 @@ const Component = ({
     fetchUserFeedsFavoritedRequest({
       author: user.username,
       limit,
-      offset
+      offset,
     });
     return () => {
       resetUserFeedsFavoritedStore();
@@ -60,18 +60,18 @@ const Component = ({
     </div>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: getUser(state),
   feeds: getUserFeedsFavorited(state),
   feedsCount: getUserFeedsFavoritedCount(state),
   feedsLoading: getUserFeedsFavoritedIsLoading(state),
-  feedsError: getUserFeedsFavoritedIsError(state)
+  feedsError: getUserFeedsFavoritedIsError(state),
 });
 
 const mapDispatchToProps = {
   fetchUserFeedsFavoritedRequest,
   resetUserFeedsFavoritedStore,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 };
 
 export const FeedsUserFavorited = connect(

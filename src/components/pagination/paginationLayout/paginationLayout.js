@@ -4,8 +4,6 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import s from "./paginationLayout.module.scss";
 export const PaginationLayout = ({ pages, url, currentPage }) => {
-  console.log("pages", pages);
-
   return (
     <TransitionGroup className={s.pagination} component="ul">
       {pages &&

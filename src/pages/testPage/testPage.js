@@ -6,7 +6,7 @@ import { fetchFeedsGlobalRequest } from "modules/feedsGlobal";
 import { FeedToggler } from "components/feedToggler";
 import { ShowLoading } from "components/showLoading";
 import { ShowErrors } from "components/showErrors";
-import { Feeds } from "components/feedsList";
+import { Feeds } from "@cm/feedsSerp";
 import { Pagination } from "components/pagination";
 import { PopularTags } from "components/tags/tagsPopular";
 import { getPaginators } from "helpers/getPaginators";
@@ -16,7 +16,7 @@ const Page = ({
   error,
   fetchFeedsGlobalRequest,
   match: { url },
-  location: { search }
+  location: { search },
 }) => {
   const { currentPage, offset } = getPaginators(search);
   const [feedsList, setFeedsList] = useState(null);
@@ -70,7 +70,7 @@ const Page = ({
 
 const mapStateToProps = ({ feedsStore }) => feedsStore;
 const mapDispatchToProps = {
-  fetchFeedsGlobalRequest
+  fetchFeedsGlobalRequest,
 };
 
 export const TestPage = compose(connect(mapStateToProps, mapDispatchToProps))(

@@ -8,14 +8,14 @@ import {
   getFeedsError,
   getFeedsCount,
   resetUserFeedsStore,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 } from "modules/userProfile";
 
 import { limit } from "constant";
 import { isEmptyObject } from "helpers/isEmptyObject";
 import { getPaginators } from "helpers/getPaginators";
 
-import { FeedsList } from "components/feedsList";
+import { FeedsList } from "@cm/feedsSerp";
 
 const Component = ({
   user,
@@ -27,7 +27,7 @@ const Component = ({
   feedsCount,
   fetchLikeFeedRequest,
   match: { url },
-  location: { search }
+  location: { search },
 }) => {
   const { currentPage, offset } = getPaginators(search);
 
@@ -37,7 +37,7 @@ const Component = ({
     fetchUserFeedsRequest({
       author: user.username,
       limit,
-      offset
+      offset,
     });
     return () => {
       resetUserFeedsStore();
@@ -58,18 +58,18 @@ const Component = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: getUser(state),
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
-  feedsCount: getFeedsCount(state)
+  feedsCount: getFeedsCount(state),
 });
 
 const mapDispatchToProps = {
   fetchUserFeedsRequest,
   resetUserFeedsStore,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 };
 
 export const FeedsUser = connect(

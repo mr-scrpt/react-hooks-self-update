@@ -7,12 +7,12 @@ import {
   getFeedsCount,
   getFeedsLoading,
   getFeedsError,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 } from "modules/feedsFollow";
 
 import { getPaginators } from "helpers/getPaginators";
 import { limit } from "constant";
-import { FeedsMediaBlock } from "components/feedsMediaBlock";
+import { FeedsMediaBlock } from "@cm/feedsMedia";
 
 const Component = ({
   feeds,
@@ -22,7 +22,7 @@ const Component = ({
   fetchFeedsFollowRequest,
   fetchLikeFeedRequest,
   location: { search },
-  match: { url }
+  match: { url },
 }) => {
   useEffect(() => {
     if (!fetchFeedsFollowRequest) return;
@@ -44,15 +44,15 @@ const Component = ({
     />
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
-  feedsCount: getFeedsCount(state)
+  feedsCount: getFeedsCount(state),
 });
 const mapDispatchToProps = {
   fetchFeedsFollowRequest,
-  fetchLikeFeedRequest
+  fetchLikeFeedRequest,
 };
 
 export const FeedsFollow = connect(

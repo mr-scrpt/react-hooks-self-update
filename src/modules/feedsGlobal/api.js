@@ -4,13 +4,13 @@ import { request } from "helpers/request";
 export const getFeeds = async ({ limit, offset }) => {
   const stingifyParams = stringify({
     limit,
-    offset
+    offset,
   });
   try {
     return await request(
       {
         url: `/articles?${stingifyParams}`,
-        method: "GET"
+        method: "GET",
       },
       true
     );

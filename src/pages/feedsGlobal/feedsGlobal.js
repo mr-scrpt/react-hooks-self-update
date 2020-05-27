@@ -12,7 +12,7 @@ import {
 
 import { getPaginators } from "@hl/getPaginators";
 import { limit } from "constant";
-import { FeedsMediaBlock } from "@cm/feedsMediaBlock";
+import { FeedsMedia } from "@cm/feedsMedia";
 const Component = ({
   feeds,
   feedsLoading,
@@ -32,7 +32,7 @@ const Component = ({
 
   return (
     <General>
-      <FeedsMediaBlock
+      <FeedsMedia
         feeds={feeds}
         feedsLoading={feedsLoading}
         feedsError={feedsError}

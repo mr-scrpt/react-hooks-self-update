@@ -1,0 +1,1 @@
+export { FeedsMedia } from "./feedsMedia";

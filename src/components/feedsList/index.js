@@ -1,1 +1,1 @@
-export { FeedsList } from "./feedsList";
+export * from "./feedsList";

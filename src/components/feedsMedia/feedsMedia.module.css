@@ -1,5 +1,5 @@
-/* @import "~@lb/lib.css"; */
-/* .media {
+@import "~@lb/lib.css";
+.media {
   width: 100%;
   &_wrapper {
     @mixin wrapper;
@@ -17,4 +17,3 @@
     @mixin size 3;
   }
 }
- */

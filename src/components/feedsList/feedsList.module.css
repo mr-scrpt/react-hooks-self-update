@@ -1,0 +1,19 @@
+/* Enter */
+.feedList {
+  &__enter {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  &__done {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  &__exit {
+    display: none;
+  }
+
+  &__feedlist {
+    display: flex;
+    flex-direction: column;
+  }
+}

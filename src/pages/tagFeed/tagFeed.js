@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 import { fetchFeedsTagsRequest } from "modules/feedsTags";
-import { Feeds } from "components/feedsList";
+import { Feeds } from "@cm/feedsSerp";
 
 import { Pagination } from "components/pagination";
 import { getPaginators } from "helpers/getPaginators";
@@ -21,8 +21,8 @@ export const Component = ({
   location: { search },
   match: {
     url,
-    params: { tagName }
-  }
+    params: { tagName },
+  },
 }) => {
   const { currentPage, offset } = getPaginators(search);
 
@@ -68,7 +68,7 @@ export const Component = ({
 const mapStateToProps = ({ feedsTagsStore }) => feedsTagsStore;
 
 const mapDispatchToProps = {
-  fetchFeedsTagsRequest
+  fetchFeedsTagsRequest,
 };
 
 /* export const TagFeed = compose(

@@ -5,7 +5,6 @@ import cx from "classnames";
 
 export const PaginationItem = ({ page, currentPage, url, mix }) => {
   const isActivePage = page === currentPage;
-  console.log(mix);
 
   /*   const pageClasses = cx({
     [s.item]: true,
