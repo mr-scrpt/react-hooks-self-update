@@ -10,7 +10,7 @@ export const General = ({ children }) => {
     <div className={s.general}>
       <Header />
       <Banner />
-      {/* <div className={s.general__content}>{children}</div> */}
+
       {children}
       <Footer mixin={s.general__footer} />
     </div>

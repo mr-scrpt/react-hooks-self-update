@@ -16,9 +16,19 @@ export const getFeeds = async ({ limit, offset }) => {
     );
   } catch (e) {
     return Promise.reject("Ошибка получения фидов");
-    /* throw {
-      status: 400,
-      message: "Ошибка получения данных"
-    }; */
+  }
+};
+
+export const getFeedsCount = async () => {
+  try {
+    return await request(
+      {
+        url: `/articles`,
+        method: "GET",
+      },
+      true
+    );
+  } catch (e) {
+    return Promise.reject("Ошибка получения количества фидов");
   }
 };

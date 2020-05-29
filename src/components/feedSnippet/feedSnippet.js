@@ -5,8 +5,8 @@ import { AddToFavorite } from "components/addToFavorite";
 import { Button } from "components/buttons";
 import { dateFormater } from "helpers/dateFormater";
 
-import s from "./feedSnippet.module.scss";
-
+/* import s from "./feedSnippet.module.scss"; */
+import s from "./feedSnippet.module.css";
 export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
   const {
     title,
@@ -21,29 +21,29 @@ export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
 
   return (
     <div className={s.feed}>
-      <div className={s.inner}>
-        <div className={`${s.user}`}>
+      <div className={s.feed__inner}>
+        <div className={`${s.feed__user}`}>
           <Link to={`/profile/${username}`}>
             <img
               src={`${
                 image ? image : "https://dummyimage.com/100x100/abq/fre"
               }`}
               alt={`Аватар ${username}`}
-              className={`img ${s.avatar}`}
+              className={`img ${s.feed__avatar}`}
             />
           </Link>
-          <div className={s.userblock}>
+          <div className={s.feed__userblock}>
             <Link
               className="author"
               to={`/profile/${username}`}
-              className={s.author}
+              className={s.feed__author}
             >
               {username}
             </Link>
 
-            <div className={s.date}>{dateFormater(createdAt)}</div>
+            <div className={s.feed__date}>{dateFormater(createdAt)}</div>
 
-            <div className={s.likeButton}>
+            <div className={s.feed__likeButton}>
               <AddToFavorite
                 favorited={favorited}
                 favoritesCount={favoritesCount}
@@ -54,14 +54,14 @@ export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
           </div>
         </div>
 
-        <div className={s.info}>
-          <Link className={s.titleBox} to={`/articles/${slug}`}>
-            <span className={s.title}>{title}</span>
+        <div className={s.feed__info}>
+          <Link className={s.feed__titleBox} to={`/articles/${slug}`}>
+            <span className={s.feed__title}>{title}</span>
           </Link>
-          <p className={s.description}>{description}</p>
-          <div className={s.bottom}>
-            <TagsSnippetContainer tagsList={tagList} mix={s.tagList} />
-            <div className={s.about}>
+          <p className={s.feed__description}>{description}</p>
+          <div className={s.feed__bottom}>
+            <TagsSnippetContainer tagsList={tagList} mix={s.feed__tagList} />
+            <div className={s.feed__about}>
               <Button size="l" tag="a" to={`/articles/${slug}`}>
                 Читать далее...
               </Button>

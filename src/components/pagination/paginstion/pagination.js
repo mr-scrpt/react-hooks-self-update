@@ -1,10 +1,10 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 import { range } from "helpers/range";
 import { PaginationLayout } from "components/pagination";
 
 export const Pagination = ({ total, limit, url, currentPage }) => {
-  const pageLast = Math.ceil(total / limit); //50
-
+  const pageLast = Math.ceil(total / limit);
   const pagesShowLimit = 10; /* TODO передавать праметрами */
   const pagesMoveLimit = 6; /* TODO передавать праметрами */
 
@@ -26,13 +26,14 @@ export const Pagination = ({ total, limit, url, currentPage }) => {
     }
     if (currentPage <= pageLast - pagesMoveLimit) {
       start = currentPage - pagesMoveLimit + 1;
-
       offset = pagesShowLimit;
     }
   }
-  const pagesRange = range(start, offset);
 
-  if (!total) return null;
+  const pagesRange = range(start, offset);
+  if (!total) {
+    return <Skeleton height={50} />;
+  }
   return (
     <PaginationLayout pages={pagesRange} currentPage={currentPage} url={url} />
   );

@@ -1,7 +1,6 @@
 @import "~@lb/lib.css";
 .media {
-  width: 100%;
-  &_wrapper {
+  &__wrapper {
     @mixin wrapper;
   }
   &__inner {
@@ -11,9 +10,11 @@
   &__serp {
     @mixin col;
     @mixin size 9;
+    @mixin size-lg 12;
   }
   &__bar {
     @mixin col;
     @mixin size 3;
+    @mixin size-lg 12;
   }
 }

@@ -14,22 +14,24 @@ export const FeedsMedia = ({
   url,
 }) => {
   return (
-    <section className={`${s.media} ${s.media_wrapper}`}>
-      <div className={s.media__inner}>
-        <div className={s.media__serp}>
-          <FeedsSerp
-            feeds={feeds}
-            isLoading={feedsLoading}
-            isError={feedsError}
-            dispatchToLikeToggle={fetchLikeFeedRequest}
-            count={feedsCount}
-            limit={limit}
-            currentPage={currentPage}
-            url={url}
-          />
-        </div>
-        <div className={s.media__bar}>
-          <TagsPopular />
+    <section className={s.media}>
+      <div className={s.media__wrapper}>
+        <div className={s.media__inner}>
+          <div className={s.media__serp}>
+            <FeedsSerp
+              feeds={feeds}
+              isLoading={feedsLoading}
+              isError={feedsError}
+              dispatchToLikeToggle={fetchLikeFeedRequest}
+              count={feedsCount}
+              limit={limit}
+              currentPage={currentPage}
+              url={url}
+            />
+          </div>
+          <div className={s.media__bar}>
+            <TagsPopular />
+          </div>
         </div>
       </div>
     </section>

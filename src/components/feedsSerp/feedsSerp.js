@@ -13,16 +13,15 @@ export const FeedsSerp = ({
   currentPage,
   url,
 }) => {
-  /* if (!count) return null; */
   return (
     <>
       <TabsMainFeeds />
-      {/* <FeedsList
+      <FeedsList
         feeds={feeds}
         isLoading={isLoading}
         isError={isError}
         dispatchToLikeToggle={dispatchToLikeToggle}
-      /> */}
+      />
       <Pagination
         total={count}
         limit={limit}

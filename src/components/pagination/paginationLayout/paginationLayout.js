@@ -1,9 +1,8 @@
 import React from "react";
 import { PaginationItem } from "components/pagination";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
 import s from "./paginationLayout.module.scss";
-export const PaginationLayout = ({ pages, url, currentPage }) => {
+export const PaginationLayout = ({ pages, url, currentPage, loading }) => {
   return (
     <TransitionGroup className={s.pagination} component="ul">
       {pages &&
@@ -25,6 +24,7 @@ export const PaginationLayout = ({ pages, url, currentPage }) => {
               url={url}
               currentPage={currentPage}
               mix={s.item}
+              loading={loading}
             />
           </CSSTransition>
         ))}

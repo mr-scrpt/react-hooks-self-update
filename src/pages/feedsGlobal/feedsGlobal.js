@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { General } from "layouts/general";
 import {
   fetchFeedsGlobalRequest,
+  fetchFeedsGlobalCountRequest,
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
@@ -19,6 +20,7 @@ const Component = ({
   feedsError,
   feedsCount,
   fetchFeedsGlobalRequest,
+  fetchFeedsGlobalCountRequest,
   fetchLikeFeedRequest,
   match: { url },
   location: { search },
@@ -30,6 +32,10 @@ const Component = ({
     fetchFeedsGlobalRequest({ limit, offset });
   }, [fetchFeedsGlobalRequest, currentPage]);
 
+  useEffect(() => {
+    if (!fetchFeedsGlobalCountRequest) return;
+    fetchFeedsGlobalCountRequest();
+  }, [fetchFeedsGlobalCountRequest]);
   return (
     <General>
       <FeedsMedia
@@ -54,6 +60,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
   fetchFeedsGlobalRequest,
+  fetchFeedsGlobalCountRequest,
   fetchLikeFeedRequest,
 };
 

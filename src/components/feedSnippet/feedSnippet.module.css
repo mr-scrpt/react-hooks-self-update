@@ -1,0 +1,93 @@
+@import "~@lb/lib.css";
+.feed {
+  &__inner {
+    display: flex;
+    @extend boxshadow;
+    margin-bottom: 15px;
+    padding: 15px;
+    overflow: hidden;
+    @mixin xs-block {
+      flex-direction: column;
+    }
+  }
+  &__user {
+    width: 25%;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    @mixin xs-block {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      margin-bottom: 15px;
+    }
+  }
+  &__avatar {
+    border-radius: 50%;
+    max-width: 120px;
+    @mixin xs-block {
+      padding: 0 15px;
+    }
+  }
+
+  &__userblock {
+    display: flex;
+    flex-direction: column;
+  }
+  &__author {
+    font-size: 18px;
+    color: var(--teal);
+    font-weight: bold;
+  }
+  &__date {
+    font-size: 14px;
+    columns: var(--gray-500);
+    margin-bottom: 15px;
+  }
+
+  &__likeButton {
+    @mixin xs-block {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  &__info {
+    width: 75%;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    @mixin xs-block {
+      width: 100%;
+    }
+  }
+  &__titleBox {
+    font-size: 28px;
+    color: var(--teal);
+    display: block;
+  }
+
+  &__description {
+    text-indent: 5px;
+    color: var(--gray-700);
+    flex-grow: 1;
+  }
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__about {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  &__tagList {
+    flex-grow: 1;
+  }
+  &__tag {
+    padding: 2px;
+  }
+}

@@ -10,6 +10,20 @@ export const fetchFeedsGlobalSuccess = createAction(
 
 export const fetchFeedsGlobalError = createAction("FEEDS_GLOBAL/FETCH_ERROR");
 
+/* Count for Pagination */
+
+export const fetchFeedsGlobalCountRequest = createAction(
+  "FEEDS_GLOBAL/FETCH_COUNT_REQUEST"
+);
+
+export const fetchFeedsGlobalCountSuccess = createAction(
+  "FEEDS_GLOBAL/FETCH_COUNT_SUCCESS"
+);
+
+export const fetchFeedsGlobalCountError = createAction(
+  "FEEDS_GLOBAL/FETCH_COUNT_ERROR"
+);
+
 // LIKE FEED
 export const fetchLikeFeedRequest = createAction(
   "FEEDS_GLOBAL/FETCH_LIKE_FEED_REQUEST"

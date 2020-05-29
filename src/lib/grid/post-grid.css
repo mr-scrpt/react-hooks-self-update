@@ -66,7 +66,32 @@ $fields_sm: 15px;
   width: calc($val - $offset);
 }
 
-@define-mixin lg($name, $value) {
+@define-mixin size-lg $n {
+  $val: 100% / $columns * $n;
+  @mixin lg width, calc($val - $offset_lg);
+}
+
+@define-mixin size-md $n {
+  $val: 100% / $columns * $n;
+  @mixin md width, calc($val - $offset_md);
+}
+
+@define-mixin size-sm $n {
+  $val: 100% / $columns * $n;
+  @mixin sm width, calc($val - $offset_sm);
+}
+
+@define-mixin size-xs $n {
+  $val: 100% / $columns * $n;
+  @mixin xs width, calc($val - $offset_xs);
+}
+
+@define-mixin size-xls $n {
+  $val: 100% / $columns * $n;
+  @mixin xls width, calc($val - $offset_xls);
+}
+
+@define-mixin lg $name, $value {
   @media screen and (max-width: $break_lg) {
     $(name): $value;
   }

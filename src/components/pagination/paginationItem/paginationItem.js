@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import s from "./paginationItem.module.scss";
 import cx from "classnames";
 
-export const PaginationItem = ({ page, currentPage, url, mix }) => {
+export const PaginationItem = ({ page, currentPage, url, mix, loading }) => {
   const isActivePage = page === currentPage;
 
   /*   const pageClasses = cx({
@@ -14,7 +14,7 @@ export const PaginationItem = ({ page, currentPage, url, mix }) => {
   const pageClasses = cx(
     {
       [s.item]: true,
-      [s.active]: isActivePage,
+      [s.active]: !loading && isActivePage,
     },
     mix
   );
