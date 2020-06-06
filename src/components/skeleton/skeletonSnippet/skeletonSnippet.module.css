@@ -27,8 +27,6 @@
     }
   }
   &__avatar {
-    border-radius: 50%;
-    max-width: 120px;
     @mixin xs-block {
       padding: 0 15px;
     }
@@ -38,14 +36,8 @@
     display: flex;
     flex-direction: column;
   }
-  &__author {
-    font-size: 18px;
-    color: var(--teal);
-    font-weight: bold;
-  }
+
   &__date {
-    font-size: 14px;
-    columns: var(--gray-500);
     margin-bottom: 15px;
   }
 
@@ -64,14 +56,10 @@
     flex-direction: column;
   }
   &__titleBox {
-    font-size: 28px;
-    color: var(--teal);
     display: block;
   }
 
   &__description {
-    text-indent: 5px;
-    color: var(--gray-700);
     flex-grow: 1;
   }
   &__bottom {
@@ -86,22 +74,4 @@
   &__tagList {
     flex-grow: 1;
   }
-  &__tag {
-    padding: 2px;
-  }
 }
-/* .testbg {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 4.88%;
-
-  background: radial-gradient(
-    110.12% 68.59% at 50.42% 31.41%,
-    rgba(251, 218, 0, 0) 57.29%,
-    rgba(251, 218, 0, 0.54) 100%
-  );
-  filter: blur(3px);
-}
- */

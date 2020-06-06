@@ -1,38 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import s from "./paginationItem.module.scss";
+
 import cx from "classnames";
 
-export const PaginationItem = ({ page, currentPage, url, mix, loading }) => {
+export const PaginationItem = ({
+  page,
+  currentPage,
+  url,
+  mix,
+  name,
+  classItem,
+  classItemActive,
+  classLink,
+  classLinkActive,
+}) => {
   const isActivePage = page === currentPage;
 
-  /*   const pageClasses = cx({
-    [s.item]: true,
-    [s.active]: isActivePage,
-    mix,
-  }); */
-  const pageClasses = cx(
-    {
-      [s.item]: true,
-      [s.active]: !loading && isActivePage,
-    },
-    mix
-  );
+  const itemClasses = cx({
+    [classItem]: true,
+    [classItemActive]: isActivePage,
+  });
 
   const linkClasses = cx({
-    [s.link]: true,
-    [s.islink]: !isActivePage,
-    [s.notAlink]: isActivePage,
+    [classLink]: true,
+    //[s.islink]: !isActivePage,
+    [classLinkActive]: isActivePage,
   });
   const urlLink = page === 1 ? `${url}` || `/` : `${url}?page=${page}`;
 
   return (
-    <li className={pageClasses}>
+    <li className={itemClasses}>
       {isActivePage ? (
-        <span className={linkClasses}>{page}</span>
+        <span className={linkClasses}>{name}</span>
       ) : (
         <Link to={urlLink} className={linkClasses}>
-          {page}
+          {name}
         </Link>
       )}
     </li>

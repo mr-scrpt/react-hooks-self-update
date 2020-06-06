@@ -20,9 +20,10 @@ export const FeedSnippet = ({ item, dispatchToLikeToggle }) => {
   } = item;
 
   return (
-    <div className={s.feed}>
+    <div className={`${s.feed} ${s.feed_bottom}`}>
       <div className={s.feed__inner}>
         <div className={`${s.feed__user}`}>
+          <div className={s.testbg}>1</div>
           <Link to={`/profile/${username}`}>
             <img
               src={`${

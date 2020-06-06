@@ -11,6 +11,8 @@ export const Pagination = ({ total, limit, url, currentPage }) => {
   const pageLastStart = pageLast - pagesShowLimit + 1;
   const pageLastMove = pageLast - pagesMoveLimit;
 
+  const pageNext = currentPage + 1;
+  const pagePrev = currentPage - 1;
   let start, offset;
 
   if (currentPage < pagesMoveLimit) {
@@ -35,6 +37,14 @@ export const Pagination = ({ total, limit, url, currentPage }) => {
     return <Skeleton height={50} />;
   }
   return (
-    <PaginationLayout pages={pagesRange} currentPage={currentPage} url={url} />
+    <PaginationLayout
+      pages={pagesRange}
+      currentPage={currentPage}
+      url={url}
+      pageNext={pageNext}
+      pagePrev={pagePrev}
+      pageLast={pageLast}
+      pageFirst={1}
+    />
   );
 };

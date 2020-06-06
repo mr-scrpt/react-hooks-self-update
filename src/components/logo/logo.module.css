@@ -1,4 +1,4 @@
-@import "../../lib/lib.css";
+@import "~@lb/lib.css";
 .logo {
   height: 100%;
 }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { FeedSnippet } from "@cm/feedSnippet";
 import { FeedsEmpty } from "@cm/feedsEmpty";
 import { ShowErrors } from "@cm/showErrors";
-import { ShowLoading } from "@cm/showLoading";
 
+import { SkeletonSnippet, SkeletonShow } from "@cm/skeleton";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import s from "./feedsList.module.css";
@@ -17,8 +17,10 @@ export const FeedsList = ({
   return (
     <div className={s.feedList}>
       <FeedsEmpty length={feeds.length} />
-      <ShowLoading loading={isLoading} />
       <ShowErrors errors={isError} />
+
+      {isLoading && <SkeletonShow component={<SkeletonSnippet />} count={8} />}
+
       <TransitionGroup className={s.feedSerp__inner} component="div">
         {!isLoading &&
           !isError &&

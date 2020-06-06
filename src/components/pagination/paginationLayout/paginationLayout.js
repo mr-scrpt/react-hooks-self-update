@@ -1,33 +1,80 @@
 import React from "react";
 import { PaginationItem } from "components/pagination";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import s from "./paginationLayout.module.scss";
-export const PaginationLayout = ({ pages, url, currentPage, loading }) => {
+
+import s from "./paginationLayout.module.css";
+export const PaginationLayout = ({
+  pages,
+  url,
+  currentPage,
+  pagePrev,
+  pageNext,
+  pageLast,
+  pageFirst,
+}) => {
   return (
-    <TransitionGroup className={s.pagination} component="ul">
+    <ul className={s.pagination}>
+      {currentPage !== 1 && (
+        <>
+          <PaginationItem
+            name="&laquo;"
+            page={pageNext}
+            url={url}
+            currentPage={currentPage}
+            classItem={s.pagination__item}
+            classItemActive={s.pagination__item_active}
+            classLink={s.pagination__link}
+            classLinkActive={s.pagination__link_active}
+          />
+          <PaginationItem
+            name="Первая"
+            page={1}
+            url={url}
+            currentPage={currentPage}
+            classItem={s.pagination__item}
+            classItemActive={s.pagination__item_active}
+            classLink={s.pagination__link}
+            classLinkActive={s.pagination__link_active}
+          />
+        </>
+      )}
       {pages &&
         pages.map((page, idx) => (
-          <CSSTransition
-            key={idx}
-            timeout={1 * (idx + 1)}
-            classNames={{
-              appear: s.appear,
-              appearActive: s.appearActive,
-              appearDone: s.appearDone,
-              enterDone: s.enterDone,
-            }}
-            appear={true}
-          >
-            <PaginationItem
-              page={page}
-              key={page}
-              url={url}
-              currentPage={currentPage}
-              mix={s.item}
-              loading={loading}
-            />
-          </CSSTransition>
+          <PaginationItem
+            name={page}
+            page={page}
+            key={page}
+            url={url}
+            currentPage={currentPage}
+            classItem={s.pagination__item}
+            classItemActive={s.pagination__item_active}
+            classLink={s.pagination__link}
+            classLinkActive={s.pagination__link_active}
+          />
         ))}
-    </TransitionGroup>
+      {currentPage !== pageLast && (
+        <>
+          <PaginationItem
+            name="&raquo;"
+            page={pageNext}
+            url={url}
+            currentPage={currentPage}
+            classItem={s.pagination__item}
+            classItemActive={s.pagination__item_active}
+            classLink={s.pagination__link}
+            classLinkActive={s.pagination__link_active}
+          />
+          <PaginationItem
+            name="Последняя"
+            page={pageLast}
+            url={url}
+            currentPage={currentPage}
+            classItem={s.pagination__item}
+            classItemActive={s.pagination__item_active}
+            classLink={s.pagination__link}
+            classLinkActive={s.pagination__link_active}
+          />
+        </>
+      )}
+    </ul>
   );
 };

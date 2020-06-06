@@ -1,52 +1,26 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import s from "./skeletonSnippet.module.css";
 export const SkeletonSnippet = () => {
   return (
-    <div className={s.feed}>
-      <div className={s.inner}>
-        <div className={`${s.user}`}>
-          <Link to={`/profile/${username}`}>
-            <img
-              src={`${
-                image ? image : "https://dummyimage.com/100x100/abq/fre"
-              }`}
-              alt={`Аватар ${username}`}
-              className={`img ${s.avatar}`}
-            />
-          </Link>
-          <div className={s.userblock}>
-            <Link
-              className="author"
-              to={`/profile/${username}`}
-              className={s.author}
-            >
-              {username}
-            </Link>
+    <div className={`${s.feed} ${s.feed_bottom}`}>
+      <div className={s.feed__inner}>
+        <div className={`${s.feed__user}`}>
+          <div className={s.feed__avatar}>
+            <Skeleton circle={true} height={120} width={120} />
+          </div>
 
-            <div className={s.date}>{dateFormater(createdAt)}</div>
-
-            <div className={s.likeButton}>
-              <AddToFavorite
-                favorited={favorited}
-                favoritesCount={favoritesCount}
-                slug={slug}
-                dispatchToLikeToggle={dispatchToLikeToggle}
-              />
-            </div>
+          <div className={s.feed__userblock}>
+            <Skeleton count={3} height={20} width={100} />
           </div>
         </div>
 
-        <div className={s.info}>
-          <Link className={s.titleBox} to={`/articles/${slug}`}>
-            <span className={s.title}>{title}</span>
-          </Link>
-          <p className={s.description}>{description}</p>
-          <div className={s.bottom}>
-            <TagsSnippetContainer tagsList={tagList} mix={s.tagList} />
-            <div className={s.about}>
-              <Button size="l" tag="a" to={`/articles/${slug}`}>
-                Читать далее...
-              </Button>
+        <div className={s.feed__info}>
+          <Skeleton width={`60%`} />
+          <Skeleton count={5} />
+          <div className={s.feed__bottom}>
+            <div className={s.feed__about}>
+              <Skeleton width={120} height={30} />
             </div>
           </div>
         </div>

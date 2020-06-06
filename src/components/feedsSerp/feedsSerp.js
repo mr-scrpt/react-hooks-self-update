@@ -13,6 +13,7 @@ export const FeedsSerp = ({
   currentPage,
   url,
 }) => {
+  console.log("-> count", count);
   return (
     <>
       <TabsMainFeeds />

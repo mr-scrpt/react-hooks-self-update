@@ -1,0 +1,22 @@
+@import "~@lb/lib.css";
+.pageLink {
+  background-color: var(--pink);
+  color: var(--white);
+  border-radius: 4px;
+  width: 50px;
+
+  line-height: 30px;
+  text-align: center;
+  transition: var(--transition-time) background-color;
+  &:hover {
+    background-color: darken(var(--pink), 15%);
+  }
+}
+.active {
+  background-color: darken(var(--pink), 15%);
+}
+
+.link {
+  padding: 0.5rem 0.75rem;
+  display: block;
+}

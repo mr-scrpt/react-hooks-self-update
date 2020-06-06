@@ -7,11 +7,15 @@
     @mixin row-flex;
     padding: 15px 0;
   }
+
   &__serp {
     @mixin col;
     @mixin size 9;
     @mixin size-lg 12;
+    display: flex;
+    flex-direction: column;
   }
+
   &__bar {
     @mixin col;
     @mixin size 3;
