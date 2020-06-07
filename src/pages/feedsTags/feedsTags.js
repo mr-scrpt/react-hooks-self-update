@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
+import { General } from "layouts/general";
 import {
   fetchFeedsTagsRequest,
   getFeedsList,
@@ -10,11 +10,11 @@ import {
   fetchLikeFeedRequest,
 } from "modules/feedsTags";
 
-import { setFeedsTagsActive } from "modules/tagsPopular";
+import { setFeedsTagsActive } from "@md/tagsPopular";
 
-import { getPaginators } from "helpers/getPaginators";
+import { getPaginators } from "@hl/getPaginators";
 import { limit } from "constant";
-import { FeedsMediaBlock } from "@cm/feedsMedia";
+import { FeedsMedia } from "@cm/feedsMedia";
 
 export const Component = ({
   feeds,
@@ -41,16 +41,18 @@ export const Component = ({
   }, [fetchFeedsTagsRequest, currentPage, tagName]);
 
   return (
-    <FeedsMediaBlock
-      feeds={feeds}
-      feedsLoading={feedsLoading}
-      feedsError={feedsError}
-      feedsCount={feedsCount}
-      fetchLikeFeedRequest={fetchLikeFeedRequest}
-      limit={limit}
-      currentPage={currentPage}
-      url={url}
-    />
+    <General>
+      <FeedsMedia
+        feeds={feeds}
+        feedsLoading={feedsLoading}
+        feedsError={feedsError}
+        feedsCount={feedsCount}
+        fetchLikeFeedRequest={fetchLikeFeedRequest}
+        limit={limit}
+        currentPage={currentPage}
+        url={url}
+      />
+    </General>
   );
 };
 const mapStateToProps = (state) => ({

@@ -1,14 +1,14 @@
 import React from "react";
-import s from "./tagsPopularLayout.module.scss";
-import { TagsPopularContainer } from "component/tags/tagsPopulatContainer";
+import s from "./tagsPopularLayout.module.css";
+import { TagsPopularContainer } from "component/tags/tagsPopularContainer";
 
 export const TagsPopularLayout = () => {
   return (
-    <div className="">
-      <div className={s.inner}>
-        <div className={s.title}>Популярные теги теги теги</div>
+    <div className={s.tagsPopular}>
+      {/*  <div className={s.tagsPopular__inner}>
+        <div className={s.tagsPopular__title}>Популярные теги!</div>
         <TagsPopularContainer />
-      </div>
+      </div> */}
     </div>
   );
 };

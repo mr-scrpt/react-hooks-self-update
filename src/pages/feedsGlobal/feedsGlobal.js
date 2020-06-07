@@ -36,6 +36,8 @@ const Component = ({
     if (!fetchFeedsGlobalCountRequest) return;
     fetchFeedsGlobalCountRequest();
   }, [fetchFeedsGlobalCountRequest]);
+
+  console.log("-> feeds", feeds);
   return (
     <General>
       <FeedsMedia

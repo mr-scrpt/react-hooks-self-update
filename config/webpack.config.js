@@ -51,7 +51,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const myAlias = {
   "@": path.resolve("./src"),
   "@cm": path.resolve("./src/components"),
-  "@pg": path.resolve("./src/page"),
+  "@pg": path.resolve("./src/pages"),
   "@md": path.resolve("./src/modules"),
   "@hl": path.resolve("./src/helpers"),
   "@lb": path.resolve("./src/lib"),

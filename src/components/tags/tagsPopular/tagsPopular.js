@@ -1,12 +1,12 @@
 import React from "react";
 import { TagsPopularContainer } from "components/tags";
-import s from "./tagsPopular.module.scss";
+import s from "./tagsPopular.module.css";
 
 export const TagsPopular = () => {
   return (
-    <div className="">
-      <div className={s.inner}>
-        <div className={s.title}>Популярные теги теги теги</div>
+    <div className={s.tagsPopular}>
+      <div className={s.tagsPopular__inner}>
+        <div className={s.tagsPopular__title}>Популярные теги</div>
         <TagsPopularContainer />
       </div>
     </div>

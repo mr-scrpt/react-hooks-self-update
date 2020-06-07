@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 /* import { PrivatRoute } from "routes/privatRoute"; */
 
 import { FeedsGlobal } from "pages/feedsGlobal";
-/* import { FeedsTags } from "pages/feedsTags";
+import { FeedsTags } from "pages/feedsTags";
+/* 
 import { FeedsFollow } from "pages/feedsFollow";
 import { CreateArticle } from "pages/createArticle";
 import { Feed } from "pages/feed";
@@ -16,8 +17,9 @@ export default () => {
   return (
     <Switch>
       <Route path="/" component={FeedsGlobal} exact />
-      {/*  <PrivatRoute path="/feedFollow" component={FeedsFollow} />
       <Route path="/feedTags/:tagName" component={FeedsTags} />
+      {/*  <PrivatRoute path="/feedFollow" component={FeedsFollow} />
+     
 
       <PrivatRoute path="/articles/new" component={CreateArticle} />
       <Route path="/articles/:slug" component={Feed} exact />
