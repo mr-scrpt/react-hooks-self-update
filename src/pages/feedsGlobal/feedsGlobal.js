@@ -37,7 +37,7 @@ const Component = ({
     fetchFeedsGlobalCountRequest();
   }, [fetchFeedsGlobalCountRequest]);
 
-  console.log("-> feeds", feeds);
+  console.log("-> ");
   return (
     <General>
       <FeedsMedia

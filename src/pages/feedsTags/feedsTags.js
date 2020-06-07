@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { General } from "layouts/general";
 import {
   fetchFeedsTagsRequest,
+  fetchFeedsTagsCountRequest,
   getFeedsList,
   getFeedsCount,
   getFeedsLoading,
@@ -22,6 +23,7 @@ export const Component = ({
   feedsError,
   feedsCount,
   fetchFeedsTagsRequest,
+  fetchFeedsTagsCountRequest,
   setFeedsTagsActive,
   fetchLikeFeedRequest,
   location: { search },
@@ -39,6 +41,11 @@ export const Component = ({
   useEffect(() => {
     fetchFeedsTagsRequest({ limit, offset, tagName });
   }, [fetchFeedsTagsRequest, currentPage, tagName]);
+
+  useEffect(() => {
+    if (!fetchFeedsTagsCountRequest) return;
+    fetchFeedsTagsCountRequest({ limit, offset, tagName });
+  }, [fetchFeedsTagsCountRequest]);
 
   return (
     <General>
@@ -64,6 +71,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   fetchFeedsTagsRequest,
+  fetchFeedsTagsCountRequest,
   fetchLikeFeedRequest,
   setFeedsTagsActive,
 };

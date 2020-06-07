@@ -18,7 +18,6 @@ export const FeedsList = ({
     <div className={s.feedList}>
       <FeedsEmpty length={feeds.length} />
       <ShowErrors errors={isError} />
-
       {isLoading && <SkeletonShow component={<SkeletonSnippet />} count={8} />}
 
       <TransitionGroup className={s.feedSerp__inner} component="div">

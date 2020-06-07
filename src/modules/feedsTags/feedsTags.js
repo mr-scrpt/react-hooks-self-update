@@ -7,9 +7,12 @@ import {
   fetchFeedsTagsRequest,
   fetchFeedsTagsSuccess,
   fetchFeedsTagsError,
+  fetchFeedsTagsCountRequest,
+  fetchFeedsTagsCountSuccess,
+  fetchFeedsTagsCountError,
   fetchLikeFeedSuccess,
   fetchLikeFeedError,
-  resetFeedsTags
+  resetFeedsTags,
 } from "./actions";
 
 const feedsList = handleActions(
@@ -19,16 +22,16 @@ const feedsList = handleActions(
     [fetchFeedsTagsError]: () => [],
     [fetchLikeFeedSuccess]: (state, { payload }) =>
       feedMapListLike(state, payload),
-    [resetFeedsTags]: () => []
+    [resetFeedsTags]: () => [],
   },
   []
 );
 const feedsCount = handleActions(
   {
-    [fetchFeedsTagsRequest]: () => 0,
-    [fetchFeedsTagsSuccess]: (_state, { payload }) =>
+    [fetchFeedsTagsCountRequest]: () => 0,
+    [fetchFeedsTagsCountSuccess]: (_state, { payload }) =>
       payload.data.articlesCount,
-    [fetchFeedsTagsError]: () => 0
+    [fetchFeedsTagsCountError]: () => 0,
   },
   0
 );
@@ -36,7 +39,7 @@ const loading = handleActions(
   {
     [fetchFeedsTagsRequest]: () => true,
     [fetchFeedsTagsSuccess]: () => false,
-    [fetchFeedsTagsError]: () => false
+    [fetchFeedsTagsError]: () => false,
   },
   false
 );
@@ -46,14 +49,14 @@ const error = handleActions(
     [fetchFeedsTagsRequest]: () => "",
     [fetchFeedsTagsSuccess]: () => "",
     [fetchFeedsTagsError]: (_, { payload }) => payload,
-    [fetchLikeFeedError]: (_, { payload }) => payload
+    [fetchLikeFeedError]: (_, { payload }) => payload,
   },
-  {}
+  ""
 );
 
 export default combineReducers({
   feedsList,
   feedsCount,
   loading,
-  error
+  error,
 });

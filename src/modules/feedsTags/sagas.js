@@ -3,14 +3,18 @@ import {
   fetchFeedsTagsRequest,
   fetchFeedsTagsSuccess,
   fetchFeedsTagsError,
+  fetchFeedsTagsCountRequest,
+  fetchFeedsTagsCountSuccess,
+  fetchFeedsTagsCountError,
   fetchLikeFeedRequest,
   fetchLikeFeedSuccess,
-  fetchLikeFeedError
+  fetchLikeFeedError,
 } from "./actions";
-import { getFeeds } from "./api";
+import { getFeeds, getFeedsCount } from "./api";
 import { togglelikeFeed } from "modules/feedEditor";
 function* fetchWatcher() {
   yield takeLatest(fetchFeedsTagsRequest, getFeedsAPI);
+  yield takeLatest(fetchFeedsTagsCountRequest, getFeedsCountAPI);
   yield takeLatest(fetchLikeFeedRequest, likeFeedAPI);
 }
 
@@ -22,7 +26,14 @@ export function* getFeedsAPI({ payload }) {
     yield put(fetchFeedsTagsError(error));
   }
 }
-
+export function* getFeedsCountAPI({ payload }) {
+  try {
+    const feedsResponse = yield call(getFeedsCount, payload);
+    yield put(fetchFeedsTagsCountSuccess(feedsResponse));
+  } catch (error) {
+    yield put(fetchFeedsTagsCountError(error));
+  }
+}
 export function* likeFeedAPI({ payload }) {
   try {
     yield call(togglelikeFeed, payload);
@@ -32,6 +43,6 @@ export function* likeFeedAPI({ payload }) {
   }
 }
 
-export default function*() {
+export default function* () {
   yield fork(fetchWatcher);
 }
