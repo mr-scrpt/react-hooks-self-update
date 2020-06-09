@@ -8,4 +8,7 @@
 
     @extend boxshadow;
   }
+  &__item {
+    display: flex;
+  }
 }

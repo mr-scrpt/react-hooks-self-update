@@ -1,0 +1,46 @@
+@import "~@lb/lib.css";
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px 20px;
+  background-color: var(--white);
+  position: relative;
+  transition: background-color var(--transition-time),
+    color var(--transition-time);
+  &:hover {
+    background-color: var(--gray-200);
+  }
+
+  &_active {
+    color: var(--purple);
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: var(--purple);
+      //opacity: 1;
+      animation: line var(--transition-time);
+    }
+  }
+  &__name {
+    padding: 0 5px;
+  }
+}
+@keyframes line {
+  from {
+    opacity: 0;
+    //background-color: transparent;
+  }
+
+  to {
+    opacity: 1;
+    //background-color: #6a1b9a;
+  }
+}

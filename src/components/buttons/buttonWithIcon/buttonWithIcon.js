@@ -32,7 +32,7 @@ export const ButtonWithIcon = ({
   return (
     <Tag className={btnClass} onClick={onClick} disabled={disabled}>
       {icon && <i className={iconClass}>{icon}</i>}
-      <span className={s.btn__text}>{children}</span>
+      {children && <span className={s.btn__text}>{children}</span>}
     </Tag>
   );
 };
