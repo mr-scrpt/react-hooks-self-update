@@ -30,14 +30,20 @@ const Component = ({
   useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
     fetchFeedsGlobalRequest({ limit, offset });
-  }, [fetchFeedsGlobalRequest, currentPage]);
+  }, [fetchFeedsGlobalRequest]);
+
+  /* useEffect(() => {
+    if (!fetchFeedsGlobalRequest) return;
+
+    fetchFeedsGlobalRequest({ limit, offset });
+  }, [fetchFeedsGlobalRequest, currentPage]); */
 
   useEffect(() => {
     if (!fetchFeedsGlobalCountRequest) return;
+
     fetchFeedsGlobalCountRequest();
   }, [fetchFeedsGlobalCountRequest]);
 
-  console.log("-> ");
   return (
     <General>
       <FeedsMedia

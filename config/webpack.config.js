@@ -112,7 +112,7 @@ module.exports = function (webpackEnv) {
           ident: "postcss",
           plugins: () => [
             require("postcss-import")({
-              resolve: require("postcss-import-alias-resolver")({
+              resolve: require("postcss-import-alias-resolver-windows")({
                 alias: {
                   ...myAlias,
                 },

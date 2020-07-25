@@ -1,5 +1,5 @@
-export const feedMapListLike = (state, payload) =>
-  state.map(feed => {
+export const feedMapListLike = (state: any, payload: any): object =>
+  state.map((feed: any): object => {
     if (feed.slug !== payload.slug) {
       return { ...feed };
     }
@@ -8,6 +8,6 @@ export const feedMapListLike = (state, payload) =>
       favorited: !feed.favorited,
       favoritesCount: feed.favorited
         ? feed.favoritesCount - 1
-        : feed.favoritesCount + 1
+        : feed.favoritesCount + 1,
     };
   });

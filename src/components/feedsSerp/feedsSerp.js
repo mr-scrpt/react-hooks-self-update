@@ -13,10 +13,10 @@ export const FeedsSerp = ({
   currentPage,
   url,
 }) => {
-  console.log("-> isError", isError);
+  console.log("-> render S");
   return (
     <>
-      <TabsMainFeeds />
+      {/*  <TabsMainFeeds /> */}
       <FeedsList
         feeds={feeds}
         isLoading={isLoading}

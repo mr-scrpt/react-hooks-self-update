@@ -13,6 +13,7 @@ export const FeedsMedia = ({
   currentPage,
   url,
 }) => {
+  console.log("-> render M");
   return (
     <section className={s.media}>
       <div className={s.media__wrapper}>
@@ -29,9 +30,9 @@ export const FeedsMedia = ({
               url={url}
             />
           </div>
-          <div className={s.media__bar}>
+          {/*  <div className={s.media__bar}>
             <TagsPopular />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

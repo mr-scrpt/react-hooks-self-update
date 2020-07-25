@@ -14,10 +14,11 @@ import { UserProfile } from "pages/userProfile";
 import { EditArticle } from "pages/editArticle"; */
 
 export default () => {
+  console.log("-> render r");
   return (
     <Switch>
       <Route path="/" component={FeedsGlobal} exact />
-      <Route path="/feedTags/:tagName" component={FeedsTags} />
+      {/*  <Route path="/feedTags/:tagName" component={FeedsTags} /> */}
       {/*  <PrivatRoute path="/feedFollow" component={FeedsFollow} />
      
 

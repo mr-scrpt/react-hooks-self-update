@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions";
+import { createAction, Action } from "redux-actions";
 
 // AUTORIZATION
 export const sendUserToAuthRequest = createAction(
