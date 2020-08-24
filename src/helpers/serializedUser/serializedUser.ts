@@ -1,5 +1,7 @@
-export const serializedUser = (user: any) => {
+import { TUser, TUserSerialized } from "@md/userAuth";
+
+export const serializedUser = (user: TUser): [TUserSerialized, string] => {
   //TODO добавить тип юзера
-  const { token: string, ...serializedUser } = user;
-  return serializedUser;
+  const { token, ...serializedUser } = user;
+  return [serializedUser, token];
 };

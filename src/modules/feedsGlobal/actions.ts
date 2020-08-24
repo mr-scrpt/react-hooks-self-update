@@ -1,4 +1,4 @@
-import { createAction, action } from "typesafe-actions";
+import { action } from "typesafe-actions";
 import * as actionsNames from "constant/actionNames";
 
 /*=== FeedsGlobal LIST===*/

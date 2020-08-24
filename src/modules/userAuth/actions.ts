@@ -1,34 +1,19 @@
 import { createAction, Action } from "redux-actions";
-
+import { action } from "typesafe-actions";
+import * as actionsNames from "constant/actionNames";
+import { TLogin, TUser } from "@md/userAuth";
+import { TUserSerialized } from "./types";
+import { TError } from "../types";
 // AUTORIZATION
-export const sendUserToAuthRequest = createAction(
-  "AUTH_USER/SEND_USER_TO_AUTH_REQUEST"
-);
 
-// REGISTRATION
-export const sendUserToRegistrationRequest = createAction(
-  "AUTH_USER/SEND_USER_TO_REGISTRATION_REQUEST"
-);
+export const sendUserToAuthRequestAction = (login: TLogin) =>
+  action(actionsNames.sendUserToAuthRequestActionName, login);
 
-// LOGOUT
-export const resetAuthUser = createAction("AUTH_USER/RESET_AUTH_USER");
+export const sendUserToAuthSuccessAction = (user: TUser) =>
+  action(actionsNames.sendUserToAuthSuccessActionName, user);
 
-// FETCH AUTH USER
-export const fetchAuthUserRequest = createAction(
-  "AUTH_USER/FETCH_USER_REQUEST"
-);
-export const fetchAuthUserSuccess = createAction(
-  "AUTH_USER/FETCH_USER_SUCCESS"
-);
+export const sendUserToAuthErrorAction = (error: TError) =>
+  action(actionsNames.sendUserToAuthErrorActionName, error);
 
-// PUT AUTH USER
-export const putAuthUserRequest = createAction(
-  "AUTH_USER/PUT_USER_AUTH_REQUEST"
-);
-
-// ERRORS
-export const setAuthUserError = createAction("AUTH_USER/SET_ERROR");
-export const setAuthUserErrorValidation = createAction(
-  "AUTH_USER/SET_ERROR_VALIDATION"
-);
-export const resetAuthUserError = createAction("AUTH_USER/RESET_ERROR");
+export const setUserAction = (user: TUserSerialized) =>
+  action(actionsNames.setUserActionName, user);

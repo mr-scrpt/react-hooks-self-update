@@ -16,13 +16,13 @@ export const FormLogin = ({ submitForm, loading, errorsServer }) => {
               <NavLink to="/registration">Нет аккаунта?</NavLink>
             </p>
             <form onSubmit={handleSubmit(submitForm)}>
-              {errorsServer && (
+              {/* {errorsServer && (
                 <ul className="error-messages">
-                  {errorsList(errorsServer).map(item => (
+                  {errorsList(errorsServer).map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-              )}
+              )} */}
               <fieldset>
                 <fieldset className="form-group">
                   <input

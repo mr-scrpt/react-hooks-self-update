@@ -1,36 +1,10 @@
-import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
+import { createReducer, ActionType } from "typesafe-actions";
+import * as actionNames from "constant/actionNames";
+import { TUser, TState, TUserSerialized } from "@md/userAuth";
+import { TError } from "../types";
 
-import {
-  fetchAuthUserRequest,
-  fetchAuthUserSuccess,
-  sendUserToAuthRequest,
-  sendUserToRegistrationRequest,
-  resetAuthUser,
-  setAuthUserError,
-  setAuthUserErrorValidation,
-  resetAuthUserError,
-} from "./actions";
-
-export type TPayload = {
-  data: {
-    user: Object;
-    isLoggedIn: boolean;
-    loading: boolean;
-    error: Object;
-    errorValidation: string;
-  };
-};
-export type TUser = object;
-export type TIsLoggedIn = boolean;
-export type TLoading = boolean;
-export type TError = {
-  status: number;
-  message: string;
-};
-export type TErrorValidation = string;
-
-const initialState = {
+export const initialState = {
   user: {},
   isLoggedIn: false,
   loading: false,
@@ -41,9 +15,47 @@ const initialState = {
   errorValidation: "",
 };
 
-export type TState = typeof initialState;
+const user = createReducer(initialState.user)
+  .handleType(
+    actionNames.sendUserToAuthRequestActionName,
+    () => initialState.user
+  )
+  .handleType(
+    actionNames.sendUserToAuthSuccessActionName,
+    () => initialState.user
+  ) //?
+  .handleType(
+    actionNames.sendUserToAuthErrorActionName,
+    () => initialState.user
+  ) //?
+  .handleType(
+    actionNames.setUserActionName,
+    (_: TState, { payload }: { payload: TUserSerialized }) => payload
+  );
 
-const user = handleActions<TUser>(
+const isLoggedIn = createReducer(initialState.isLoggedIn).handleType(
+  actionNames.setUserActionName,
+  () => true
+);
+const loading = createReducer(initialState.loading);
+const error = createReducer(initialState.error).handleType(
+  actionNames.sendUserToAuthErrorActionName,
+  (_: TState, { payload }: { payload: TError }) => payload
+);
+const errorValidation = createReducer(initialState.errorValidation); //TODO Объеденить в общую ошибку в виде строки?
+
+/* const user = createReducer(initialState.user)
+  .handleType(actionNames.userToAuthRequest, () => initialState.user)
+  .handleType(actionNames.setAuthUserRequest, () => initialState.user)
+  .handleType(
+    actionNames.setAuthUserSuccess,
+    (_: TState, { payload }: { payload: TUserSerialized }) => payload
+  );
+ */
+// action:{payload: { payload: TUserSerialized }}
+//.handleType(actionNames.userToAuthSuccess, () => initialState.user);
+
+/* const user = handleActions<TUser>(
   {
     [typeof fetchAuthUserRequest]: () => initialState.user,
     [typeof fetchAuthUserSuccess]: (_, { payload }) => payload,
@@ -53,8 +65,8 @@ const user = handleActions<TUser>(
     [typeof setAuthUserErrorValidation]: () => initialState.user,
   },
   initialState.user
-);
-const isLoggedIn = handleActions<TIsLoggedIn>(
+); */
+/* const isLoggedIn = handleActions<TIsLoggedIn>(
   {
     [typeof fetchAuthUserRequest]: () => initialState.isLoggedIn,
     [typeof fetchAuthUserSuccess]: () => true,
@@ -63,8 +75,8 @@ const isLoggedIn = handleActions<TIsLoggedIn>(
     [typeof resetAuthUser]: () => initialState.isLoggedIn,
   },
   initialState.isLoggedIn
-);
-const loading = handleActions<TLoading>(
+); */
+/* const loading = handleActions<TLoading>(
   {
     [typeof fetchAuthUserRequest]: () => true,
     [typeof sendUserToAuthRequest]: () => true,
@@ -74,8 +86,8 @@ const loading = handleActions<TLoading>(
     [typeof setAuthUserErrorValidation]: () => initialState.loading,
   },
   initialState.loading
-);
-const error = handleActions<TError>(
+); */
+/* const error = handleActions<TError>(
   {
     [typeof setAuthUserError]: (_, { payload }) => payload,
     [typeof fetchAuthUserRequest]: () => initialState.error,
@@ -86,7 +98,7 @@ const error = handleActions<TError>(
     [typeof resetAuthUserError]: () => initialState.error,
   },
   initialState.error
-);
+); */
 
 /* const errorValidation = handleActions<TErrorValidation>(
   {
@@ -102,5 +114,5 @@ export default combineReducers({
   isLoggedIn,
   loading,
   error,
-  //errorValidation,
+  errorValidation,
 });

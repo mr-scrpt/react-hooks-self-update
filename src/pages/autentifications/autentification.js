@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import {
-  sendUserToAuthRequest,
+  sendUserToAuthRequestAction,
   sendUserToRegistrationRequest,
   getIsLoggedIn,
   getIsLoading,
   getIsError,
-  resetAuthUserError
+  resetAuthUserError,
 } from "modules/userAuth";
 
 import { FormLogin } from "components/formLogin";
@@ -16,13 +16,13 @@ import { FormRegistration } from "components/formRegistration";
 import { ShowLoading } from "components/showLoading";
 
 const Component = ({
-  sendUserToAuthRequest,
+  sendUserToAuthRequestAction,
   sendUserToRegistrationRequest,
-  resetAuthUserError,
+  //resetAuthUserError,
   isLoggedIn,
   loading,
   errorsServer,
-  match: { path }
+  match: { path },
 }) => {
   useEffect(() => {
     return () => {
@@ -30,10 +30,11 @@ const Component = ({
     };
   }, [resetAuthUserError]);
 
-  const submitLogin = user => {
-    sendUserToAuthRequest(user);
+  const submitLogin = (user) => {
+    console.log("-> user");
+    sendUserToAuthRequestAction(user);
   };
-  const submitRegistration = user => {
+  const submitRegistration = (user) => {
     sendUserToRegistrationRequest(user);
   };
 
@@ -62,14 +63,14 @@ const Component = ({
   );
 };
 const mapDispatchToProps = {
-  sendUserToAuthRequest,
+  sendUserToAuthRequestAction,
   sendUserToRegistrationRequest,
-  resetAuthUserError
+  //resetAuthUserError,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoggedIn: getIsLoggedIn(state),
   loading: getIsLoading(state),
-  errorsServer: getIsError(state)
+  errorsServer: getIsError(state),
 });
 export const Autentifications = connect(
   mapStateToProps,

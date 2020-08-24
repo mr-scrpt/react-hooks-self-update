@@ -1,1 +1,1 @@
-export { serializedUser } from "./serializedUser";
+export * from "./serializedUser";

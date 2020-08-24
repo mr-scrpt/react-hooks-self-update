@@ -31,3 +31,17 @@ export const feedsLikeFeedError = "@FEEDS_GLOBAL/FETCH_LIKE_FEED_ERROR";
   | typeof feedsLikeFeedSuccess
   | typeof feedsLikeFeedError;
  */
+
+/*=== AUTENTIFICATE ===*/
+export const sendUserToAuthRequestActionName =
+  "@AUTH_USER/SEND_USER_TO_AUTH_REQUEST";
+export const sendUserToAuthSuccessActionName =
+  "@AUTH_USER/SEND_USER_TO_AUTH_SUCCESS";
+export const sendUserToAuthErrorActionName =
+  "@AUTH_USER/SEND_USER_TO_AUTH_ERROR";
+
+export const setUserActionName = "@AUTH_USER/SET_USER";
+
+export const fetchUserRequestActionName = "@AUTH_USER/FETCH_USER_REQUEST";
+export const fetchUserSuccessActionName = "@AUTH_USER/FETCH_USER_SUCCESS";
+export const fetchUserErrorActionName = "@AUTH_USER/FETCH_USER_ERROR";

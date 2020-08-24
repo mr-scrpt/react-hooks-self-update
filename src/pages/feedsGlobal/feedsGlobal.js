@@ -27,16 +27,16 @@ const Component = ({
 }) => {
   const { currentPage, offset } = getPaginators(search);
 
-  useEffect(() => {
-    if (!fetchFeedsGlobalRequest) return;
-    fetchFeedsGlobalRequest({ limit, offset });
-  }, [fetchFeedsGlobalRequest]);
-
   /* useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
+    fetchFeedsGlobalRequest({ limit, offset });
+  }, [fetchFeedsGlobalRequest]); */
+
+  useEffect(() => {
+    if (!fetchFeedsGlobalRequest) return;
 
     fetchFeedsGlobalRequest({ limit, offset });
-  }, [fetchFeedsGlobalRequest, currentPage]); */
+  }, [fetchFeedsGlobalRequest, currentPage]);
 
   useEffect(() => {
     if (!fetchFeedsGlobalCountRequest) return;

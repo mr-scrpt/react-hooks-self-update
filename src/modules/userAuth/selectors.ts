@@ -17,7 +17,7 @@ export const getIsLoading = createSelector(
 );
 
 export const getIsError = createSelector(
-  (state: TAppState) => state.userAuthStore.error.message,
+  (state: TAppState) => state.userAuthStore.error,
   (error) => error
 );
 /* export const getIsInitial = createSelector(

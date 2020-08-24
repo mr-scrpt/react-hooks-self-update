@@ -15,7 +15,7 @@ export const App = () => {
     <>
       <Debug show={false} />
       <ReduxProvider store={store}>
-        <UserAuthChecker />
+        {/* <UserAuthChecker /> */}
         <Router>
           <Routes />
         </Router>
