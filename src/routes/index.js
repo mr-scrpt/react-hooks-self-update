@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 /* import { PrivatRoute } from "routes/privatRoute"; */
 
-import { Autentifications } from "pages/autentifications";
+/* import { Autentifications } from "pages/autentifications"; */
 import { FeedsGlobal } from "pages/feedsGlobal";
 import { FeedsTags } from "pages/feedsTags";
 /* 
@@ -15,10 +15,9 @@ import { UserProfile } from "pages/userProfile";
 import { EditArticle } from "pages/editArticle"; */
 
 export default () => {
-  console.log("-> render r");
   return (
     <Switch>
-      <Route path="/login" component={Autentifications} />
+      {/* <Route path="/login" component={Autentifications} /> */}
       <Route path="/" component={FeedsGlobal} exact />
       {/*  <Route path="/feedTags/:tagName" component={FeedsTags} /> */}
       {/*  <PrivatRoute path="/feedFollow" component={FeedsFollow} />

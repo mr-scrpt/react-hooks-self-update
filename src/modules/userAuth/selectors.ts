@@ -1,25 +1,25 @@
-import { createSelector } from "reselect";
-import { TAppState } from "..";
+/* import { createSelector } from "reselect";
+import { AppStateType } from ".."; */
 
-export const getUserAuth = createSelector(
-  (state: TAppState) => state.userAuthStore.user,
+/* export const getUserAuth = createSelector(
+  (state: AppStateType) => state.userAuthStore.user,
   (user) => user
 );
 
 export const getIsLoggedIn = createSelector(
-  (state: TAppState) => state.userAuthStore.isLoggedIn,
+  (state: AppStateType) => state.userAuthStore.isLoggedIn,
   (user) => user
 );
 
 export const getIsLoading = createSelector(
-  (state: TAppState) => state.userAuthStore.loading,
+  (state: AppStateType) => state.userAuthStore.loading,
   (loading) => loading
 );
 
 export const getIsError = createSelector(
-  (state: TAppState) => state.userAuthStore.error,
+  (state: AppStateType) => state.userAuthStore.error,
   (error) => error
-);
+); */
 /* export const getIsInitial = createSelector(
   (state: TAppState) => state.userAuthStore.initial,
   (initial) => initial

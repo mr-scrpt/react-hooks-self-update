@@ -7,7 +7,7 @@ export const FeedsSerp = ({
   feeds,
   isLoading,
   isError,
-  dispatchToLikeToggle,
+  //dispatchToLikeToggle,
   count,
   limit,
   currentPage,
@@ -21,7 +21,7 @@ export const FeedsSerp = ({
         feeds={feeds}
         isLoading={isLoading}
         isError={isError}
-        dispatchToLikeToggle={dispatchToLikeToggle}
+        //dispatchToLikeToggle={dispatchToLikeToggle}
       />
       <Pagination
         total={count}

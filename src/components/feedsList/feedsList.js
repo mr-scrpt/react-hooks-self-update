@@ -12,7 +12,7 @@ export const FeedsList = ({
   feeds,
   isLoading,
   isError,
-  dispatchToLikeToggle,
+  //dispatchToLikeToggle,
 }) => {
   return (
     <div className={s.feedList}>
@@ -37,7 +37,7 @@ export const FeedsList = ({
               <FeedSnippet
                 item={feed}
                 key={idx}
-                dispatchToLikeToggle={dispatchToLikeToggle}
+                //dispatchToLikeToggle={dispatchToLikeToggle}
               />
             </CSSTransition>
           ))}

@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { General } from "layouts/general";
-import {
+//Core
+import React, { ReactElement, FC } from "react";
+
+//Hooks
+import { useFeedsGlobalFetch } from "@md/feedsGlobal/hooks";
+
+//import { General } from "layouts/general";
+/* import {
   fetchFeedsGlobalRequest,
   fetchFeedsGlobalCountRequest,
   getFeedsList,
@@ -9,30 +13,37 @@ import {
   getFeedsLoading,
   getFeedsError,
   fetchLikeFeedRequest,
-} from "@md/feedsGlobal";
+} from "@md/feedsGlobal"; */
 
-import { getPaginators } from "@hl/getPaginators";
+/* import { getPaginators } from "@hl/getPaginators"; */
 import { limit } from "constant";
-import { FeedsMedia } from "@cm/feedsMedia";
-const Component = ({
-  feeds,
+/* import { FeedsMedia } from "@cm/feedsMedia"; */
+
+// Types
+import { FeedType } from "@md/feedsGlobal/types";
+
+export const FeedsGlobal: FC = (
+  {
+    /* feeds,
   feedsLoading,
   feedsError,
   feedsCount,
   fetchFeedsGlobalRequest,
   fetchFeedsGlobalCountRequest,
-  fetchLikeFeedRequest,
-  match: { url },
-  location: { search },
-}) => {
-  const { currentPage, offset } = getPaginators(search);
+  fetchLikeFeedRequest,*/
+    /* match: { url },
+  location: { search }, */
+  }
+) => {
+  /* const { currentPage, offset } = getPaginators(search); */
 
-  /* useEffect(() => {
+  /* 
+  useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
     fetchFeedsGlobalRequest({ limit, offset });
   }, [fetchFeedsGlobalRequest]); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!fetchFeedsGlobalRequest) return;
 
     fetchFeedsGlobalRequest({ limit, offset });
@@ -42,25 +53,37 @@ const Component = ({
     if (!fetchFeedsGlobalCountRequest) return;
 
     fetchFeedsGlobalCountRequest();
-  }, [fetchFeedsGlobalCountRequest]);
+  }, [fetchFeedsGlobalCountRequest]); 
+  */
+  const { feedsList, feedsCount, loading, error } = useFeedsGlobalFetch("d");
 
   return (
+    <div>
+      {loading ||
+        feedsList.map(
+          (item: FeedType): ReactElement => (
+            <div key={item.title}>{item.title}</div>
+          )
+        )}
+    </div>
+  );
+  /* return (
     <General>
       <FeedsMedia
-        feeds={feeds}
-        feedsLoading={feedsLoading}
-        feedsError={feedsError}
+        feeds={feedsList}
+        feedsLoading={loading}
+        feedsError={error}
         feedsCount={feedsCount}
-        fetchLikeFeedRequest={fetchLikeFeedRequest}
+        //fetchLikeFeedRequest={fetchLikeFeedRequest}
         limit={limit}
         currentPage={currentPage}
         url={url}
       />
     </General>
-  );
+  ); */
 };
 
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   feeds: getFeedsList(state),
   feedsLoading: getFeedsLoading(state),
   feedsError: getFeedsError(state),
@@ -76,3 +99,4 @@ export const FeedsGlobal = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
+ */

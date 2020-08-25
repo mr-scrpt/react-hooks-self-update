@@ -8,12 +8,11 @@ export const FeedsMedia = ({
   feedsLoading,
   feedsError,
   feedsCount,
-  fetchLikeFeedRequest,
+  //fetchLikeFeedRequest,
   limit,
   currentPage,
   url,
 }) => {
-  console.log("-> render M");
   return (
     <section className={s.media}>
       <div className={s.media__wrapper}>
@@ -23,7 +22,7 @@ export const FeedsMedia = ({
               feeds={feeds}
               isLoading={feedsLoading}
               isError={feedsError}
-              dispatchToLikeToggle={fetchLikeFeedRequest}
+              //dispatchToLikeToggle={fetchLikeFeedRequest}
               count={feedsCount}
               limit={limit}
               currentPage={currentPage}

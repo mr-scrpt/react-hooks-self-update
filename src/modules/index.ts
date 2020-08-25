@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
 import { fork } from "redux-saga/effects";
 
-import feedsGlobalStore, { feedsGlobalSaga } from "modules/feedsGlobal";
-import userAuthStore, { userAuthSaga } from "modules/userAuth";
+import {
+  feedFlobalListReducer as feedsGlobal,
+  watchFeedListGlobal,
+} from "modules/feedsGlobal";
+//import userAuthStore, { userAuthSaga } from "modules/userAuth";
 /* import userProfileStore, { userProfileSaga } from "modules/userProfile";
 import feedsFollowStore, { feedsFollowSaga } from "modules/feedsFollow";
 import feedsTagsStore, { feedsTagsSaga } from "modules/feedsTags";
@@ -10,8 +13,8 @@ import feedEditorStore, { feedEditorSaga } from "modules/feedEditor";
 import tagsPopularStore, { tagsPopularSaga } from "modules/tagsPopular"; */
 
 export const AppState = combineReducers({
-  feedsGlobalStore,
-  userAuthStore,
+  feedsGlobal,
+  //userAuthStore,
   /* userProfileStore,  
   feedsFollowStore,
   feedsTagsStore,
@@ -21,11 +24,11 @@ export const AppState = combineReducers({
 
 export default AppState;
 
-export type TAppState = ReturnType<typeof AppState>;
+export type AppStateType = ReturnType<typeof AppState>;
 
 export function* rootSaga() {
-  yield fork(feedsGlobalSaga);
-  yield fork(userAuthSaga);
+  yield fork(watchFeedListGlobal);
+  //yield fork(userAuthSaga);
   /*yield fork(userProfileSaga);
   
   yield fork(feedsFollowSaga);

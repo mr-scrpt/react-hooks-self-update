@@ -12,7 +12,7 @@ import {
   clearFeed,
   resetBeDeleted,
 } from "modules/feedEditor";
-import { getUserAuth, getIsLoggedIn } from "modules/userAuth";
+/* import { getUserAuth, getIsLoggedIn } from "modules/userAuth"; */
 
 import { FeedInfo } from "components/feedInfo";
 import { ShowLoading } from "components/showLoading";
@@ -69,7 +69,7 @@ const Component = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   feed: getFeed(state),
   loading: getFeedLoading(state),
   error: getFeedError(state),
@@ -82,5 +82,5 @@ const mapDispatchToProps = {
   deleteFeedEditorRequest,
   clearFeed,
   resetBeDeleted,
-};
+}; */
 export const Feed = connect(mapStateToProps, mapDispatchToProps)(Component);

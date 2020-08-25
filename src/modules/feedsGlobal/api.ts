@@ -1,26 +1,35 @@
+// Core
 import { stringify } from "query-string";
+
+// Helpers
 import { request } from "helpers/request";
-import { TFeedList } from "modules/feedsGlobal";
+
+// Types
+import {
+  FeedsListType,
+  FeedsListRequestParamsType,
+} from "@md/feedsGlobal/types";
+
+import { RequestParamsType } from "@tp/index";
 
 type TResponseFeedsList = {
   data: TResponseFeed;
 };
 type TResponseFeed = {
-  articles: TFeedList; //TODO добавить тип юзера
+  articles: FeedsListType; //TODO добавить тип юзера
 };
-export const getFeeds = async ({
-  limit,
-  offset,
-}: {
-  limit: number;
-  offset: number;
-}): Promise<TFeedList> => {
-  const stingifyParams = stringify({
-    limit,
-    offset,
-  });
+export const getFeeds = async (
+  params?: FeedsListRequestParamsType
+): Promise<FeedsListType> => {
   try {
-    console.log("-> get feed api");
+    //if (!params) return Promise.reject("Уточните параметры запроса!");
+    //const { limit = 10, offset = 0 } = params;
+    const limit = 10,
+      offset = 0;
+    const stingifyParams = stringify({
+      limit,
+      offset,
+    });
     const res = <TResponseFeedsList>await request(
       {
         url: `/articles?${stingifyParams}`,
@@ -30,7 +39,7 @@ export const getFeeds = async ({
     );
     console.log("-> res", res);
     return res.data.articles;
-  } catch (e) {
+  } catch (error) {
     return Promise.reject("Ошибка получения фидов");
   }
 };

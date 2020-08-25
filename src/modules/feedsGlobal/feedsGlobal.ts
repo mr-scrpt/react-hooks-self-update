@@ -1,40 +1,75 @@
-import { handleActions } from "redux-actions";
-import { combineReducers } from "redux";
-import { createReducer, ActionType } from "typesafe-actions";
+// helpers
 import { feedMapListLike } from "helpers/feedMapListLike";
+//Types
+import { FeedsStateType } from "@md/feedsGlobal/types";
+import {
+  FeedsActionTypes,
+  FEEDS_GLOBAL_FETCHING_START,
+  FEEDS_GLOBAL_FETCHING_FINISH,
+  FEEDS_GLOBAL_REQUEST,
+  FEEDS_GLOBAL_REQUEST_SUCCESS,
+  FEEDS_GLOBAL_REQUEST_ERROR,
+  FEEDS_GLOBAL_FILL,
+} from "@md/feedsGlobal/actionTypes";
 
-import * as actionNames from "constant/actionNames";
-
-const initialState = {
+const initialState: FeedsStateType = {
   feedsList: [],
   feedsCount: 0,
   loading: false,
-  error: "",
+  error: false,
 };
-export type TState = Readonly<typeof initialState>;
 
-export type TFeedsPayload = {
-  payload: TFeedList;
+export const feedFlobalListReducer = (
+  state = initialState,
+  action: FeedsActionTypes
+): FeedsStateType => {
+  switch (action.type) {
+    case FEEDS_GLOBAL_FETCHING_START:
+      return {
+        ...state,
+        feedsList: [],
+        //feedsCount: 0,
+        loading: true,
+        error: false,
+      };
+
+    case FEEDS_GLOBAL_FETCHING_FINISH:
+      return {
+        ...state,
+        loading: false,
+        //feedsCount: 0,
+        error: false,
+      };
+    case FEEDS_GLOBAL_REQUEST:
+      return state;
+    case FEEDS_GLOBAL_REQUEST_SUCCESS:
+      return state;
+    case FEEDS_GLOBAL_REQUEST_ERROR:
+      return {
+        ...state,
+        //feedsCount: 0,
+        loading: false,
+        error: {
+          ...action.payload,
+        },
+      };
+    case FEEDS_GLOBAL_FILL:
+      return {
+        ...state,
+        feedsList: action.payload,
+        //feedsCount: 0,
+        loading: false,
+        error: false,
+      };
+
+    default:
+      const x: never = action;
+  }
+  return state;
 };
-export type TFeedList = Array<TFeed>;
-export type TFeed = {
-  author: TAuthor;
-  body: string;
-  createdAt: string;
-  description: string;
-  favorited: boolean;
-  favoritesCount: number;
-  slug: string;
-  tagList: Array<string>;
-  title: string;
-  updatedAt: string;
-};
-export type TAuthor = {
-  username: string;
-  bio: string | null;
-  image: string;
-  following: boolean;
-};
+
+/* 
+
 const feedsList = createReducer(initialState.feedsList)
   .handleType(actionNames.feedsGlobalRequest, () => initialState.feedsList)
   .handleType(
@@ -83,3 +118,4 @@ export default combineReducers({
   loading,
   error,
 });
+ */

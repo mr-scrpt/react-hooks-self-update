@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import cx from "classnames";
 import { ButtonWithIcon } from "components/buttons";
-import { fetchLikeFeedRequest } from "modules/feedsGlobal";
+/* import { fetchLikeFeedRequest } from "modules/feedsGlobal"; */
 import { getIsLoggedIn } from "modules/userAuth";
 
-const Component = ({
+export const AddToFavorite = ({
   isLoggedIn,
   slug,
   favorited,
   favoritesCount,
-  dispatchToLikeToggle,
+  //dispatchToLikeToggle,
 }) => {
   const buttonClasses = cx({
     btn: true,
@@ -19,9 +19,9 @@ const Component = ({
     teal: !favorited,
   });
 
-  const liker = () => {
+  /*  const liker = () => {
     dispatchToLikeToggle({ slug, favorited });
-  };
+  }; */
 
   const icon = favorited ? "sentiment_very_satisfied" : "sentiment_neutral";
   return (
@@ -29,7 +29,7 @@ const Component = ({
       <ButtonWithIcon
         size="l"
         icon={icon}
-        onClick={liker}
+        //onClick={liker}
         isActive={favorited}
         disabled={!isLoggedIn}
       >
@@ -44,7 +44,7 @@ const Component = ({
     </>
   );
 };
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   isLoggedIn: getIsLoggedIn(state),
 });
 const mapDispatchToProps = {
@@ -54,3 +54,4 @@ export const AddToFavorite = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
+ */

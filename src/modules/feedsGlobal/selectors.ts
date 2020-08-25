@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+/* import { createSelector } from "reselect";
 import { TAppState } from "..";
 
 type TGlobalState = {
@@ -27,7 +27,7 @@ export const getFeedsLoading = createSelector(
 export const getFeedsError = createSelector(
   (state: TGlobalState): string => state.feedsGlobalStore.error,
   (error: string): string => error
-);
+); */
 
 /* export const getFeedsList = (state: TAppState) => {
   (state: TAppState) => ,
